@@ -8,24 +8,25 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/emma1/.nuget/packages/": {}
+    "/Users/tom/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/project-template-balay_tremlet.csproj",
+      "projectUniqueName": "/Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/project-template-balay_tremlet.csproj",
       "projectName": "project-template-balay_tremlet",
-      "projectPath": "/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/project-template-balay_tremlet.csproj",
-      "packagesPath": "/Users/emma1/.nuget/packages/",
-      "outputPath": "/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/",
+      "projectPath": "/Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/project-template-balay_tremlet.csproj",
+      "packagesPath": "/Users/tom/.nuget/packages/",
+      "outputPath": "/Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/emma1/.nuget/NuGet/NuGet.Config"
+        "/Users/tom/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -59,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.419/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.414/RuntimeIdentifierGraph.json"
       }
     }
   }

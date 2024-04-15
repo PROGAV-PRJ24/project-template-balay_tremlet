@@ -116,7 +116,7 @@ public class World
                 Mat[characterX, characterY] = 17; // personnage
             }
 
-            // Affiche la matrice dans la console
+            /* // Affiche la matrice dans la console
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
@@ -124,70 +124,76 @@ public class World
                     Console.Write(Mat[i, j] + " ");
                 }
                 Console.WriteLine();
-            }
-        }
+            }*/
+        } 
 
-        public void DisplayWorld () {
-            for (int i = 0; i < Mat.GetLength(0); i++)
+        
+public void DisplayWorld()
+{
+    for (int i = 0; i < Mat.GetLength(0); i++)
+    {
+        for (int j = 0; j < Mat.GetLength(1); j++)
+        {
+            switch (Mat[i, j])
             {
-                for (int j = 0; j < Mat.GetLength(1); j++)
-                {
-                    if (Mat[i, j]==0){
-                        Console.Write("~ ");
-                    }
-                    else if (Mat[i,j] == 1){
-                        Console.Write("— ");
-                    }
-                    else if (Mat[i,j] == 2){
-                        Console.Write("M ");
-                    }
-                    else if (Mat[i,j] == 3){
-                        Console.Write("‡ ");
-                    }
-                    else if (Mat[i,j] == 4){
-                        Console.Write("T ");
-                    }
-                    else if (Mat[i,j] == 5){
-                        Console.Write("T ");
-                    }
-                    else if (Mat[i,j] == 6){
-                        Console.Write("T ");
-                    }
-                    else if (Mat[i,j] == 7){
-                        Console.Write("π ");
-                    }
-                    else if (Mat[i,j] == 8){
-                        Console.Write("π");
-                    }
-                    else if (Mat[i,j] == 9){
-                        Console.Write("π ");
-                    }
-                    else if (Mat[i,j] == 10){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 11){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 12){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 13){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 14){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 15){
-                        Console.Write(" ");
-                    }
-                    else if (Mat[i,j] == 16){
-                        Console.Write("B ");
-                    }
-                    else {
-                        Console.Write("P ");
-                    }
-                }
-                Console.WriteLine();
+                case 0: // Mer
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write("~ ");
+                    break;
+                case 1: // Terre
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("— ");
+                    break;
+                case 2: // Montagne
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write("M ");
+                    break;
+                case 3: // Arbre
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("‡ ");
+                    break;
+                case 4: // Trésor positif1
+                case 5: // Trésor positif2
+                case 6: // Trésor positif3
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("T ");
+                    break;
+                case 7: // Trésor négatif1
+                case 8: // Trésor négatif2
+                case 9: // Trésor négatif3
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("π ");
+                    break;
+                case 10: // Nourriture vi
+                case 11: // Viandes
+                case 12: // Pates
+                case 13: // Omelette
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.Write(" ");
+                    break;
+                case 14: // Glaçons
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(" ");
+                    break;
+                case 15: // Chewing-gum
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.Write(" ");
+                    break;
+                case 16: // Bateau
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                    Console.Write("B ");
+                    break;
+                case 17: // Personnage
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("P ");
+                    break;
+                default:
+                    Console.Write("P ");
+                    break;
             }
+            Console.ResetColor();
         }
+        Console.WriteLine();
+    }
 }
+        }
