@@ -1,3 +1,9 @@
-﻿World world = new World ();
-
-world.DisplayWorld();
+﻿class Program
+{
+    static void Main(string[] args)
+    { 
+        PlayGame game = new PlayGame();
+        game.Introduction();
+        
+    }
+}
