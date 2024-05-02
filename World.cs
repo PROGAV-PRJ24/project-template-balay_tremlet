@@ -5,7 +5,7 @@ public class World
 
     public World()
     {
-        Mat = new int[20,20];
+        Mat = new int[30,30];
         Treasure = 0;
         InitialiseWorld();
     }
@@ -23,9 +23,9 @@ public class World
             }
 
             // Crée une forme de base pour l'île en utilisant des cercles
-            int centerX = 10;
-            int centerY = 10;
-            int radius = 7;
+            int centerX = Mat.GetLength(0) / 2;  
+    int centerY = Mat.GetLength(1) / 2; 
+            int radius = 10;
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
@@ -108,13 +108,25 @@ public class World
                 Mat[boatX, boatY] = 16; // bateau
             }
 
+int characterX;
+int characterY;
+bool characterPlaced = false;
             // Ajoute un personnage sur la terre
-            int characterX = random.Next(0, 20);
-            int characterY = random.Next(0, 20);
-            if (Mat[characterX, characterY] == 1)
-            {
-                Mat[characterX, characterY] = 17; // personnage
-            }
+      while (!characterPlaced)
+{
+    
+    characterX = random.Next(0, Mat.GetLength(0));
+    characterY = random.Next(0, Mat.GetLength(1));
+
+    
+    if (Mat[characterX, characterY] == 1)
+    {
+        
+        Mat[characterX, characterY] = 17; 
+        characterPlaced = true; 
+    }
+}
+
 
             /* // Affiche la matrice dans la console
             for (int i = 0; i < Mat.GetLength(0); i++)

@@ -9,7 +9,7 @@ public abstract class Character
     public string WeakPoint { get; set; }
     public string Movement { get; protected set; }
     public int IdCharacter { get; private set; }
-    public Boat Boat { get; set; } // Référence vers le bateau associé au personnage
+/*     public Boat Boat { get; set; } // Référence vers le bateau associé au personnage */
 
    
     private static int characterIdCounter = 1;
@@ -27,8 +27,8 @@ public abstract class Character
 
     public abstract void Move(string direction);
 
-
-    public void MoveBoat(string direction)
+}
+   /*  public void MoveBoat(string direction)
     {
         if (Boat != null)
         {
@@ -40,3 +40,4 @@ public abstract class Character
         }
     }
 }
+ */
