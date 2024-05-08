@@ -15,7 +15,7 @@ public abstract class Character
     private static int characterIdCounter = 1;
 
 
-    public Character(bool unlock, int QuantityEnergy, int manageEnergy, int inventorySize, string inventoryWeight, string StrongPoint, string weakPoint, string strongPoint, string movement)
+    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventorySize, int inventoryWeight, string weakPoint, string strongPoint, string movement)
     {
         Unlock = unlock;
         QuantityEnergy = quantityEnergy;
@@ -31,7 +31,8 @@ public abstract class Character
   
     public abstract void DisplayCharacter();
 
-    public abstract void Move(string direction);
+    public abstract void Move(string direction, int roll, World world);
+
 
 }
    /*  public void MoveBoat(string direction)

@@ -1,7 +1,9 @@
 public class World
 {
     public int Treasure { get; set; }
-    private int[,] Mat;
+    public int[,] Mat { get; set; }
+    public int CharacterX {get; set; }
+    public int CharacterY {get; set; }
 
     public World()
     {
@@ -203,5 +205,37 @@ public class World
             }
             Console.WriteLine();
         }
+    }
+    
+    public int GetCharacterX()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                if (Mat[i, j] == 17)
+                {
+                    CharacterX = i ;
+                    return CharacterX;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int GetCharacterY()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                if (Mat[i, j] == 17)
+                {
+                    CharacterY = j ;
+                    return CharacterY;
+                }
+            }
+        }
+        return -1;
     }
 }

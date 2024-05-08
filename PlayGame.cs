@@ -4,7 +4,7 @@ public class PlayGame
     private string nomDuJeu = "One Piece";
     private string nomEquipe = "Tom et Emma";
     private bool menuActif = false;
-    private string descriptionRegle;
+    private string descriptionRegle = "";
 
     public void Introduction()
     {
@@ -75,6 +75,15 @@ public class PlayGame
         menuActif = false;
         World world = new World();
         world.DisplayWorld();
+        Human human = new Human();
+        while (human.QuantityEnergy > 0)
+        {
+            PlayTurn(human, world);
+        }
+        Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+        Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
+        Console.ReadKey();
+        Introduction();
     }
 
        
@@ -93,4 +102,33 @@ public class PlayGame
         
         Console.WriteLine("\nAffichage du classement des meilleurs joueurs...");
     }
+
+
+    private void PlayTurn(Human human, World world)
+    {
+        Console.Clear();
+        world.DisplayWorld();
+        Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
+        Console.ReadKey();
+        int roll = RollDice();
+        Console.WriteLine("\nVous avez obtenu un " + roll + " !");
+        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+        string direction = Console.ReadLine().ToLower();
+
+        if (human != null && world != null)
+            {
+                human.Move(direction, roll, world);
+                Console.WriteLine("\nVotre personnage a maintenant " + human.QuantityEnergy + " points d'énergie restants.");
+            }
+
+        Console.WriteLine("Appuyez sur une touche pour continuer...");
+        Console.ReadKey();
+    }
+
+    private int RollDice()
+    {
+        Random rand = new Random();
+        return rand.Next(1, 7);
+    }
+
 }
