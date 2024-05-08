@@ -4,12 +4,21 @@ public class World
     public int[,] Mat { get; set; }
     public int CharacterX {get; set; }
     public int CharacterY {get; set; }
+    public int CenterX {get; set; }  
+    public int CenterY {get; set; }
+    public int Radius {get; set; }
+
 
     public World()
     {
         Mat = new int[30,30];
         Treasure = 0;
+        CenterX = Mat.GetLength(0) / 2;  
+        CenterY = Mat.GetLength(1) / 2; 
+        Radius = 12;
         InitialiseWorld();
+        GetCharacterX();
+        GetCharacterY();
     }
 
     public void InitialiseWorld() {
@@ -25,15 +34,12 @@ public class World
         }
 
         // Crée une forme de base pour l'île en utilisant des cercles
-        int centerX = Mat.GetLength(0) / 2;  
-        int centerY = Mat.GetLength(1) / 2; 
-        int radius = 12;
         for (int i = 0; i < Mat.GetLength(0); i++)
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                int distance = (int)Math.Sqrt(Math.Pow(i - centerX, 2) + Math.Pow(j - centerY, 2));
-                if (distance <= radius)
+                int distance = (int)Math.Sqrt(Math.Pow(i - CenterX, 2) + Math.Pow(j - CenterY, 2));
+                if (distance <= Radius)
                 {
                     Mat[i, j] = 1; // terre
                 }
@@ -237,5 +243,13 @@ public class World
             }
         }
         return -1;
+    }
+
+    public bool IsInCircle(int X, int Y)
+    {
+        int distanceX = X - CenterX;
+        int distanceY = Y - CenterY;
+        int distanceSquared = distanceX * distanceX + distanceY * distanceY;
+        return distanceSquared <= Radius * Radius;
     }
 }

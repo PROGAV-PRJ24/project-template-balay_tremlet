@@ -1,6 +1,7 @@
 class Human : Character
 {
-    public Human() : base(true, 100, 10, 20, 50, "Intelligence", "Eau", "Lignes droites")
+
+    public Human(bool unlock, int quantityEnergy, int inventorySize, int inventoryWeight) : base(unlock, quantityEnergy, 10, inventorySize, inventoryWeight, "Eau", "Montagne", "Lignes droites")
     {
     }
 
@@ -8,7 +9,7 @@ class Human : Character
     public override void DisplayCharacter()
     {
         Console.WriteLine($"ID : {IdCharacter}");
-        Console.WriteLine($"Débloqué ? : {IdCharacter}");
+        Console.WriteLine($"Débloqué ? : {Unlock}");
         Console.WriteLine($"Quantité d'énergie : {QuantityEnergy}");
         Console.WriteLine($"Taille de l'inventaire : {InventorySize}");
         Console.WriteLine($"Poids de l'inventaire : {InventoryWeight}");
@@ -19,6 +20,12 @@ class Human : Character
 
     public override void Move(string direction, int roll, World world)
     {
+
+        int oldX = world.GetCharacterX();
+        int oldY = world.GetCharacterY();
+
+        int oldPoint = world.IsInCircle(oldX, oldY) ? 1 : 0;
+
         int newX = -1;
         int newY = -1;
 
@@ -45,15 +52,17 @@ class Human : Character
                 return;
         }
 
-        if (newX >= 0 && newX < world.Mat.GetLength(0) && newY >= 0 && newY < world.Mat.GetLength(1) && world.Mat[newX, newY] != 2)
+        if (world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
         {
-            world.Mat[world.GetCharacterX(), world.GetCharacterY()] = 1; 
-            world.Mat[newX, newY] = 17;
-            QuantityEnergy-= 10;
-            Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
+            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
 
-        }
-        else
+        } else if (newX >= 0 && newX < world.Mat.GetLength(0) && newY >= 0 && newY < world.Mat.GetLength(1) && world.Mat[newX, newY] != IdWeakness1 && world.Mat[newX, newY] != IdWeakness2)
+        {
+            world.Mat[newX, newY] = 17;
+            world.Mat[oldX, oldY] = oldPoint; 
+            QuantityEnergy -= ManageEnergy;
+            Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
+        } else
         {
             Console.WriteLine("Impossible de se déplacer dans cette direction");
         }

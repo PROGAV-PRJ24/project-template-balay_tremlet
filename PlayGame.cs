@@ -75,10 +75,11 @@ public class PlayGame
         menuActif = false;
         World world = new World();
         world.DisplayWorld();
-        Human human = new Human();
-        while (human.QuantityEnergy > 0)
+        Emma emma = new Emma();
+        emma.DisplayCharacter();
+        while (emma.QuantityEnergy > 0)
         {
-            PlayTurn(human, world);
+            PlayTurn(emma, world);
         }
         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -104,7 +105,7 @@ public class PlayGame
     }
 
 
-    private void PlayTurn(Human human, World world)
+    private void PlayTurn(Character character, World world)
     {
         Console.Clear();
         world.DisplayWorld();
@@ -115,10 +116,10 @@ public class PlayGame
         Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
         string direction = Console.ReadLine().ToLower();
 
-        if (human != null && world != null)
+        if (character != null && world != null)
             {
-                human.Move(direction, roll, world);
-                Console.WriteLine("\nVotre personnage a maintenant " + human.QuantityEnergy + " points d'énergie restants.");
+                character.Move(direction, roll, world);
+                Console.WriteLine("\nVotre personnage a maintenant " + character.QuantityEnergy + " points d'énergie restants.");
             }
 
         Console.WriteLine("Appuyez sur une touche pour continuer...");
