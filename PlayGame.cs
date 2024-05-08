@@ -74,7 +74,6 @@ public class PlayGame
         Console.WriteLine("\nLancement de la partie solo...");
         menuActif = false;
         World world = new World();
-        world.DisplayWorld();
         Emma emma = new Emma();
         emma.DisplayCharacter();
         while (emma.QuantityEnergy > 0)
@@ -108,6 +107,38 @@ public class PlayGame
     private void PlayTurn(Character character, World world)
     {
         Console.Clear();
+        // Console.WriteLine("Choisissez votre personnage :");
+        // Console.WriteLine("1. Emma");
+        // Console.WriteLine("2. Tom");
+        // Console.WriteLine("3. Chamois");
+        // Console.WriteLine("4. Kangourou");
+
+        // Console.Write("Entrez le nom du personnage : ");
+        // string characterName = Console.ReadLine();
+
+        // Character character;
+
+        // switch (characterName.ToLower())
+        // {
+        //     case "humain":
+        //         character = CharacterSelection.Human;
+        //         break;
+        //     case "emma":
+        //         character = CharacterSelection.Emma;
+        //         break;
+        //     case "tom":
+        //         character = CharacterSelection.Tom;
+        //         break;
+        //     default:
+        //         Console.WriteLine("Personnage inconnu, le humain sera sélectionné par défaut.");
+        //         character = CharacterSelection.Human;
+        //         break;
+        // }
+
+        // Console.Clear();
+        // Console.WriteLine($"Vous avez choisi le personnage {character.IdCharacter} !");
+        character.DisplayCharacter();
+
         world.DisplayWorld();
         Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
         Console.ReadKey();
