@@ -3,6 +3,7 @@ public class PlayGame
 {
     private string nomDuJeu = "One Piece";
     private string nomEquipe = "Tom et Emma";
+    private bool menuActif = false;
     private string descriptionRegle;
 
     public void Introduction()
@@ -22,7 +23,7 @@ public class PlayGame
 
     public void DisplayMenu()
     {
-        bool menuActif = true;
+        menuActif = true;
 
         while (menuActif)
         {
@@ -63,27 +64,28 @@ public class PlayGame
             }
             else
             {
-                Console.WriteLine("\nErreur : veuillez entrer un nombre valide (1-4).");
+                Console.WriteLine("\nErreur : veuillez entrer un nombre valide entre 1 et 4.");
             }
         }
     }
 
     private void StartSoloGame()
     {
-
-    Console.WriteLine("\nLancement de la partie solo...");
-    World world = new World();
-    world.InitialiseWorld();
-    world.DisplayWorld();
-}
+        Console.WriteLine("\nLancement de la partie solo...");
+        menuActif = false;
+        World world = new World();
+        world.DisplayWorld();
+    }
 
        
     
 
     private void Start1v1Game()
     {
-    
         Console.WriteLine("\nLancement de la partie 1v1...");
+        menuActif = false;
+        World world = new World();
+        world.DisplayWorld();
     }
 
     private void DisplayLeaderboard()

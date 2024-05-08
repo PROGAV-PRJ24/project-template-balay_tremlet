@@ -3,8 +3,8 @@ public abstract class Character
     public bool Unlock { get; set; }
     public int QuantityEnergy { get; set; }
     public int ManageEnergy { get; set; }
-    public int Size { get; set; }
-    public int Weight { get; set; }
+    public int InventorySize { get; set; }
+    public int InventoryWeight { get; set; }
     public string StrongPoint { get; set; }
     public string WeakPoint { get; set; }
     public string Movement { get; protected set; }
@@ -14,16 +14,22 @@ public abstract class Character
    
     private static int characterIdCounter = 1;
 
-   
-    public Character()
+
+    public Character(bool unlock, int QuantityEnergy, int manageEnergy, int inventorySize, string inventoryWeight, string StrongPoint, string weakPoint, string strongPoint, string movement)
     {
-    
+        Unlock = unlock;
+        QuantityEnergy = quantityEnergy;
+        ManageEnergy = manageEnergy;
+        InventorySize = inventorySize;
+        InventoryWeight = inventoryWeight;
+        StrongPoint = strongPoint;
+        WeakPoint = weakPoint;
+        Movement = movement;
         IdCharacter = characterIdCounter++;
     }
 
   
     public abstract void DisplayCharacter();
-
 
     public abstract void Move(string direction);
 

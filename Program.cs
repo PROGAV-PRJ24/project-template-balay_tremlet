@@ -1,9 +1,12 @@
-﻿class Program
-{
-    static void Main(string[] args)
-    { 
-        PlayGame game = new PlayGame();
-        game.Introduction();
+﻿// class Program
+// {
+//     static void Main(string[] args)
+//     { 
+//         PlayGame game = new PlayGame();
+//         game.Introduction();
         
-    }
-}
+//     }
+// }
+
+PlayGame game = new PlayGame();
+game.Introduction();
