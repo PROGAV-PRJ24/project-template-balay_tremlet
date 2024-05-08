@@ -113,13 +113,26 @@ public class PlayGame
         Console.ReadKey();
         int roll = RollDice();
         Console.WriteLine("\nVous avez obtenu un " + roll + " !");
-        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
-        string direction = Console.ReadLine().ToLower();
+        // Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+        // string direction = Console.ReadLine().ToLower();
 
         if (character != null && world != null)
             {
-                character.Move(direction, roll, world);
-                Console.WriteLine("\nVotre personnage a maintenant " + character.QuantityEnergy + " points d'énergie restants.");
+                bool validDirection = false;
+                while (!validDirection)
+                {
+                    Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+                    string direction = Console.ReadLine().ToLower();
+
+                    if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
+                    {
+                        validDirection = character.Move(direction, roll, world);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Direction invalide");
+                    }
+                }            
             }
 
         Console.WriteLine("Appuyez sur une touche pour continuer...");

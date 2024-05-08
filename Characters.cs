@@ -33,7 +33,7 @@ public abstract class Character
   
     public abstract void DisplayCharacter();
 
-    public abstract void Move(string direction, int roll, World world);
+    public abstract bool Move(string direction, int roll, World world);
 
     public void Weakness () {
 

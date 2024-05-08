@@ -18,7 +18,7 @@ class Human : Character
         Console.WriteLine($"Déplacement : {Movement}");
     }
 
-    public override void Move(string direction, int roll, World world)
+    public override bool Move(string direction, int roll, World world)
     {
 
         int oldX = world.GetCharacterX();
@@ -49,22 +49,27 @@ class Human : Character
                 break;
             default:
                 Console.WriteLine("Direction invalide");
-                return;
+                return false;
         }
 
-        if (world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
-        {
-            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
 
-        } else if (newX >= 0 && newX < world.Mat.GetLength(0) && newY >= 0 && newY < world.Mat.GetLength(1) && world.Mat[newX, newY] != IdWeakness1 && world.Mat[newX, newY] != IdWeakness2)
-        {
-            world.Mat[newX, newY] = 17;
-            world.Mat[oldX, oldY] = oldPoint; 
-            QuantityEnergy -= ManageEnergy;
-            Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
-        } else
+        if (newX < 0 || newX >= world.Mat.GetLength(0) || newY < 0 || newY >= world.Mat.GetLength(1))
         {
             Console.WriteLine("Impossible de se déplacer dans cette direction");
+            return false;
+
+        }
+        if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
+        {
+            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
+            return false;
+
+        } else {
+            world.Mat[newX, newY] = 17;
+            world.Mat[oldX, oldY] = oldPoint;
+            QuantityEnergy -= ManageEnergy;
+            Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
+            return true;
         }
     }
 }

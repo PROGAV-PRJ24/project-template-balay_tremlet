@@ -200,7 +200,7 @@ public class World
                         Console.Write("B ");
                         break;
                     case 17: // Personnage
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("P ");
                         break;
                     default:
