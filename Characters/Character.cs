@@ -57,7 +57,35 @@ public abstract class Character
         }
     }
 
+public virtual void DisplayEnergy()
+{
+    int maxEnergy = 100; 
+    int barSize = 20; 
+    int energyPerBar = 5; 
 
+    int fullBars = QuantityEnergy / energyPerBar;
+    int remainingEnergy = QuantityEnergy % energyPerBar;
+
+    Console.Write($"L'energie restante de votre personnage est : ");
+
+    for (int i = 0; i < fullBars; i++)
+    {
+        Console.Write("■"); 
+    }
+
+    if (remainingEnergy > 0)
+    {
+        Console.Write("□"); 
+    }
+
+    for (int i = fullBars + (remainingEnergy > 0 ? 1 : 0); i < barSize; i++)
+    {
+        Console.Write(" "); 
+
+   
+}
+ Console.Write($" ({QuantityEnergy}/{maxEnergy})");
+}
 }
    /*  public void MoveBoat(string direction)
     {
