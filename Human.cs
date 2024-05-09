@@ -18,7 +18,7 @@ class Human : Character
         Console.WriteLine($"Déplacement : {Movement}");
     }
 
-    public override bool Move(string direction, int roll, World world)
+    public override bool Move(string direction, int roll, World world, Character character)
     {
 
         int oldX = world.GetCharacterX();
@@ -32,20 +32,20 @@ class Human : Character
         switch (direction.ToLower())
         {
             case "gauche":
-                newX = world.GetCharacterX() ;
-                newY = world.GetCharacterY() - roll;
+                newX = oldX ;
+                newY = oldY - roll;
                 break;
             case "droite":
-                newX = world.GetCharacterX() ;
-                newY = world.GetCharacterY() + roll;
+                newX = oldX ;
+                newY = oldY + roll;
                 break;
             case "haut":
-                newX = world.GetCharacterX()  - roll;
-                newY = world.GetCharacterY();
+                newX = oldX  - roll;
+                newY = oldY;
                 break;
             case "bas":
-                newX = world.GetCharacterX() + roll;
-                newY = world.GetCharacterY() ;
+                newX = oldX + roll;
+                newY = oldY ;
                 break;
             default:
                 Console.WriteLine("Direction invalide");
@@ -65,6 +65,7 @@ class Human : Character
             return false;
 
         } else {
+            world.CheckFood(newX, newY,character);
             world.Mat[newX, newY] = 17;
             world.Mat[oldX, oldY] = oldPoint;
             QuantityEnergy -= ManageEnergy;

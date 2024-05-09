@@ -1,6 +1,6 @@
 class Herbe : Food
 {
-    public Herbe() : base(15)
+    public Herbe() : base(15, 13)
     {
     }
 

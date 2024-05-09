@@ -1,6 +1,6 @@
 class Pate : Food
 {
-    public Pate() : base(15)
+    public Pate() : base(15, 12)
     {
     }
 

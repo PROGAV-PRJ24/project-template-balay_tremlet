@@ -16,7 +16,7 @@ class Animal : Character
         Console.WriteLine($"Déplacement : {Movement}");
     }
 
-    public override bool Move(string direction, int roll, World world)
+    public override bool Move(string direction, int roll, World world, Character character)
     {
 
         int oldX = world.GetCharacterX();
@@ -65,6 +65,7 @@ class Animal : Character
             world.Mat[newX, newY] = 17;
             world.Mat[oldX, oldY] = oldPoint;
             QuantityEnergy -= ManageEnergy;
+            world.CheckFood(newX, newY, character);
             Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
             return true;
         }

@@ -1,15 +1,14 @@
 public abstract class Food
 {
     public int EnergyGift {get; set;}
-    public int IdFood { get; private set; }
-
-    private static int foodIdCounter = 1;
+    public int IdFood { get; set; }
 
 
-    public Food(int energyGift)
+
+    public Food(int energyGift, int idFood)
     {
         EnergyGift = energyGift;
-        IdFood = foodIdCounter ++;
+        IdFood = idFood;
     }
 
   

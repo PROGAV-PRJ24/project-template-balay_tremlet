@@ -65,6 +65,7 @@ public class PlayGame
             else
             {
                 Console.WriteLine("\nErreur : veuillez entrer un nombre valide entre 1 et 4.");
+                DisplayMenu();
             }
         }
     }
@@ -112,7 +113,7 @@ public class PlayGame
 
                     if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
                     {
-                        validDirection = character.Move(direction, roll, world);
+                        validDirection = character.Move(direction, roll, world, character);
                     }
                     else
                     {
@@ -243,6 +244,7 @@ public class PlayGame
             else
             {
                 Console.WriteLine("\nErreur : veuillez entrer un nombre valide entre 1 et 6.");
+                ChooseCharactere(world);
             }
 
     }

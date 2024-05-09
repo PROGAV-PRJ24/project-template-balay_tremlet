@@ -7,6 +7,7 @@ public class World
     public int CenterX {get; set; }  
     public int CenterY {get; set; }
     public int Radius {get; set; }
+    public string CaseName {get; set; }
 
 
     public World()
@@ -102,7 +103,7 @@ public class World
             {
                 if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
                 {
-                    int food = random.Next(10, 16); // Génère un nombre aléatoire entre 10 et 15
+                    int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
                     Mat[i, j] = food; // nourriture
                 }
             }
@@ -113,7 +114,7 @@ public class World
         int boatY = random.Next(0, 20);
         if (Mat[boatX, boatY] == 0)
         {
-            Mat[boatX, boatY] = 16; // bateau
+            Mat[boatX, boatY] = 14; // bateau
         }
 
         int characterX;
@@ -183,19 +184,14 @@ public class World
                     case 10: // Nourriture vi
                     case 11: // Viandes
                     case 12: // Pates
-                    case 13: // Omelette
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.Write(" ");
                         break;
-                    case 14: // Glaçons
+                    case 13: // Herbes
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write(" ");
                         break;
-                    case 15: // Chewing-gum
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.Write(" ");
-                        break;
-                    case 16: // Bateau
+                    case 14: // Bateau
                         Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.Write("B ");
                         break;
@@ -252,4 +248,72 @@ public class World
         int distanceSquared = distanceX * distanceX + distanceY * distanceY;
         return distanceSquared <= Radius * Radius;
     }
+
+    public void CheckFood(int characterX, int characterY, Character character)
+    {
+        int foodId = Mat[characterX, characterY];
+        GetFoodById(foodId);
+        string foodName = CaseName;
+
+        if (foodName == "LifeFood"){
+
+            LifeFood food = new LifeFood ();
+            Console.WriteLine ($"Vous avez trouvé de la nourriture vie !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;   
+
+        }  else if (foodName == "Viande"){
+
+            Viande food = new Viande();
+            Console.WriteLine ($"Vous avez trouvé de la viande !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;     
+
+        } else if (foodName == "Pate"){
+
+            Pate food = new Pate();
+            Console.WriteLine ($"Vous avez trouvé des pates !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;
+
+        } else if (foodName == "Herbe"){
+
+            Herbe food = new Herbe ();
+            Console.WriteLine ($"Vous avez trouvé de l'herbe !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;
+
+        } 
+    }
+
+    private void GetFoodById(int foodId)
+    {
+        Console.WriteLine(foodId);
+        if (foodId >= 10 && foodId <= 13){
+            switch (foodId)
+            {
+                case 10:
+                    CaseName = "LifeFood";
+                    break;
+                case 11:
+                    CaseName = "Viande";
+                    break;
+                case 12:
+                    CaseName = "Pate";
+                    break;
+
+                case 13:
+                    CaseName = "Herbe";
+                   break;
+
+                default:
+                    Console.WriteLine("erreur");
+                    break;
+            }
+        } else {
+            Console.WriteLine("Pas de nourriture");
+        }
+
+    }
+
 }

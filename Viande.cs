@@ -1,6 +1,6 @@
 class Viande : Food
 {
-    public Viande() : base(15)
+    public Viande() : base(15, 11)
     {
     }
 
