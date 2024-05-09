@@ -11,7 +11,7 @@ class Animal : Character
         Console.WriteLine($"Quantité d'énergie : {QuantityEnergy}");
         Console.WriteLine($"Taille de l'inventaire : {InventorySize}");
         Console.WriteLine($"Poids de l'inventaire : {InventoryWeight}");
-        Console.WriteLine($"Point fort : {StrongPoint}");
+        Console.WriteLine($"Point fort : {StrongPoint}, Arbre");
         Console.WriteLine($"Point faible : {WeakPoint}");
         Console.WriteLine($"Déplacement : {Movement}");
     }

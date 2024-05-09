@@ -59,14 +59,19 @@ class Human : Character
             return false;
 
         }
+         if (world.Mat[newX, newY] == 3)
+        {
+            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne peut pas traverser les arbres.");
+            return false;
+        }
         if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
         {
             Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
             return false;
 
         } else {
-            world.CheckFood(newX, newY,character);
             world.Mat[newX, newY] = 17;
+            world.CheckFood(newX, newY,character);
             world.Mat[oldX, oldY] = oldPoint;
             QuantityEnergy -= ManageEnergy;
             Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
