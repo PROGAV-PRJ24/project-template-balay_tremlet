@@ -7,7 +7,7 @@ class Animal : Character
     public override void DisplayCharacter()
     {
         Console.WriteLine($"ID : {IdCharacter}");
-        Console.WriteLine($"Débloqué ? : {IdCharacter}");
+        Console.WriteLine($"Débloqué ? : {Unlock}");
         Console.WriteLine($"Quantité d'énergie : {QuantityEnergy}");
         Console.WriteLine($"Taille de l'inventaire : {InventorySize}");
         Console.WriteLine($"Poids de l'inventaire : {InventoryWeight}");
