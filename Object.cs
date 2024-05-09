@@ -57,9 +57,14 @@ class Object : Character
         }
          if (world.Mat[newX, newY] == 3)
         {
-            Console.WriteLine($"Votre {character.GetType().Name} (ID : {IdCharacter}) ne peut pas traverser les arbres.");
+            Console.WriteLine($"Votre object (ID : {IdCharacter}) ne peut pas traverser les arbres.");
             return false;
             
+        }
+        if (world.Mat[newX, newY] == 2)
+        {
+            Console.WriteLine($"Votre object (ID : {IdCharacter}) ne peut pas traverser les montagnes.");
+            return false;
         }
         if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
         {

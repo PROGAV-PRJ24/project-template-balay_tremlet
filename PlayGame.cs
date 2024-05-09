@@ -181,7 +181,6 @@ public class PlayGame
                         while (Tom.QuantityEnergy > 0)
                         {
                             PlayTurn(Tom, world);
-                            Console.Clear();
                         }
                         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");

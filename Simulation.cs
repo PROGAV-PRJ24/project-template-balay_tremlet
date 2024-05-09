@@ -1,8 +1,7 @@
 World world = new World();
 
 PlayGame PlayGame = new PlayGame();
-PlayGame game = new PlayGame();
-game.Introduction();
+PlayGame.Introduction();
 
 // PlayGame.ChooseCharactere(world);
 

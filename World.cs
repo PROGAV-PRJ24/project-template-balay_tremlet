@@ -288,6 +288,7 @@ public class World
 
     private void GetFoodById(int foodId)
     {
+         Console.WriteLine(foodId);
         if (foodId >= 10 && foodId <= 13){
             switch (foodId)
             {
@@ -300,13 +301,11 @@ public class World
                 case 12:
                     CaseName = "Pate";
                     break;
-
                 case 13:
                     CaseName = "Herbe";
-                   break;
-
+                    break;
                 default:
-                    Console.WriteLine("erreur");
+                    Console.WriteLine("Erreur de la nourriture");
                     break;
             }
         } else {
