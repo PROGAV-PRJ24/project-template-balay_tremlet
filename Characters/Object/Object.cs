@@ -4,7 +4,7 @@ class Object : Character
     {
     }
 
-    public override void DisplayCharacter()
+    public override void DisplayCharacter(Character character)
     {
         Console.WriteLine($"ID : {IdCharacter}");
         Console.WriteLine($"Débloqué ? : {Unlock}");
@@ -14,10 +14,12 @@ class Object : Character
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
         Console.WriteLine($"Déplacement : {Movement}");
+        Weakness(character);
     }
 
     public override bool Move(string direction, int roll, World world, Character character)
     {
+
         int oldX = world.GetCharacterX();
         int oldY = world.GetCharacterY();
 
@@ -60,11 +62,6 @@ class Object : Character
             Console.WriteLine($"Votre object (ID : {IdCharacter}) ne peut pas traverser les arbres.");
             return false;
             
-        }
-        if (world.Mat[newX, newY] == 2)
-        {
-            Console.WriteLine($"Votre object (ID : {IdCharacter}) ne peut pas traverser les montagnes.");
-            return false;
         }
         if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
         {

@@ -6,7 +6,7 @@ class Human : Character
     }
 
 
-    public override void DisplayCharacter()
+    public override void DisplayCharacter(Character character)
     {
         Console.WriteLine($"ID : {IdCharacter}");
         Console.WriteLine($"Débloqué ? : {Unlock}");
@@ -16,11 +16,11 @@ class Human : Character
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
         Console.WriteLine($"Déplacement : {Movement}");
+        Weakness(character);
     }
 
     public override bool Move(string direction, int roll, World world, Character character)
     {
-
         int oldX = world.GetCharacterX();
         int oldY = world.GetCharacterY();
 
@@ -64,12 +64,6 @@ class Human : Character
             Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne peut pas traverser les arbres.");
             return false;
         }
-        if (world.Mat[newX, newY] == 2)
-        {
-            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne peut pas traverser les montagnes.");
-            return false;
-        }
-
         if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
         {
             Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");

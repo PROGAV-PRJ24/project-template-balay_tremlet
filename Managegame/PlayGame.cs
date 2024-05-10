@@ -137,7 +137,7 @@ public class PlayGame
         if (character.Unlock) {
             Console.Clear();
             Console.WriteLine($"Vous avez choisi le personnage {character} !");
-            character.DisplayCharacter();
+            character.DisplayCharacter(character);
             Console.WriteLine("\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
         } else {

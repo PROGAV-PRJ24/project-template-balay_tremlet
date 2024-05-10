@@ -4,7 +4,7 @@ class Animal : Character
     {
     }
 
-    public override void DisplayCharacter()
+    public override void DisplayCharacter(Character character)
     {
         Console.WriteLine($"ID : {IdCharacter}");
         Console.WriteLine($"Débloqué ? : {Unlock}");
@@ -14,6 +14,7 @@ class Animal : Character
         Console.WriteLine($"Point fort : {StrongPoint}, Arbre");
         Console.WriteLine($"Point faible : {WeakPoint}");
         Console.WriteLine($"Déplacement : {Movement}");
+        Weakness(character);
     }
 
     public override bool Move(string direction, int roll, World world, Character character)

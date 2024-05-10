@@ -31,23 +31,25 @@ public abstract class Character
     }
 
   
-    public abstract void DisplayCharacter();
+    public abstract void DisplayCharacter(Character character);
 
     public abstract bool Move(string direction, int roll, World world, Character character);
 
-    public void Weakness () {
+    public void Weakness (Character character) {
 
-        switch (WeakPoint.ToLower())
+            Console.WriteLine(character.WeakPoint.ToLower());
+
+        switch (character.WeakPoint.ToLower())
         {
-            case "Montagne":
+            case "montagne":
                 IdWeakness1 = 2;
                 IdWeakness2 = 500;
                 break;
-            case "Eau":
+            case "eau":
                 IdWeakness1 = 0;
                 IdWeakness2 = 500;
                 break;
-            case "Montagne/Eau":
+            case "montagne/eau":
                 IdWeakness1 = 2;
                 IdWeakness2 = 0;
                 break;
@@ -57,35 +59,34 @@ public abstract class Character
         }
     }
 
-public virtual void DisplayEnergy()
-{
-    int maxEnergy = 100; 
-    int barSize = 20; 
-    int energyPerBar = 5; 
-
-    int fullBars = QuantityEnergy / energyPerBar;
-    int remainingEnergy = QuantityEnergy % energyPerBar;
-
-    Console.Write($"L'energie restante de votre personnage est : ");
-
-    for (int i = 0; i < fullBars; i++)
+    public virtual void DisplayEnergy()
     {
-        Console.Write("■"); 
+        int maxEnergy = 100; 
+        int barSize = 20; 
+        int energyPerBar = 5; 
+
+        int fullBars = QuantityEnergy / energyPerBar;
+        int remainingEnergy = QuantityEnergy % energyPerBar;
+
+        Console.Write($"L'energie restante de votre personnage est : ");
+
+        for (int i = 0; i < fullBars; i++)
+        {
+            Console.Write("■"); 
+        }
+
+        if (remainingEnergy > 0)
+        {
+            Console.Write("□"); 
+        }
+
+        for (int i = fullBars + (remainingEnergy > 0 ? 1 : 0); i < barSize; i++)
+        {
+            Console.Write(" "); 
+        }
+        
+        Console.Write($" ({QuantityEnergy}/{maxEnergy})");
     }
-
-    if (remainingEnergy > 0)
-    {
-        Console.Write("□"); 
-    }
-
-    for (int i = fullBars + (remainingEnergy > 0 ? 1 : 0); i < barSize; i++)
-    {
-        Console.Write(" "); 
-
-   
-}
- Console.Write($" ({QuantityEnergy}/{maxEnergy})");
-}
 }
    /*  public void MoveBoat(string direction)
     {
