@@ -119,6 +119,7 @@ public class PlayGame
                     {
                         Console.WriteLine("Direction invalide");
                     }
+                     character.DisplayEnergy();
                 }            
             }
 

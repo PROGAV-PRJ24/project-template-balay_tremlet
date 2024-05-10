@@ -196,11 +196,11 @@ public class World
                         Console.Write("B ");
                         break;
                     case 17: // Personnage
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("P ");
+                       
+                        Console.Write("👤 ");
                         break;
                     default:
-                        Console.Write("P ");
+                        Console.Write("👤 ");
                         break;
                 }
                 Console.ResetColor();
