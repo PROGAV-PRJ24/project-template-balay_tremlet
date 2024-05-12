@@ -35,9 +35,9 @@ public abstract class Character
 
     public abstract bool Move(string direction, int roll, World world, Character character);
 
-    public void Weakness (Character character) {
+    public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1);
 
-            Console.WriteLine(character.WeakPoint.ToLower());
+    public void Weakness (Character character) {
 
         switch (character.WeakPoint.ToLower())
         {

@@ -1,4 +1,4 @@
-World world = new World();
+
 
 PlayGame PlayGame = new PlayGame();
 PlayGame.Introduction();

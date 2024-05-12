@@ -4,144 +4,282 @@ public class World
     public int[,] Mat { get; set; }
     public int CharacterX {get; set; }
     public int CharacterY {get; set; }
+    public int Character2X {get; set; }
+    public int Character2Y {get; set; }
     public int CenterX {get; set; }  
     public int CenterY {get; set; }
     public int Radius {get; set; }
     public string CaseName {get; set; }
+    public bool IsSolo {get; set; }
 
 
-    public World()
+    public World(bool isSolo)
     {
+        IsSolo = isSolo;
         Mat = new int[30,30];
         Treasure = 0;
         CenterX = Mat.GetLength(0) / 2;  
         CenterY = Mat.GetLength(1) / 2; 
         Radius = 12;
+        
         InitialiseWorld();
-        GetCharacterX();
-        GetCharacterY();
+
+        if(IsSolo){
+            GetCharacterX();
+            GetCharacterY();
+        } else {
+            GetCharacterX();
+            GetCharacterY();
+            GetCharacter2X();
+            GetCharacter2Y();
+        }
+
     }
 
     public void InitialiseWorld() {
-
-        Random random = new Random ();
-        // Initialise la matrice avec des zéros (mer)
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+        if (IsSolo){
+            Random random = new Random ();
+            // Initialise la matrice avec des zéros (mer)
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                Mat[i, j] = 0;
-            }
-        }
-
-        // Crée une forme de base pour l'île en utilisant des cercles
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
-            {
-                int distance = (int)Math.Sqrt(Math.Pow(i - CenterX, 2) + Math.Pow(j - CenterY, 2));
-                if (distance <= Radius)
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    Mat[i, j] = 1; // terre
+                    Mat[i, j] = 0;
                 }
             }
-        }
 
-        // Ajoute des montagnes sur la terre
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+            // Crée une forme de base pour l'île en utilisant des cercles
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir une montagne
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    Mat[i, j] = 2; // montagne
+                    int distance = (int)Math.Sqrt(Math.Pow(i - CenterX, 2) + Math.Pow(j - CenterY, 2));
+                    if (distance <= Radius)
+                    {
+                        Mat[i, j] = 1; // terre
+                    }
                 }
             }
-        }
 
-        // Ajoute des arbres sur la terre
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+            // Ajoute des montagnes sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.3) // 30% de chance d'avoir un arbre
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    Mat[i, j] = 3; // arbre
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir une montagne
+                    {
+                        Mat[i, j] = 2; // montagne
+                    }
                 }
             }
-        }
 
-        // Ajoute des trésors positifs sur les montagnes
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+            // Ajoute des arbres sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    int treasure = random.Next(4, 7); // Génère un nombre aléatoire entre 4 et 6
-                    Mat[i, j] = treasure; // trésor positif
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.3) // 30% de chance d'avoir un arbre
+                    {
+                        Mat[i, j] = 3; // arbre
+                    }
                 }
             }
-        }
 
-        // Ajoute des trésors négatifs sur les montagnes
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+            // Ajoute des trésors positifs sur les montagnes
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    int treasure = random.Next(7, 10); // Génère un nombre aléatoire entre 7 et 9
-                    Mat[i, j] = treasure; // trésor négatif
+                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    {
+                        int treasure = random.Next(4, 7); // Génère un nombre aléatoire entre 4 et 6
+                        Mat[i, j] = treasure; // trésor positif
+                    }
                 }
             }
-        }
-            // Ajoute de la nourriture sur la terre
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
+
+            // Ajoute des trésors négatifs sur les montagnes
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
-                    Mat[i, j] = food; // nourriture
+                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    {
+                        int treasure = random.Next(7, 10); // Génère un nombre aléatoire entre 7 et 9
+                        Mat[i, j] = treasure; // trésor négatif
+                    }
                 }
             }
-        }
-
-        // Ajoute un bateau sur la mer
-        int boatX = random.Next(0, 20);
-        int boatY = random.Next(0, 20);
-        if (Mat[boatX, boatY] == 0)
-        {
-            Mat[boatX, boatY] = 14; // bateau
-        }
-
-        int characterX;
-        int characterY;
-        bool characterPlaced = false;
-        // Ajoute un personnage sur la terre
-        while (!characterPlaced)
-        {
-            characterX = random.Next(0, Mat.GetLength(0));
-            characterY = random.Next(0, Mat.GetLength(1));
-            
-            if (Mat[characterX, characterY] == 1)
+                // Ajoute de la nourriture sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
             {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                    {
+                        int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
+                        Mat[i, j] = food; // nourriture
+                    }
+                }
+            }
+
+            // Ajoute un bateau sur la mer
+            int boatX = random.Next(0, 20);
+            int boatY = random.Next(0, 20);
+            if (Mat[boatX, boatY] == 0)
+            {
+                Mat[boatX, boatY] = 14; // bateau
+            }
+
+            int characterX;
+            int characterY;
+            bool characterPlaced = false;
+            // Ajoute un personnage sur la terre
+            while (!characterPlaced)
+            {
+                characterX = random.Next(0, Mat.GetLength(0));
+                characterY = random.Next(0, Mat.GetLength(1));
                 
-                Mat[characterX, characterY] = 17; 
-                characterPlaced = true; 
+                if (Mat[characterX, characterY] == 1)
+                {
+                    
+                    Mat[characterX, characterY] = 17; 
+                    characterPlaced = true; 
+                }
+            }
+        } else {
+            Random random = new Random ();
+            // Initialise la matrice avec des zéros (mer)
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    Mat[i, j] = 0;
+                }
+            }
+
+            // Crée une forme de base pour l'île en utilisant des cercles
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    int distance = (int)Math.Sqrt(Math.Pow(i - CenterX, 2) + Math.Pow(j - CenterY, 2));
+                    if (distance <= Radius)
+                    {
+                        Mat[i, j] = 1; // terre
+                    }
+                }
+            }
+
+            // Ajoute des montagnes sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir une montagne
+                    {
+                        Mat[i, j] = 2; // montagne
+                    }
+                }
+            }
+
+            // Ajoute des arbres sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.3) // 30% de chance d'avoir un arbre
+                    {
+                        Mat[i, j] = 3; // arbre
+                    }
+                }
+            }
+
+            // Ajoute des trésors positifs sur les montagnes
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    {
+                        int treasure = random.Next(4, 7); // Génère un nombre aléatoire entre 4 et 6
+                        Mat[i, j] = treasure; // trésor positif
+                    }
+                }
+            }
+
+            // Ajoute des trésors négatifs sur les montagnes
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    {
+                        int treasure = random.Next(7, 10); // Génère un nombre aléatoire entre 7 et 9
+                        Mat[i, j] = treasure; // trésor négatif
+                    }
+                }
+            }
+            // Ajoute de la nourriture sur la terre
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                    {
+                        int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
+                        Mat[i, j] = food; // nourriture
+                    }
+                }
+            }
+
+            // Ajoute un bateau sur la mer
+            int boat1X = random.Next(0, 20);
+            int boat1Y = random.Next(0, 20);
+            if (Mat[boat1X, boat1Y] == 0)
+            {
+                Mat[boat1X, boat1Y] = 14; // bateau
+            }
+
+            int boat2X = random.Next(0, 20);
+            int boat2Y = random.Next(0, 20);
+            if (Mat[boat2X, boat2Y] == 0)
+            {
+                Mat[boat2X, boat2Y] = 15; // bateau
+            }
+
+            int character1X;
+            int character1Y;
+            bool character1Placed = false;
+            // Ajoute un personnage sur la terre
+            while (!character1Placed)
+            {
+                character1X = random.Next(0, Mat.GetLength(0));
+                character1Y = random.Next(0, Mat.GetLength(1));
+                
+                if (Mat[character1X, character1Y] == 1)
+                {
+                    
+                    Mat[character1X, character1Y] = 18; 
+                    character1Placed = true; 
+                }
+            }
+            int character2X;
+            int character2Y;
+            bool character2Placed = false;
+            while (!character2Placed)
+            {
+                character2X = random.Next(0, Mat.GetLength(0));
+                character2Y = random.Next(0, Mat.GetLength(1));
+                
+                if (Mat[character2X, character2Y] == 1)
+                {
+                    
+                    Mat[character2X, character2Y] = 17; 
+                    character2Placed = true; 
+                }
             }
         }
-        /* // Affiche la matrice dans la console
-        for (int i = 0; i < Mat.GetLength(0); i++)
-        {
-            for (int j = 0; j < Mat.GetLength(1); j++)
-            {
-                Console.Write(Mat[i, j] + " ");
-            }
-            Console.WriteLine();
-        }*/
     } 
 
         
@@ -192,15 +330,21 @@ public class World
                         Console.Write(" ");
                         break;
                     case 14: // Bateau
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("B ");
                         break;
+                    case 15: // Bateau
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("B ");
+                        break;
+                    case 16: // Personnage
+                        Console.Write("🦁");
+                        break;
                     case 17: // Personnage
-                       
-                        Console.Write("👤 ");
+                        Console.Write("🐷");
                         break;
                     default:
-                        Console.Write("👤 ");
+                        Console.Write("🦁");
                         break;
                 }
                 Console.ResetColor();
@@ -235,6 +379,38 @@ public class World
                 {
                     CharacterY = j ;
                     return CharacterY;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int GetCharacter2X()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                if (Mat[i, j] == 16)
+                {
+                    Character2X = i ;
+                    return Character2X;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int GetCharacter2Y()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                if (Mat[i, j] == 16)
+                {
+                    Character2Y = j ;
+                    return Character2Y;
                 }
             }
         }
