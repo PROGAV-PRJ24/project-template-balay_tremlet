@@ -1,7 +1,6 @@
 
 // World world = new World(true);
-Player player = new Player ("Emma");
-Player Player = new Player ("Tom");
+// Player player = new Player ();
 
 PlayGame PlayGame = new PlayGame();
 // PlayGame.AddPlayer(player);

@@ -83,7 +83,8 @@ public class PlayGame
         menuActif = false;
         Console.WriteLine("Choississez votre nom :");
         string name = Console.ReadLine();
-        Player Player = new Player(name);
+        Player Player = new Player();
+        Player.Name = name;
         AddPlayer(Player);
         World world = new World(true);
         ChooseCharactere(world, Player);
@@ -100,10 +101,9 @@ public class PlayGame
         Console.Write("\nEntrez votre choix (1-2): ");
         string choix1v1 = Console.ReadLine();
 
-        Player player1 = new Player("Joueur 1");
-        AddPlayer(player1);
-        Player player2 = new Player("Joueur 2");        
-        AddPlayer(player2);
+        Player player1 = new Player();
+        Player player2 = new Player();
+
 
         World world = new World(false);
 
@@ -112,25 +112,29 @@ public class PlayGame
             switch (choix)
             {
                 case 1:
-                    Console.WriteLine("\nJoueur 1,");
+                    ChooseName(player1, player2, true);
+                    
+                    Console.WriteLine($"\n{player1.Name}");
                     ChooseCharacter1v1(player1, world, false);
 
                     Console.WriteLine("\nJoueur 2 (ordinateur),");
                     ChooseCharacter1v1(player2, world, true);
                     
-                    Console.WriteLine("\nJoueur 1, vous serez le cochon.");
+                    Console.WriteLine($"\n{player1.Name}, vous serez le cochon.");
                     Console.WriteLine("\nL'ordinateur sera le lion.");
                     StartGame1v1(player1, player2, world, true);
                     break;
                 case 2:
-                    Console.WriteLine("\nJoueur 1,");
+                    ChooseName(player1, player2, false);
+
+                    Console.WriteLine($"\n{player1.Name}");
                     ChooseCharacter1v1(player1, world, false);
 
-                    Console.WriteLine("\nJoueur 2,");
+                    Console.WriteLine($"\n{player2.Name}");
                     ChooseCharacter1v1(player2, world, false);
 
-                    Console.WriteLine("\nJoueur 1, vous serez le cochon.");
-                    Console.WriteLine("Joueur 2, vous serez le lion.\n");
+                    Console.WriteLine($"\n{player1.Name}, vous serez le cochon.");
+                    Console.WriteLine($"{player2.Name}, vous serez le lion.\n");
                     StartGame1v1(player1, player2, world, false);
                     break;
                 default:
@@ -140,6 +144,27 @@ public class PlayGame
             }
         }
         menuActif = false;
+    }
+
+    public void ChooseName(Player player1, Player player2, bool isComputer){
+        if (!isComputer){
+            Console.WriteLine("Joueur 1, choississez votre nom :");
+            string name1 = Console.ReadLine();
+            player1.Name = name1;
+            AddPlayer(player1);
+
+            Console.WriteLine("Joueur 2, choississez votre nom :");
+            string name2 = Console.ReadLine();
+            player2.Name = name2;
+            AddPlayer(player2);
+        } else {
+            Console.WriteLine("Joueur 1, choississez votre nom :");
+            string name1 = Console.ReadLine();
+            player1.Name = name1;
+            AddPlayer(player1);
+
+            player2.Name = "Ordinateur";
+        }
     }
 
 
@@ -391,7 +416,6 @@ public class PlayGame
                         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                         Console.ReadKey();
-                        SavePlayers();
                         Introduction();
                     } else {
                         ChooseCharactere(world, player);
@@ -408,7 +432,6 @@ public class PlayGame
                         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                         Console.ReadKey();
-                        SavePlayers();
                         Introduction();
                     } else {
                         ChooseCharactere(world, player);
@@ -425,7 +448,6 @@ public class PlayGame
                         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                         Console.ReadKey();
-                        SavePlayers();
                         Introduction();
                     } else {
                         ChooseCharactere(world, player);
@@ -442,7 +464,6 @@ public class PlayGame
                         Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                         Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                         Console.ReadKey();
-                        SavePlayers();
                         Introduction();
                     } else {
                         ChooseCharactere(world, player);
@@ -644,21 +665,19 @@ public class PlayGame
         if(!isComputer){
             while (true)
             {
-                Console.WriteLine("Tour du joueur 1 :");
+                Console.WriteLine($"Tour de {player1.Name} :");
                 PlayTurn(player1.Character, world, true, false);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
-                    SavePlayers();
                     break;
                 }
 
-                Console.WriteLine("Tour du joueur 2 :");
+                Console.WriteLine($"Tour de {player2.Name} :");
                 PlayTurn(player2.Character, world, false, false);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
-                    SavePlayers();
                     break;
                 }
             }
@@ -670,16 +689,15 @@ public class PlayGame
         } else {
             while (true)
             {
-                Console.WriteLine("Tour du joueur 1 :");
+                Console.WriteLine($"Tour de {player1.Name} :");
                 PlayTurn(player1.Character, world, true, false);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
-                    SavePlayers();
                     break;
                 }
 
-                Console.WriteLine("Tour du joueur 2 : (ordinateur)");
+                Console.WriteLine("Tour de l'ordinateur : ");
                 PlayTurn(player2.Character, world, false, true);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
@@ -744,7 +762,6 @@ public class PlayGame
     {
         List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(3).ToList();
         Console.WriteLine("Voici le classement des parties/joueurs : ");
-        Console.WriteLine($"Nombre de joueurs : {Players.Count}");
 
         for (int i = 0; i < topPlayers.Count; i++)
         {
@@ -780,10 +797,10 @@ public class PlayGame
                     string[] playerData = line.Split('|');
                     if (playerData.Length == 2)
                     {
-                        Console.WriteLine(playerData[0]);
-                        // Player player = new Player(playerData[0]);
-                        // player.Score = int.Parse(playerData[1]);
-                        // Players.Add(player);
+                        Player player = new Player();
+                        player.Name = playerData[0];
+                        player.Score = int.Parse(playerData[1]);
+                        Players.Add(player);
                     }
                 }
             }
