@@ -1,5 +1,15 @@
 public abstract class Treasure
 {
+    public int WeightTreasure {get; set;}
+    public string Name {get; set;}
+
+    public Treasure (){
+    }
+
+    public Treasure(int weightTreasure){
+        WeightTreasure = weightTreasure;
+    }
+
     public abstract void ApplyEffect(Character character);
 
 

@@ -10,8 +10,8 @@ public class NegativeTreasure3 : Treasure
         }
         else
         {
-            Console.WriteLine("Vous subissez l'effet négatif du trésor: votre inventaire est réduit de 1.");
-  
+            Console.WriteLine("Vous subissez l'effet négatif du trésor: le poids de votre inventaire est réduit de 1.");
+            character.InventoryWeight -= 1;
         }
     }
 }

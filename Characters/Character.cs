@@ -1,10 +1,11 @@
 public abstract class Character
 {
+    public Inventory Inventory;
     public bool Unlock { get; set; }
     public int QuantityEnergy { get; set; }
     public int ManageEnergy { get; set; }
-    public int InventorySize { get; set; }
     public int InventoryWeight { get; set; }
+    public int BoatWeight { get; set; }
     public string StrongPoint { get; set; }
     public string WeakPoint { get; set; }
     public string Movement { get; protected set; }
@@ -17,23 +18,29 @@ public abstract class Character
     private static int characterIdCounter = 1;
 
 
-    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventorySize, int inventoryWeight, string weakPoint, string strongPoint, string movement)
+    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, string movement)
     {
         Unlock = unlock;
         QuantityEnergy = quantityEnergy;
         ManageEnergy = manageEnergy;
-        InventorySize = inventorySize;
         InventoryWeight = inventoryWeight;
+        BoatWeight = boatWeight;
         StrongPoint = strongPoint;
         WeakPoint = weakPoint;
         Movement = movement;
         IdCharacter = characterIdCounter++;
+        Inventory Inventory = new Inventory();
     }
 
   
     public abstract void DisplayCharacter(Character character);
 
+    // public abstract bool Move(string direction, int roll, World world, Character character, List <Treasure> treasurePlayer);
+
+    // public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, List <Treasure> treasurePlayer);
+
     public abstract bool Move(string direction, int roll, World world, Character character);
+
 
     public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1);
 
@@ -87,12 +94,36 @@ public abstract class Character
         
         Console.Write($" ({QuantityEnergy}/{maxEnergy})");
     }
-     public virtual void DisplayBagpack()
-    {
-        Console.WriteLine($"Votre sac à dos peut contenir {InventorySize} objets et vous avez maintenant {InventoryWeight} objets.");
 
+
+    // public virtual void DisplayBagpack()
+    // {
+    //     Console.WriteLine($"Votre sac à dos peut contenir {InventorySize} objets et vous avez maintenant {InventoryWeight} objets.");
+
+    // }
+
+
+    public void FileTreasure(List<Treasure> treasurePlayer)
+    {
+        if (Inventory.CurrentWeight > 0)
+        {
+            // foreach (Treasure treasure in Inventory)
+            // {
+            //     treasurePlayer.Add(treasure);
+            // }
+
+            // Inventory.Clear();
+
+            Console.WriteLine($"Votre {GetType().Name} (ID : {IdCharacter}) a déposé ses trésors dans le bateau !");
+        }
+        else
+        {
+            Console.WriteLine($"Votre {GetType().Name} (ID : {IdCharacter}) ne possède pas de trésors à déposer.");
+        }
     }
+
 }
+
 
 
     

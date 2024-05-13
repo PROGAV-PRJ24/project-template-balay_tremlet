@@ -383,20 +383,20 @@ public class World
         }
 
         treasure.ApplyEffect(character);
-        Mat[characterX, characterY] = 1; // mettre de la terre à la place du trésor
+        Mat[CharacterX, CharacterY] = 1; // mettre de la terre à la place du trésor
     }
-public void CheckTreasure(Character character)
-{
-    int characterX = GetCharacterX();
-    int characterY = GetCharacterY();
 
-    int treasureId = Mat[characterX, characterY];
 
-    if (treasureId >= 4 && treasureId <= 9)
+    public void CheckTreasure(int characterX, int characterY, Character character)
     {
-        ApplyTreasureEffect(treasureId, character);
+
+        int treasureId = Mat[characterX, characterY];
+
+        if (treasureId >= 4 && treasureId <= 9)
+        {
+            ApplyTreasureEffect(treasureId, character);
+        }
     }
-}
 
     
     public int GetCharacterX()
@@ -473,13 +473,9 @@ public void CheckTreasure(Character character)
 
     public void CheckFood(int characterX, int characterY, Character character)
     {
-        
-    int characterX = GetCharacterX();
-    int characterY = GetCharacterY();
-
-    int foodId = Mat[characterX, characterY];
-    GetFoodById(foodId);
-    string foodName = CaseName;
+        int foodId = Mat[characterX, characterY];
+        GetFoodById(foodId);
+        string foodName = CaseName;
 
         if (foodName == "LifeFood"){
 
@@ -490,7 +486,7 @@ public void CheckTreasure(Character character)
 
         }  else if (foodName == "Viande"){
 
-            Viande food = new Viande();
+            Meat food = new Meat();
             Console.WriteLine ($"Vous avez trouvé de la viande !");
             food.EffectFood(character);
             Mat[characterX, characterY] = 17;     

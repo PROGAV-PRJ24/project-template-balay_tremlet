@@ -1,6 +1,6 @@
-class Viande : Food
+class Meat : Food
 {
-    public Viande() : base(15, 11)
+    public Meat() : base(15, 11)
     {
     }
 
