@@ -2,14 +2,14 @@
 World world = new World(true);
 
 // world.DisplayWorld();
-world.DisplayWorldEmojis();
+// world.DisplayWorldEmojis();
 // Player player = new Player ();
 
 // PlayGame PlayGame = new PlayGame();
 // PlayGame.AddPlayer(player);
 
 
-// PlayGame.Introduction();
+PlayGame.Introduction();
 
 // PlayGame.ChooseCharactere(world, player);
 
