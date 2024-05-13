@@ -37,9 +37,10 @@ public class PlayGame
             Console.WriteLine("\n 1. Lancer une Partie Solo");
             Console.WriteLine(" 2. Lancer une Partie 1v1");
             Console.WriteLine(" 3. Classement des meilleurs Joueurs");
-            Console.WriteLine(" 4. Quitter");
+            Console.WriteLine(" 4. Explication de la carte");
+            Console.WriteLine(" 5. Quitter");
 
-            Console.Write("\nEntrez votre choix (1-4): ");
+            Console.Write("\nEntrez votre choix (1-5): ");
             string choixString = Console.ReadLine();
 
             if (int.TryParse(choixString, out int choix))
@@ -47,7 +48,6 @@ public class PlayGame
                 switch (choix)
                 {
                     case 1:
-                       
                         StartSoloGame();
                         break;
                     case 2:
@@ -55,11 +55,12 @@ public class PlayGame
                         Start1v1Game();
                         break;
                     case 3:
-                       
                         DisplayTopPlayers();
                         break;
                     case 4:
-                      
+                        DisplayRules();
+                        break;
+                    case 5:
                         Console.WriteLine("\nBye bye !\n");
                         SavePlayers();
                         menuActif = false;
@@ -76,6 +77,44 @@ public class PlayGame
             }
         }
     }
+
+    private void DisplayRules() {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("1. ' ~ ':");
+        Console.WriteLine("Ce symbole designe la mer");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.Write("2. ' — ':");
+        Console.WriteLine("Ce symbole designe la terre");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Gray;
+        Console.Write("3. ' M ':");
+        Console.WriteLine("Ce symbole designe les montagnes");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write("4. ' ‡ ':");
+        Console.WriteLine("Ce symbole designe les arbres");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Cyan;
+        Console.Write("5. '  ':");
+        Console.WriteLine("Ce symbole designe la nourriture (la couleur permet de différencier la nourriture) ");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("6. ' B ':");
+        Console.WriteLine("Ce symbole designe le/les bateau(x) ");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write("7. ' P ':");
+        Console.WriteLine("Ce symbole designe le/les personnage(s) ");
+        Console.ResetColor();
+    }
+
 
     private void StartSoloGame()
     {
@@ -146,7 +185,7 @@ public class PlayGame
         menuActif = false;
     }
 
-    public void ChooseName(Player player1, Player player2, bool isComputer){
+    private void ChooseName(Player player1, Player player2, bool isComputer){
         if (!isComputer){
             Console.WriteLine("Joueur 1, choississez votre nom :");
             string name1 = Console.ReadLine();
@@ -386,7 +425,7 @@ public class PlayGame
     }
 
     
-    public void ChooseCharactere (World world, Player player) {
+    private void ChooseCharactere (World world, Player player) {
 
         Console.WriteLine("Choisissez votre personnage :");
         Console.WriteLine("1. Emma");
@@ -515,7 +554,7 @@ public class PlayGame
         }
     }
 
-    public void ChooseCharacter1v1 (Player player, World world, bool isComputer) {
+    private void ChooseCharacter1v1 (Player player, World world, bool isComputer) {
 
         if(!isComputer){
 
@@ -599,7 +638,7 @@ public class PlayGame
         }
     }
 
-    public void ComputerChooseCharacter(World world, Player player){
+    private void ComputerChooseCharacter(World world, Player player){
             Random rand = new Random();
             int choix = rand.Next(1, 7);
 
@@ -744,8 +783,7 @@ public class PlayGame
         }
     }
 
-
-    public void AddPlayer(Player player)
+    private void AddPlayer(Player player)
     {
         Players.Add(player);
         Console.WriteLine($"Nombre de joueurs : {Players.Count}");
@@ -758,7 +796,7 @@ public class PlayGame
     }
 
 
-    public void DisplayTopPlayers()
+    private void DisplayTopPlayers()
     {
         List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(3).ToList();
         Console.WriteLine("Voici le classement des parties/joueurs : ");
@@ -769,7 +807,7 @@ public class PlayGame
         }
     }
 
-    public void SavePlayers()
+    private void SavePlayers()
     {
         string filePath = "players.txt";
 
@@ -783,7 +821,7 @@ public class PlayGame
     }
 
 
-    public void LoadPlayers()
+    private void LoadPlayers()
     {
         string filePath = "players.txt";
 

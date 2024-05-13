@@ -225,7 +225,7 @@ public class World
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 20% de chance d'avoir de la nourriture
                     {
                         int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
                         Mat[i, j] = food; // nourriture
@@ -310,17 +310,17 @@ public class World
                     case 4: // Trésor positif1
                     case 5: // Trésor positif2
                     case 6: // Trésor positif3
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("T ");
-                        break;
                     case 7: // Trésor négatif1
                     case 8: // Trésor négatif2
                     case 9: // Trésor négatif3
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("π ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
                         break;
                     case 10: // Nourriture vi
                     case 11: // Viandes
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" ");
+                        break;
                     case 12: // Pates
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.Write(" ");
