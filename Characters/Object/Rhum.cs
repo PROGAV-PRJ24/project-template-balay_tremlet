@@ -1,6 +1,6 @@
 class Rhum : Object
 {
-    public Rhum() : base(false, 30, 25)
+    public Rhum() : base(false, 4, 2)
     {
     }
 }

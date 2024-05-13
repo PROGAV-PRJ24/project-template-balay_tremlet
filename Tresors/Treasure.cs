@@ -1,37 +1,47 @@
 public abstract class Treasure
 {
     public abstract void ApplyEffect(Character character);
-}
 
 
-bool DemanderEnigme(int typeEnigme){
+    protected bool DemanderEnigme(int typeEnigme)
+    {
+        string[] questionsEnigme = {
+            "\nVous venez de tomber sur un trésor négatif ! Voulez-vous résoudre une énigme pour éviter cet effet négatif ? (oui/non)",
+         
+        };
 
-    string[] questionsEnigme = {"\nVous venez de tomber dans sur un trésor négatif ! voulez-vous résoudre une énigme pour éviter ce trésors (oui/non)",
-                                "\nVous etes bloqué! voulez-vous résoudre une énigme pour débloquer le plateau? (oui/non)"};
+        string réponse = "";
+   
+        while (réponse != "oui" && réponse != "non")
+        {
+            Console.WriteLine(questionsEnigme[typeEnigme]);
+            réponse = Console.ReadLine()?.ToLower() ?? "";
+        }
 
-    string réponse = "";
-    //on redemande tant que la réponse n'est pas un "oui" ou un "non"
-    while(réponse != "oui" && réponse != "non"){
-
-        Console.WriteLine(questionsEnigme[typeEnigme]);
-        réponse = Console.ReadLine()!;
+        return réponse == "oui";
     }
 
-    return réponse == "oui";
-}   
+    protected bool RésoudreEnigme()
+    {
+        string[,] enigmes = {
+            {"Qu'est-ce qui est toujours devant vous mais vous ne pouvez jamais atteindre ?", "L'avenir"},
+            {"Qu'est-ce qui fait le tour de la maison sans bouger ?","le mur"},
+            {"Un smartphone et sa coque coûtent 110 euros en tout. Le smartphone coûte 100 euros de plus que la coque. Combien coûte le smartphone ?","105"},
+            {"((4 - 4) * 3) ^ 2 * 342452 = ?", "0"},
+          
+        };
 
+        // Choix aléatoire d'une énigme parmi celles disponibles
+        Random random = new Random();
+        int nAleatoire = random.Next(0, enigmes.GetLength(0));
 
-bool RésoudreEnigme(){
+        Console.WriteLine(enigmes[nAleatoire, 0]); // Affichage de l'énigme
+        string réponse = Console.ReadLine()?.Trim() ?? "";
 
-    string[,] enigmes = {{"3+4 = ?","7"},{"2+4 = ?","6"},{"4+8 = ?","12"},{"((4-4)*3)^2*342452 = ?","0"},{"2*2-3 = ?","1"}};
+        // Évaluation de la réponse de l'utilisateur
+        return enigmes[nAleatoire, 1] == réponse;
+    }
 
-    //tire aléaltoirement une énigme parmis le tableau enigmes
-    Random random = new Random();
-    int nAleatoire = random.Next(0,enigmes.GetLength(0)-1);
-
-    Console.WriteLine(enigmes[nAleatoire,0]); //affichage de l'énigme
-    string réponse = Console.ReadLine()!;
-
-    //évaluation de la réponse de l'utilisateur
-    return enigmes[nAleatoire,1] == réponse;
 }
+
+

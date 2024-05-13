@@ -87,13 +87,15 @@ public abstract class Character
         
         Console.Write($" ({QuantityEnergy}/{maxEnergy})");
     }
-}
-
- public virtual void DisplayBagpack()
+     public virtual void DisplayBagpack()
     {
-        Console.WriteLine($"Votre sac à dos contient {InventorySize} objets pour un poids total de {InventoryWeight}.");
+        Console.WriteLine($"Votre sac à dos peut contenir {InventorySize} objets et vous avez maintenant {InventoryWeight} objets.");
 
     }
+}
+
+
+    
    /*  public void MoveBoat(string direction)
     {
         if (Boat != null)
