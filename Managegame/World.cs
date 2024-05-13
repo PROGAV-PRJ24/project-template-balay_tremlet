@@ -246,7 +246,7 @@ public class World
                     }
                 }
             }
-            
+
             // Ajoute de la nourriture sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
@@ -310,6 +310,79 @@ public class World
     } 
 
         
+    public void DisplayWorldEmojis()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                switch (Mat[i, j])
+                {
+                    case 0: // Mer
+                        // Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("💧");
+                        break;
+                    case 1: // Terre
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
+                        break;
+                    case 2: // Montagne
+                        // Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write("🏔️ ");
+                        break;
+                    case 3: // Arbre
+                        // Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("🌳");
+                        break;
+                    case 4: // Trésor positif1
+                    case 5: // Trésor positif2
+                    case 6: // Trésor positif3
+                    case 7: // Trésor négatif1
+                    case 8: // Trésor négatif2
+                    case 9: // Trésor négatif3
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
+                        break;
+                    case 10: // Nourriture vi
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("❤️ ");
+                        break;
+                    case 11: // Viandes
+                        // Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("🍖");
+                        break;
+                    case 12: // Pates
+                        // Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.Write("🍝");
+                        break;
+                    case 13: // Herbes
+                        // Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("🍎");
+                        break;
+                    case 14: // Bateau
+                        // Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("🏴‍☠️ ");
+                        break;
+                    case 15: // Bateau
+                        // Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("⛵️ ");
+                        break;
+                    case 16: // Personnage
+                        Console.Write("♥ ");
+                        break;
+                    case 17: // Personnage
+                        Console.Write("♠ ");
+                        break;
+                    default:
+                        Console.Write("♥ ");
+                        break;
+                }
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+        }
+    }
+
     public void DisplayWorld()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
