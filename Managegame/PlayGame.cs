@@ -5,6 +5,7 @@ public class PlayGame
     private string nomEquipe = "Tom et Emma";
     private bool menuActif = false;
     private string descriptionRegle = "";
+    public List<Player> Players { get; private set; } = new List<Player>();
 
     public void Introduction()
     {
@@ -50,7 +51,7 @@ public class PlayGame
                         break;
                     case 3:
                        
-                        DisplayLeaderboard();
+                        DisplayTopPlayers();
                         break;
                     case 4:
                       
@@ -130,12 +131,6 @@ public class PlayGame
     }
 
 
-    private void DisplayLeaderboard()
-    {
-        Console.WriteLine("\nAffichage du classement des meilleurs joueurs...");
-    }
-
-
     private void PlayTurn(Character character, World world, bool isJoueur1, bool isComputer)
     {
         if (isJoueur1 && world.IsSolo){
@@ -147,19 +142,40 @@ public class PlayGame
 
             if (character != null && world != null)
                 {
+                    ConsoleKeyInfo keyInfo;
                     bool validDirection = false;
                     while (!validDirection)
                     {
                         Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
-                        string direction = Console.ReadLine().ToLower();
+                        keyInfo = Console.ReadKey(true);
+                        string direction;
 
-                        if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
+                        switch (keyInfo.Key)
                         {
-                            validDirection = character.Move(direction, roll, world, character);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Direction invalide");
+                            case ConsoleKey.UpArrow:
+                                Console.WriteLine("Touche fléchée haut appuyée");
+                                direction = "haut";
+                                validDirection = character.Move(direction, roll, world, character);
+                                break;
+                            case ConsoleKey.DownArrow:
+                                Console.WriteLine("Touche fléchée bas appuyée");
+                                direction = "bas";
+                                validDirection = character.Move(direction, roll, world, character);
+                                break;
+                            case ConsoleKey.LeftArrow:
+                                Console.WriteLine("Touche fléchée gauche appuyée");
+                                direction = "gauche";
+                                validDirection = character.Move(direction, roll, world, character);
+                                break;
+                            case ConsoleKey.RightArrow:
+                                Console.WriteLine("Touche fléchée droite appuyée");
+                                direction = "droite";
+                                validDirection = character.Move(direction, roll, world, character);
+                                break;
+                            default:
+                                Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
+                                PlayTurn(character, world, true, false);
+                                break;
                         }
                         character.DisplayEnergy();
                     }            
@@ -177,19 +193,40 @@ public class PlayGame
 
             if (character != null && world != null)
                 {
+                    ConsoleKeyInfo keyInfo;
                     bool validDirection = false;
                     while (!validDirection)
                     {
                         Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
-                        string direction = Console.ReadLine().ToLower();
+                        keyInfo = Console.ReadKey(true);
+                        string direction;
 
-                        if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
+                        switch (keyInfo.Key)
                         {
-                            validDirection = character.Move1v1(direction, roll, world, character, true);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Direction invalide");
+                            case ConsoleKey.UpArrow:
+                                Console.WriteLine("Touche fléchée haut appuyée");
+                                direction = "haut";
+                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                break;
+                            case ConsoleKey.DownArrow:
+                                Console.WriteLine("Touche fléchée bas appuyée");
+                                direction = "bas";
+                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                break;
+                            case ConsoleKey.LeftArrow:
+                                Console.WriteLine("Touche fléchée gauche appuyée");
+                                direction = "gauche";
+                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                break;
+                            case ConsoleKey.RightArrow:
+                                Console.WriteLine("Touche fléchée droite appuyée");
+                                direction = "droite";
+                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                break;
+                            default:
+                                Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
+                                PlayTurn(character, world, true, false);
+                                break;
                         }
                         character.DisplayEnergy();
                     }            
@@ -206,19 +243,40 @@ public class PlayGame
 
             if (character != null && world != null)
                 {
+                    ConsoleKeyInfo keyInfo;
                     bool validDirection = false;
                     while (!validDirection)
                     {
                         Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
-                        string direction = Console.ReadLine().ToLower();
+                        keyInfo = Console.ReadKey(true);
+                        string direction;
 
-                        if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
+                        switch (keyInfo.Key)
                         {
-                            validDirection = character.Move1v1(direction, roll, world, character, false);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Direction invalide");
+                            case ConsoleKey.UpArrow:
+                                Console.WriteLine("Touche fléchée haut appuyée");
+                                direction = "haut";
+                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                break;
+                            case ConsoleKey.DownArrow:
+                                Console.WriteLine("Touche fléchée bas appuyée");
+                                direction = "bas";
+                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                break;
+                            case ConsoleKey.LeftArrow:
+                                Console.WriteLine("Touche fléchée gauche appuyée");
+                                direction = "gauche";
+                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                break;
+                            case ConsoleKey.RightArrow:
+                                Console.WriteLine("Touche fléchée droite appuyée");
+                                direction = "droite";
+                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                break;
+                            default:
+                                Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
+                                PlayTurn(character, world, false, true);
+                                break;
                         }
                         character.DisplayEnergy();
                     }            
@@ -433,11 +491,13 @@ public class PlayGame
                             Rhum Rhum = new Rhum();
                             if(IsUnlock(Rhum)){
                                 player.Character = Rhum;  
+                            } else {
                                 ChooseCharacter1v1(player, world, isComputer);
                             }
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
+                            ChooseCharacter1v1(player, world, isComputer);
                             break;
                     }
                 }
@@ -594,5 +654,28 @@ public class PlayGame
         }
     }
 
+
+    public void AddPlayer(string name)
+    {
+        Player newPlayer = new Player(name);
+        Players.Add(newPlayer);
+    }
+
+    public void UpdatePlayerScore(Player player, int score)
+    {
+        player.Score += score;
+    }
+
+
+    public void DisplayTopPlayers()
+    {
+        List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(3).ToList();
+        
+
+        for (int i = 0; i < topPlayers.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {topPlayers[i].Name} - Score: {topPlayers[i].Score}");
+        }
+    }
 
 }
