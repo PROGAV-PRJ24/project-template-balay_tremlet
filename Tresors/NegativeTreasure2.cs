@@ -2,7 +2,7 @@ public class NegativeTreasure2 : Treasure
 {
     public override void ApplyEffect(Character character)
     {
-       bool résoudreÉnigme = DemanderEnigme(0); // Demander à résoudre une énigme spécifique
+       bool résoudreÉnigme = DemanderEnigme(0);
 
         if (résoudreÉnigme && RésoudreEnigme())
         {

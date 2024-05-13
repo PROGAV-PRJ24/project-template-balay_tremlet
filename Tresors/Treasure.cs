@@ -31,14 +31,12 @@ public abstract class Treasure
           
         };
 
-        // Choix aléatoire d'une énigme parmi celles disponibles
         Random random = new Random();
         int nAleatoire = random.Next(0, enigmes.GetLength(0));
 
-        Console.WriteLine(enigmes[nAleatoire, 0]); // Affichage de l'énigme
+        Console.WriteLine(enigmes[nAleatoire, 0]); 
         string réponse = Console.ReadLine()?.Trim() ?? "";
 
-        // Évaluation de la réponse de l'utilisateur
         return enigmes[nAleatoire, 1] == réponse;
     }
 
