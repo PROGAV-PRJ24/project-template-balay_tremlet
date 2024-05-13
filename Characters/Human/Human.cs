@@ -1,7 +1,7 @@
 class Human : Character
 {
 
-    public Human(bool unlock, int quantityEnergy, int inventorySize, int inventoryWeight) : base(unlock, quantityEnergy, 10, inventorySize, inventoryWeight, "Eau", "Montagne", "Lignes droites")
+    public Human(bool unlock, int quantityEnergy, int inventorySize, int inventoryWeight) : base(unlock, quantityEnergy, 10, inventorySize, inventoryWeight,  "Montagne", "Eau", 20,"Lignes droites")
     {
     }
 
@@ -15,6 +15,7 @@ class Human : Character
         Console.WriteLine($"Poids de l'inventaire : {InventoryWeight}");
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
+        Console.WriteLine($"Point de vie : {LifePoint}");
         Console.WriteLine($"Déplacement : {Movement}");
         Weakness(character);
     }

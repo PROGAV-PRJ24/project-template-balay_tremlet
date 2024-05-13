@@ -1,6 +1,6 @@
 class Animal : Character
 {
-    public Animal(bool unlock, int quantityEnergy, int inventorySize, int inventoryWeight) : base(unlock, quantityEnergy, 15, inventorySize, inventoryWeight, "Montagne", "Eau", "Saute de 2 cases")
+    public Animal(bool unlock, int quantityEnergy, int inventorySize, int inventoryWeight) : base(unlock, quantityEnergy, 15, inventorySize, inventoryWeight, "Montagne", "Eau", 15,"Saute de 2 cases")
     {
     }
 
@@ -13,6 +13,7 @@ class Animal : Character
         Console.WriteLine($"Poids de l'inventaire : {InventoryWeight}");
         Console.WriteLine($"Point fort : {StrongPoint}, Arbre");
         Console.WriteLine($"Point faible : {WeakPoint}");
+        Console.WriteLine($"Point de vie : {LifePoint}");
         Console.WriteLine($"Déplacement : {Movement}");
         Weakness(character);
     }

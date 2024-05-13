@@ -250,7 +250,6 @@ public class PlayGame
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
-                            PlayTurn(character, world, true, false);
                             break;
                     }
                     character.DisplayEnergy();
@@ -258,7 +257,7 @@ public class PlayGame
             } else {
                 Console.WriteLine("Direction invalide");
             }
-            Console.WriteLine("Appuyez sur une touche pour continuer...");
+            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
 
         } else if (isJoueur1){
@@ -302,7 +301,6 @@ public class PlayGame
                                 break;
                             default:
                                 Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
-                                PlayTurn(character, world, true, false);
                                 break;
                         }
                         character.DisplayEnergy();
@@ -352,7 +350,6 @@ public class PlayGame
                                 break;
                             default:
                                 Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
-                                PlayTurn(character, world, false, true);
                                 break;
                         }
                         character.DisplayEnergy();
@@ -392,7 +389,6 @@ public class PlayGame
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
-                            PlayTurn(character, world, false, true);
                             break;
                     } 
                     character.DisplayEnergy();

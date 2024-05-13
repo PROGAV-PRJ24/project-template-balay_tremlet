@@ -195,31 +195,58 @@ public class World
                 }
             }
 
-            // Ajoute des trésors positifs sur les montagnes
+            // Ajoute des trésors positifs sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
                     {
-                        int treasure = random.Next(4, 7); // Génère un nombre aléatoire entre 4 et 6
+                        int treasure = random.Next(4, 7); 
                         Mat[i, j] = treasure; // trésor positif
                     }
                 }
             }
 
-            // Ajoute des trésors négatifs sur les montagnes
+            // Ajoute des trésors négatifs sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
                     {
-                        int treasure = random.Next(7, 10); // Génère un nombre aléatoire entre 7 et 9
+                        int treasure = random.Next(7, 10); 
                         Mat[i, j] = treasure; // trésor négatif
                     }
                 }
             }
+
+            // Ajoute des trésors positifs dans l'eau
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    {
+                        int treasure = random.Next(4, 7);
+                        Mat[i, j] = treasure; // trésor positif
+                    }
+                }
+            }
+
+            // Ajoute des trésors négatifs dans l'eau
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    {
+                        int treasure = random.Next(7, 10);
+                        Mat[i, j] = treasure; // trésor négatif
+                    }
+                }
+            }
+            
             // Ajoute de la nourriture sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
@@ -317,6 +344,9 @@ public class World
                         Console.Write("— ");
                         break;
                     case 10: // Nourriture vi
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write(" ");
+                        break;
                     case 11: // Viandes
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(" ");
@@ -326,7 +356,7 @@ public class World
                         Console.Write(" ");
                         break;
                     case 13: // Herbes
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(" ");
                         break;
                     case 14: // Bateau
