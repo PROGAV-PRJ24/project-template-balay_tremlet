@@ -188,7 +188,7 @@ public class World
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 1 && random.NextDouble() < 0.3) // 30% de chance d'avoir un arbre
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un arbre
                     {
                         Mat[i, j] = 3; // arbre
                     }
@@ -260,7 +260,7 @@ public class World
                 if (Mat[character1X, character1Y] == 1)
                 {
                     
-                    Mat[character1X, character1Y] = 18; 
+                    Mat[character1X, character1Y] = 17; 
                     character1Placed = true; 
                 }
             }
@@ -275,7 +275,7 @@ public class World
                 if (Mat[character2X, character2Y] == 1)
                 {
                     
-                    Mat[character2X, character2Y] = 17; 
+                    Mat[character2X, character2Y] = 16; 
                     character2Placed = true; 
                 }
             }

@@ -74,7 +74,7 @@ public class PlayGame
     {
         Console.WriteLine("\nLancement de la partie solo...");
         menuActif = false;
-        Player Player = new Player();
+        Player Player = new Player("Joueur");
         World world = new World(true);
         ChooseCharactere(world, Player);
     }
@@ -90,8 +90,8 @@ public class PlayGame
         Console.Write("\nEntrez votre choix (1-2): ");
         string choix1v1 = Console.ReadLine();
 
-        Player player1 = new Player();
-        Player player2 = new Player();
+        Player player1 = new Player("Joueur 1");
+        Player player2 = new Player("Joueur 2");
         World world = new World(false);
 
         if (int.TryParse(choix1v1, out int choix))
@@ -107,7 +107,7 @@ public class PlayGame
                     
                     Console.WriteLine("\nJoueur 1, vous serez le cochon.");
                     Console.WriteLine("\nL'ordinateur sera le lion.");
-                    StartGame1v1(player1, player2, world);
+                    StartGame1v1(player1, player2, world, true);
                     break;
                 case 2:
                     Console.WriteLine("\nJoueur 1,");
@@ -118,7 +118,7 @@ public class PlayGame
 
                     Console.WriteLine("\nJoueur 1, vous serez le cochon.");
                     Console.WriteLine("Joueur 2, vous serez le lion.\n");
-                    StartGame1v1(player1, player2, world);
+                    StartGame1v1(player1, player2, world, false);
                     break;
                 default:
                     Console.WriteLine("\nErreur : ce choix ne correspond à aucune option.");
@@ -136,9 +136,9 @@ public class PlayGame
     }
 
 
-    private void PlayTurn(Character character, World world)
+    private void PlayTurn(Character character, World world, bool isJoueur1, bool isComputer)
     {
-        if (world.IsSolo){
+        if (isJoueur1 && world.IsSolo){
             world.DisplayWorld();
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
@@ -167,7 +167,8 @@ public class PlayGame
 
             Console.WriteLine("Appuyez sur une touche pour continuer...");
             Console.ReadKey();
-        } else {
+
+        } else if (isJoueur1){
             world.DisplayWorld();
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
@@ -194,7 +195,75 @@ public class PlayGame
                     }            
                 }
 
-            Console.WriteLine("Appuyez sur une touche pour continuer...");
+            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+            Console.ReadKey();
+        } else if (!isJoueur1 && !isComputer){
+            world.DisplayWorld();
+            Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
+            Console.ReadKey();
+            int roll = RollDice();
+            Console.WriteLine("\nVous avez obtenu un " + roll + " !");
+
+            if (character != null && world != null)
+                {
+                    bool validDirection = false;
+                    while (!validDirection)
+                    {
+                        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+                        string direction = Console.ReadLine().ToLower();
+
+                        if (direction == "haut" || direction == "bas" || direction == "gauche" || direction == "droite")
+                        {
+                            validDirection = character.Move1v1(direction, roll, world, character, false);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Direction invalide");
+                        }
+                        character.DisplayEnergy();
+                    }            
+                }
+            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+            Console.ReadKey();
+        } else {
+            world.DisplayWorld();
+            int roll = RollDice();
+
+            if (character != null && world != null)
+            {
+                Random rand = new Random();
+                int choix = rand.Next(1, 4);
+                bool validDirection = false;
+                string directionOrdi;
+                while (!validDirection)
+                {
+                    switch (choix)
+                    {
+                        case 1:
+                            directionOrdi = "bas";
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            break;
+                        case 2:
+                            directionOrdi = "haut";
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            break;
+                        case 3:
+                            directionOrdi = "droite";
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            break;
+                        case 4:
+                            directionOrdi = "gauche";
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            break;
+                        default:
+                            Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
+                            PlayTurn(character, world, false, true);
+                            break;
+                    } 
+                    character.DisplayEnergy();
+                }            
+            }
+            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
         }
     }
@@ -206,16 +275,17 @@ public class PlayGame
     }
 
 
-    public void IsUnlock(Character character){
+    public bool IsUnlock(Character character){
         if (character.Unlock) {
             Console.Clear();
             Console.WriteLine($"Vous avez choisi le personnage {character} !");
             character.DisplayCharacter(character);
             Console.WriteLine("\nAppuyez sur une touche pour continuer...");
             Console.ReadKey();
+            return true;
         } else {
             Console.WriteLine("Vous n'avez pas débloqué ce personnage !");
-            StartSoloGame();
+            return false;
         }
     }
 
@@ -241,50 +311,51 @@ public class PlayGame
             {
                 case 1:
                     Emma Emma = new Emma();
-                    IsUnlock(Emma);     
-                    player.Character = Emma;  
-                    Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
-                    Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
-                    Console.ReadKey();
-                    Introduction();
+                    if(IsUnlock(Emma)){
+                        player.Character = Emma;  
+                    } else {
+                        ChooseCharactere(world, player);
+                    }
                     break;
                 case 2:
                     Tom Tom = new Tom();
-                    IsUnlock(Tom);
-                    player.Character = Tom;
-
+                    if(IsUnlock(Tom)){
+                        player.Character = Tom;  
+                    } else {
+                        ChooseCharactere(world, player);
+                    }
                     break;
                 case 3:
                     Chamois Chamois = new Chamois();
-                    IsUnlock(Chamois);
-                    player.Character = Chamois;
+                    if(IsUnlock(Chamois)){
+                        player.Character = Chamois;  
+                    } else {
+                        ChooseCharactere(world, player);
+                    }
                     break;
                 case 4:
                     Kangourou Kangourou = new Kangourou();
-                    IsUnlock(Kangourou);
-                    player.Character = Kangourou;
-                    Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
-                    Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
-                    Console.ReadKey();
-                    Introduction();
+                    if(IsUnlock(Kangourou)){
+                        player.Character = Kangourou;  
+                    } else {
+                        ChooseCharactere(world, player);
+                    }
                     break;
                 case 5:
                     Pez Pez = new Pez();
-                    IsUnlock(Pez);
-                    player.Character = Pez;
+                    if(IsUnlock(Pez)){
+                        player.Character = Pez;  
+                    } else {
+                        ChooseCharactere(world, player);
+                    }
                     break;
                 case 6:
                     Rhum Rhum = new Rhum();
-                    IsUnlock(Rhum);
-                    player.Character = Rhum;
-                    while (IsGameOver(Rhum))
-                    {
-                        PlayTurn(Rhum, world);
+                    if(IsUnlock(Rhum)){
+                        player.Character = Rhum;  
+                    } else {
+                        ChooseCharactere(world, player);
                     }
-                    Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
-                    Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
-                    Console.ReadKey();
-                    Introduction();
                     break;
                 default:
                     Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -320,34 +391,50 @@ public class PlayGame
                     {
                         case 1:
                             Emma Emma = new Emma();
-                            IsUnlock(Emma);     
-                            player.Character = Emma;  
- 
+                            if(IsUnlock(Emma)){
+                                player.Character = Emma;  
+                            } else {
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         case 2:
                             Tom Tom = new Tom();
-                            IsUnlock(Tom);
-                            player.Character = Tom;
+                            if(IsUnlock(Tom)){
+                                player.Character = Tom;  
+                            } else {
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         case 3:
                             Chamois Chamois = new Chamois();
-                            IsUnlock(Chamois);
-                            player.Character = Chamois;
+                            if(IsUnlock(Chamois)){
+                                player.Character = Chamois;  
+                            } else {
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         case 4:
                             Kangourou Kangourou = new Kangourou();
-                            IsUnlock(Kangourou);
-                            player.Character = Kangourou;
+                            if(IsUnlock(Kangourou)){
+                                player.Character = Kangourou;  
+                            } else {
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         case 5:
                             Pez Pez = new Pez();
-                            IsUnlock(Pez);
-                            player.Character = Pez;
+                            if(IsUnlock(Pez)){
+                                player.Character = Pez;  
+                            } else {
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         case 6:
                             Rhum Rhum = new Rhum();
-                            IsUnlock(Rhum);
-                            player.Character = Rhum;
+                            if(IsUnlock(Rhum)){
+                                player.Character = Rhum;  
+                                ChooseCharacter1v1(player, world, isComputer);
+                            }
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -360,6 +447,11 @@ public class PlayGame
                     ChooseCharacter1v1(player, world, isComputer);
                 }
         } else {
+            ComputerChooseCharacter(world, player);
+        }
+    }
+
+    public void ComputerChooseCharacter(World world, Player player){
             Random rand = new Random();
             int choix = rand.Next(1, 7);
 
@@ -367,67 +459,111 @@ public class PlayGame
             {
                 case 1:
                     Emma Emma = new Emma();
-                    IsUnlock(Emma);
-                    player.Character = Emma;   
+                    if(IsUnlock(Emma)){
+                        player.Character = Emma;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    } 
                     break;
                 case 2:
                     Tom Tom = new Tom();
-                    IsUnlock(Tom);
-                    player.Character = Tom;   
+                    if(IsUnlock(Tom)){
+                        player.Character = Tom;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    }  
                     break;
                 case 3:
                     Chamois Chamois = new Chamois();
-                    IsUnlock(Chamois);
-                    player.Character = Chamois;   
+                    if(IsUnlock(Chamois)){
+                        player.Character = Chamois;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    } 
                     break;
                 case 4:
                     Kangourou Kangourou = new Kangourou();
-                    IsUnlock(Kangourou);
-                    player.Character = Kangourou;   
+                    if(IsUnlock(Kangourou)){
+                        player.Character = Kangourou;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    } 
                     break;
                 case 5:
                     Pez Pez = new Pez();
-                    IsUnlock(Pez);
-                    player.Character = Pez;   
+                    if(IsUnlock(Pez)){
+                        player.Character = Pez;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    } 
                     break;
                 case 6:
                     Rhum Rhum = new Rhum();
-                    IsUnlock(Rhum);
-                    player.Character = Rhum;   
+                    if(IsUnlock(Rhum)){
+                        player.Character = Rhum;  
+                    } else {
+                        ComputerChooseCharacter(world, player);
+                    } 
                     break;
                 default:
                     Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
-                    ChooseCharacter1v1(player, world, true);
+                    ComputerChooseCharacter(world, player);
                     break;
             }
-        }
     }
 
-    private void StartGame1v1(Player player1, Player player2, World world)
+    private void StartGame1v1(Player player1, Player player2, World world, bool isComputer)
     {
-        while (true)
-        {
-            Console.WriteLine("Tour du joueur 1 :");
-            PlayTurn(player1.Character, world);
-
-            if (IsGameOver1v1(player1.Character, player2.Character))
+        if(!isComputer){
+            while (true)
             {
-                break;
+                Console.WriteLine("Tour du joueur 1 :");
+                PlayTurn(player1.Character, world, true, false);
+
+                if (IsGameOver1v1(player1.Character, player2.Character))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Tour du joueur 2 :");
+                PlayTurn(player2.Character, world, false, false);
+
+                if (IsGameOver1v1(player1.Character, player2.Character))
+                {
+                    break;
+                }
             }
-
-            Console.WriteLine("Tour du joueur 2 :");
-            PlayTurn(player2.Character, world);
-
-            if (IsGameOver1v1(player1.Character, player2.Character))
+            Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+            DisplayResult1v1(player1.Character, player2.Character, player1, player2);
+            Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
+            Console.ReadKey();
+            Introduction();
+        } else {
+            while (true)
             {
-                break;
+                Console.WriteLine("Tour du joueur 1 :");
+                PlayTurn(player1.Character, world, true, false);
+
+                if (IsGameOver1v1(player1.Character, player2.Character))
+                {
+                    break;
+                }
+
+                Console.WriteLine("Tour du joueur 2 : (ordinateur)");
+                PlayTurn(player2.Character, world, false, true);
+
+                if (IsGameOver1v1(player1.Character, player2.Character))
+                {
+                    break;
+                }
             }
+            Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+            DisplayResult1v1(player1.Character, player2.Character, player1, player2);
+            Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
+            Console.ReadKey();
+            Introduction();
         }
-        Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
-        DisplayResult1v1(player1.Character, player2.Character, player1, player2);
-        Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
-        Console.ReadKey();
-        Introduction();
+
     }
 
 

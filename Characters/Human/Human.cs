@@ -172,7 +172,6 @@ class Human : Character
                     return false;
             }
 
-
             if (newX < 0 || newX >= world.Mat.GetLength(0) || newY < 0 || newY >= world.Mat.GetLength(1))
             {
                 Console.WriteLine("Impossible de se déplacer dans cette direction");
