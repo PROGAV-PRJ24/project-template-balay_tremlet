@@ -1,9 +1,15 @@
 
+// World world = new World(true);
+Player player = new Player ("Emma");
+Player Player = new Player ("Tom");
 
 PlayGame PlayGame = new PlayGame();
+// PlayGame.AddPlayer(player);
+// PlayGame.AddPlayer(Player);
+
 PlayGame.Introduction();
 
-// PlayGame.ChooseCharactere(world);
+// PlayGame.ChooseCharactere(world, player);
 
 // Emma Emma = new Emma ();
 // Tom Tom = new Tom();
@@ -19,4 +25,7 @@ PlayGame.Introduction();
 // Pate.EffectFood(Emma);
 
 // Pate.EffectFood(Tom);
+
+
+
 
