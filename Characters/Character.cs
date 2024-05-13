@@ -61,7 +61,7 @@ public abstract class Character
 
     public virtual void DisplayEnergy()
     {
-        int maxEnergy = 100; 
+        int maxEnergy = QuantityEnergy; 
         int barSize = 20; 
         int energyPerBar = 5; 
 
@@ -88,6 +88,12 @@ public abstract class Character
         Console.Write($" ({QuantityEnergy}/{maxEnergy})");
     }
 }
+
+ public virtual void DisplayBagpack()
+    {
+        Console.WriteLine($"Votre sac à dos contient {InventorySize} objets pour un poids total de {InventoryWeight}.");
+
+    }
    /*  public void MoveBoat(string direction)
     {
         if (Boat != null)

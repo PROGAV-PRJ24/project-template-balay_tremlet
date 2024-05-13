@@ -352,6 +352,50 @@ public class World
             Console.WriteLine();
         }
     }
+
+    public void ApplyTreasureEffect(int treasureId, Character character)
+    {
+        Treasure treasure;
+
+        switch (treasureId)
+        {
+            case 4:
+                treasure = new PositiveTreasure1();
+                break;
+            case 5:
+                treasure = new PositiveTreasure2();
+                break;
+            case 6:
+                treasure = new PositiveTreasure3();
+                break;
+            case 7:
+                treasure = new NegativeTreasure1();
+                break;
+            case 8:
+                treasure = new NegativeTreasure2();
+                break;
+            case 9:
+                treasure = new NegativeTreasure3();
+                break;
+            default:
+                Console.WriteLine("Pas de trésor");
+                return;
+        }
+
+        treasure.ApplyEffect(character);
+        Mat[characterX, characterY] = 1; // mettre de la terre à la place du trésor
+    }
+
+    public void CheckTreasure(int characterX, int characterY, Character character)
+    {
+        int treasureId = Mat[characterX, characterY];
+
+        if (treasureId >= 4 && treasureId <= 9)
+        {
+            ApplyTreasureEffect(treasureId, character);
+        }
+    }
+
     
     public int GetCharacterX()
     {
