@@ -676,7 +676,6 @@ public class World
         }
         else
         {
-            Console.WriteLine("IsValidBoatPosition -> false");
             return false;
         }
     }
@@ -686,13 +685,11 @@ public class World
         if (boatX < 0 || boatX >= Mat.GetLength(0) || boatY < 0 || boatY >= Mat.GetLength(1))
         {
             return false;
-            Console.WriteLine("en dehors de la map");
         }
 
         if (Mat[boatX, boatY] != 0)
         {
             return false;
-            Console.WriteLine("pas dans l'eau");
         }
 
         return true;
@@ -717,7 +714,6 @@ public class World
         }
 
         return false;
-        Console.WriteLine("pas à côté de la terre");
         
     }
 
