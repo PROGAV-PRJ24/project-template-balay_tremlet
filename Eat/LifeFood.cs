@@ -1,6 +1,6 @@
 class LifeFood : Food
 {
-    public LifeFood() : base(35, 10)
+    public LifeFood() : base(5, 10)
     {
     }
 
@@ -12,7 +12,9 @@ class LifeFood : Food
     }
 
     public override void EffectFood(Character character){
-        Console.WriteLine("Pas encore codé");
+        character.LifePoint += EnergyGift;
+        Console.WriteLine($"Cette nourriture vous redonne {EnergyGift} de vie ! :)");
+        Console.WriteLine ($"Il vous reste {character.LifePoint} point de vie !");
     }
 
 }

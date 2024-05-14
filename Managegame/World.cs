@@ -198,37 +198,64 @@ public class World
                 }
             }
 
-            // Ajoute des trésors positifs sur les montagnes
+            // Ajoute des trésors positifs sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
                     {
-                        int treasure = random.Next(4, 7); // Génère un nombre aléatoire entre 4 et 6
+                        int treasure = random.Next(4, 7); 
                         Mat[i, j] = treasure; // trésor positif
                     }
                 }
             }
 
-            // Ajoute des trésors négatifs sur les montagnes
+            // Ajoute des trésors négatifs sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
                     {
-                        int treasure = random.Next(7, 10); // Génère un nombre aléatoire entre 7 et 9
+                        int treasure = random.Next(7, 10); 
                         Mat[i, j] = treasure; // trésor négatif
                     }
                 }
             }
+
+            // Ajoute des trésors positifs dans l'eau
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+                    {
+                        int treasure = random.Next(4, 7);
+                        Mat[i, j] = treasure; // trésor positif
+                    }
+                }
+            }
+
+            // Ajoute des trésors négatifs dans l'eau
+            for (int i = 0; i < Mat.GetLength(0); i++)
+            {
+                for (int j = 0; j < Mat.GetLength(1); j++)
+                {
+                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                    {
+                        int treasure = random.Next(7, 10);
+                        Mat[i, j] = treasure; // trésor négatif
+                    }
+                }
+            }
+
             // Ajoute de la nourriture sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 20% de chance d'avoir de la nourriture
                     {
                         int food = random.Next(10, 14); // Génère un nombre aléatoire entre 10 et 13
                         Mat[i, j] = food; // nourriture
@@ -288,6 +315,79 @@ public class World
     } 
 
         
+    public void DisplayWorldEmojis()
+    {
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                switch (Mat[i, j])
+                {
+                    case 0: // Mer
+                        // Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write("💧");
+                        break;
+                    case 1: // Terre
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
+                        break;
+                    case 2: // Montagne
+                        // Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Write("🏔️ ");
+                        break;
+                    case 3: // Arbre
+                        // Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Console.Write("🌳");
+                        break;
+                    case 4: // Trésor positif1
+                    case 5: // Trésor positif2
+                    case 6: // Trésor positif3
+                    case 7: // Trésor négatif1
+                    case 8: // Trésor négatif2
+                    case 9: // Trésor négatif3
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
+                        break;
+                    case 10: // Nourriture vi
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("❤️ ");
+                        break;
+                    case 11: // Viandes
+                        // Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("🍖");
+                        break;
+                    case 12: // Pates
+                        // Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        Console.Write("🍝");
+                        break;
+                    case 13: // Herbes
+                        // Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("🍎");
+                        break;
+                    case 14: // Bateau
+                        // Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("🏴‍☠️ ");
+                        break;
+                    case 15: // Bateau
+                        // Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write("⛵️ ");
+                        break;
+                    case 16: // Personnage
+                        Console.Write("♥ ");
+                        break;
+                    case 17: // Personnage
+                        Console.Write("♠ ");
+                        break;
+                    default:
+                        Console.Write("♥ ");
+                        break;
+                }
+                Console.ResetColor();
+            }
+            Console.WriteLine();
+        }
+    }
+
     public void DisplayWorld()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -315,23 +415,26 @@ public class World
                     case 4: // Trésor positif1
                     case 5: // Trésor positif2
                     case 6: // Trésor positif3
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("T ");
-                        break;
                     case 7: // Trésor négatif1
                     case 8: // Trésor négatif2
                     case 9: // Trésor négatif3
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("π ");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Write("— ");
                         break;
                     case 10: // Nourriture vi
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write(" ");
+                        break;
                     case 11: // Viandes
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(" ");
+                        break;
                     case 12: // Pates
                         Console.ForegroundColor = ConsoleColor.DarkCyan;
                         Console.Write(" ");
                         break;
                     case 13: // Herbes
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(" ");
                         break;
                     case 14: // Bateau

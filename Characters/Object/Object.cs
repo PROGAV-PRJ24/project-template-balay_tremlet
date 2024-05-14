@@ -1,6 +1,10 @@
 class Object : Character
 {
+<<<<<<< HEAD
     public Object(bool unlock, int inventoryWeight, int boatWeight) : base(unlock, 500, 5, inventoryWeight, boatWeight, "Non", "Montagne/Eau", "Zigzag")
+=======
+    public Object(bool unlock, int inventorySize, int inventoryWeight) : base(unlock, 500, 5, inventorySize, inventoryWeight, "Non", "Montagne/Eau", 5,"Zigzag")
+>>>>>>> game-play
     {
     }
 
@@ -13,6 +17,7 @@ class Object : Character
         Console.WriteLine($"Poids du bateau : {BoatWeight} kg");
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
+        Console.WriteLine($"Point de vie : {LifePoint}");
         Console.WriteLine($"Déplacement : {Movement}");
         Weakness(character);
     }

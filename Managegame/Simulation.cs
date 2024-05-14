@@ -1,9 +1,17 @@
 
+World world = new World(true);
 
-PlayGame PlayGame = new PlayGame();
+// world.DisplayWorld();
+// world.DisplayWorldEmojis();
+// Player player = new Player ();
+
+// PlayGame PlayGame = new PlayGame();
+// PlayGame.AddPlayer(player);
+
+
 PlayGame.Introduction();
 
-// PlayGame.ChooseCharactere(world);
+// PlayGame.ChooseCharactere(world, player);
 
 // Emma Emma = new Emma ();
 // Tom Tom = new Tom();
@@ -19,4 +27,7 @@ PlayGame.Introduction();
 // Pate.EffectFood(Emma);
 
 // Pate.EffectFood(Tom);
+
+
+
 
