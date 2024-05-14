@@ -80,7 +80,7 @@ public class World
             {
                 for (int j = 0; j < Mat.GetLength(1); j++)
                 {
-                    if (Mat[i, j] == 1 && random.NextDouble() < 0.3) // 30% de chance d'avoir un arbre
+                    if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir un arbre
                     {
                         Mat[i, j] = 3; // arbre
                     }
@@ -126,11 +126,16 @@ public class World
             }
 
             // Ajoute un bateau sur la mer
-            int boatX = random.Next(0, 20);
-            int boatY = random.Next(0, 20);
-            if (Mat[boatX, boatY] == 0)
+            // int boatX = CenterX + Radius + 1;
+            // int boatY = CenterY;
+            // if (Mat[boatX, boatY] == 0)
+            // {
+            //     Mat[boatX, boatY] = 14; // bateau
+            //     Boat1 = new Boat();
+            // }
+            if (TryPlaceBoat(out int boatX, out int boatY))
             {
-                Mat[boatX, boatY] = 14; // bateau
+                Mat[boatX, boatY] = 14;
                 Boat1 = new Boat();
             }
 
@@ -224,31 +229,31 @@ public class World
                 }
             }
 
-            // Ajoute des trésors positifs dans l'eau
-            for (int i = 0; i < Mat.GetLength(0); i++)
-            {
-                for (int j = 0; j < Mat.GetLength(1); j++)
-                {
-                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
-                    {
-                        int treasure = random.Next(4, 7);
-                        Mat[i, j] = treasure; // trésor positif
-                    }
-                }
-            }
+            // // Ajoute des trésors positifs dans l'eau
+            // for (int i = 0; i < Mat.GetLength(0); i++)
+            // {
+            //     for (int j = 0; j < Mat.GetLength(1); j++)
+            //     {
+            //         if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor positif
+            //         {
+            //             int treasure = random.Next(4, 7);
+            //             Mat[i, j] = treasure; // trésor positif
+            //         }
+            //     }
+            // }
 
-            // Ajoute des trésors négatifs dans l'eau
-            for (int i = 0; i < Mat.GetLength(0); i++)
-            {
-                for (int j = 0; j < Mat.GetLength(1); j++)
-                {
-                    if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
-                    {
-                        int treasure = random.Next(7, 10);
-                        Mat[i, j] = treasure; // trésor négatif
-                    }
-                }
-            }
+            // // Ajoute des trésors négatifs dans l'eau
+            // for (int i = 0; i < Mat.GetLength(0); i++)
+            // {
+            //     for (int j = 0; j < Mat.GetLength(1); j++)
+            //     {
+            //         if (Mat[i, j] == 0 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+            //         {
+            //             int treasure = random.Next(7, 10);
+            //             Mat[i, j] = treasure; // trésor négatif
+            //         }
+            //     }
+            // }
 
             // Ajoute de la nourriture sur la terre
             for (int i = 0; i < Mat.GetLength(0); i++)
@@ -264,21 +269,32 @@ public class World
             }
 
             // Ajoute un bateau sur la mer
-            int boat1X = random.Next(0, 20);
-            int boat1Y = random.Next(0, 20);
-            if (Mat[boat1X, boat1Y] == 0)
+            // int boat1X = CenterX + Radius + 1;
+            // int boat1Y = CenterY;
+            // if (Mat[boat1X, boat1Y] == 0)
+            // {
+            //     Mat[boat1X, boat1Y] = 14; // bateau
+            //     Boat1 = new Boat();
+            // }
+            if (TryPlaceBoat(out int boat1X, out int boat1Y))
             {
-                Mat[boat1X, boat1Y] = 14; // bateau
+                Mat[boat1X, boat1Y] = 14;
                 Boat1 = new Boat();
             }
 
-            int boat2X = random.Next(0, 20);
-            int boat2Y = random.Next(0, 20);
-            if (Mat[boat2X, boat2Y] == 0)
+            if (TryPlaceBoat( out int boat2X, out int boat2Y))
             {
-                Mat[boat2X, boat2Y] = 15; // bateau
+                Mat[boat2X, boat2Y] = 15;
                 Boat2 = new Boat();
             }
+
+            // int boat2X = CenterX + Radius + 1;
+            // int boat2Y = CenterY;
+            // if (Mat[boat2X, boat2Y] == 0)
+            // {
+            //     Mat[boat2X, boat2Y] = 15; // bateau
+            //     Boat2 = new Boat();
+            // }
 
             int character1X;
             int character1Y;
@@ -365,11 +381,11 @@ public class World
                         Console.Write("🍎");
                         break;
                     case 14: // Bateau
-                        // Console.ForegroundColor = ConsoleColor.Yellow;
+                        // Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("🏴‍☠️ ");
                         break;
                     case 15: // Bateau
-                        // Console.ForegroundColor = ConsoleColor.White;
+                        // Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("⛵️ ");
                         break;
                     case 16: // Personnage
@@ -438,11 +454,11 @@ public class World
                         Console.Write(" ");
                         break;
                     case 14: // Bateau
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("B ");
                         break;
                     case 15: // Bateau
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("B ");
                         break;
                     case 16: // Personnage
@@ -643,4 +659,68 @@ public class World
         }
 
     }
+
+    private bool TryPlaceBoat(out int boatX, out int boatY)
+    {
+        Random random = new Random();
+
+        do
+        {
+            boatX = random.Next(0, Mat.GetLength(0));
+            boatY = random.Next(0, Mat.GetLength(1));
+        } while (Mat[boatX, boatY] != 0 || !IsNearLand(boatX, boatY));
+
+        if (IsValidBoatPosition(boatX, boatY))
+        {
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("IsValidBoatPosition -> false");
+            return false;
+        }
+    }
+
+    private bool IsValidBoatPosition(int boatX, int boatY)
+    {
+        if (boatX < 0 || boatX >= Mat.GetLength(0) || boatY < 0 || boatY >= Mat.GetLength(1))
+        {
+            return false;
+            Console.WriteLine("en dehors de la map");
+        }
+
+        if (Mat[boatX, boatY] != 0)
+        {
+            return false;
+            Console.WriteLine("pas dans l'eau");
+        }
+
+        return true;
+    }
+
+    private bool IsNearLand(int x, int y)
+    {
+        if (x < Mat.GetLength(0)-1 && x >= 1 &&  y < Mat.GetLength(1)-1 && y >= 1) 
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if (Mat[x + i, y + j] == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            Console.WriteLine("Hors de la matrice");
+            return false;
+        }
+
+        return false;
+        Console.WriteLine("pas à côté de la terre");
+        
+    }
+
+
 }

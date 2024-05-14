@@ -1,15 +1,16 @@
 
-World world = new World(true);
+// World world = new World(true);
+World world = new World(false);
 
-// world.DisplayWorld();
+world.DisplayWorld();
 // world.DisplayWorldEmojis();
 // Player player = new Player ();
 
-// PlayGame PlayGame = new PlayGame();
+PlayGame PlayGame = new PlayGame();
 // PlayGame.AddPlayer(player);
 
 
-PlayGame.Introduction();
+// PlayGame.Introduction();
 
 // PlayGame.ChooseCharactere(world, player);
 

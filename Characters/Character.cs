@@ -19,7 +19,7 @@ public abstract class Character
     private static int characterIdCounter = 1;
 
 
-    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint,int lifePoint, string movement)
+    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, int lifePoint, string movement)
     {
         Unlock = unlock;
         QuantityEnergy = quantityEnergy;
