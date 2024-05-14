@@ -713,8 +713,7 @@ public class World
                 }
             }
         } else {
-            Console.WriteLine("Hors de la matrice");
-            return false;
+            return false
         }
 
         return false;
