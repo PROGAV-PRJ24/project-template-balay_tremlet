@@ -78,7 +78,7 @@ public class PlayGame
         }
     }
 
-    private void DisplayRules() {
+    public void DisplayRules() {
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write("1. ' ~ ':");
         Console.WriteLine("Ce symbole designe la mer");
@@ -125,6 +125,7 @@ public class PlayGame
         Player Player = new Player();
         Player.Name = name;
         AddPlayer(Player);
+  
         World world = new World(true);
         ChooseCharactere(world, Player);
     }
@@ -161,6 +162,7 @@ public class PlayGame
                     
                     Console.WriteLine($"\n{player1.Name}, vous serez le cochon.");
                     Console.WriteLine("\nL'ordinateur sera le lion.");
+                    
                     StartGame1v1(player1, player2, world, true);
                     break;
                 case 2:
@@ -214,15 +216,18 @@ public class PlayGame
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
+            int rollCount = roll++;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
 
+
+    
             if (character != null && world != null)
             {
                 ConsoleKeyInfo keyInfo;
                 bool validDirection = false;
                 while (!validDirection)
                 {
-                    Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+                    Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite) appuie sur les flèches directionnelles du votre pavé numérique");
                     keyInfo = Console.ReadKey(true);
                     string direction;
 
@@ -265,6 +270,7 @@ public class PlayGame
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
+            int rollCount = roll++
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
 
             if (character != null && world != null)
@@ -273,7 +279,7 @@ public class PlayGame
                     bool validDirection = false;
                     while (!validDirection)
                     {
-                        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+                        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite) appuie sur les flèches directionnelles du votre pavé numérique");
                         keyInfo = Console.ReadKey(true);
                         string direction;
 
@@ -322,7 +328,7 @@ public class PlayGame
                     bool validDirection = false;
                     while (!validDirection)
                     {
-                        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite)");
+                        Console.WriteLine("\nDans quelle direction voulez-vous avancer ? (haut/bas/gauche/droite) appuie sur les flèches directionnelles du votre pavé numérique");
                         keyInfo = Console.ReadKey(true);
                         string direction;
 
@@ -399,10 +405,12 @@ public class PlayGame
         }
     }
 
+
     private int RollDice()
     {
         Random rand = new Random();
         return rand.Next(1, 7);
+        
     }
 
 
@@ -421,7 +429,7 @@ public class PlayGame
     }
 
     
-    private void ChooseCharactere (World world, Player player) {
+    public void ChooseCharactere (World world, Player player) {
 
         Console.WriteLine("Choisissez votre personnage :");
         Console.WriteLine("1. Emma");
@@ -779,7 +787,7 @@ public class PlayGame
         }
     }
 
-    private void AddPlayer(Player player)
+    public void AddPlayer(Player player)
     {
         Players.Add(player);
         Console.WriteLine($"Nombre de joueurs : {Players.Count}");

@@ -14,7 +14,6 @@ public class World
     public Boat Boat1 { get; private set; }
     public Boat Boat2 { get; private set; }
 
-
     public World(bool isSolo)
     {
         IsSolo = isSolo;
@@ -406,6 +405,8 @@ public class World
 
     public void DisplayWorld()
     {
+      
+
         for (int i = 0; i < Mat.GetLength(0); i++)
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
@@ -474,6 +475,8 @@ public class World
                 Console.ResetColor();
             }
             Console.WriteLine();
+         
+        
         }
     }
 
@@ -710,7 +713,7 @@ public class World
                 }
             }
         } else {
-            return false
+            return false;
         }
 
         return false;

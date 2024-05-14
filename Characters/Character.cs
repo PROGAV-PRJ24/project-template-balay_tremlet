@@ -58,11 +58,22 @@ public abstract class Character
                 IdWeakness1 = 2;
                 IdWeakness2 = 0;
                 break;
+            case "foret":
+                IdWeakness1 = 1;
+                IdWeakness2 = 500;
+                break;
             default:
                 Console.WriteLine("Weakness invalide");
                 return;
         }
     }
+
+    public void RemoveWeakness()
+    {
+      
+        IdWeakness2 = -1;
+    }
+
 
     public virtual void DisplayEnergy()
     {
