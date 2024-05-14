@@ -1,6 +1,6 @@
 class Object : Character
 {
-    public Object(bool unlock, int inventoryWeight, int boatWeight) : base(unlock, 500, 5, inventoryWeight, boatWeight, "Non", "Montagne/Eau", 5, "Zigzag")
+    public Object(bool unlock, int inventoryWeight, int boatWeight) : base(unlock, 500, 5, inventoryWeight, boatWeight, "Non", "Montagne/Eau", 5, "Diagonale")
     {}
 
     public override void DisplayCharacter(Character character)
