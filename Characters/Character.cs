@@ -35,10 +35,6 @@ public abstract class Character
   
     public abstract void DisplayCharacter(Character character);
 
-    // public abstract bool Move(string direction, int roll, World world, Character character, List <Treasure> treasurePlayer);
-
-    // public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, List <Treasure> treasurePlayer);
-
     public abstract bool Move(string direction, int roll, World world, Character character);
 
 
@@ -103,16 +99,17 @@ public abstract class Character
     // }
 
 
-    public void FileTreasure(List<Treasure> treasurePlayer)
+    public void FileTreasure(Boat boat)
     {
         if (Inventory.CurrentWeight > 0)
         {
-            // foreach (Treasure treasure in Inventory)
-            // {
-            //     treasurePlayer.Add(treasure);
-            // }
+            foreach (Treasure treasure in Inventory.Treasures)
+            {
+                boat.AddTreasure(treasure);
+            }
 
-            // Inventory.Clear();
+            Inventory.Treasures.Clear();
+            Inventory.CurrentWeight = 0;
 
             Console.WriteLine($"Votre {GetType().Name} (ID : {IdCharacter}) a déposé ses trésors dans le bateau !");
         }

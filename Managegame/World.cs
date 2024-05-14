@@ -11,6 +11,8 @@ public class World
     public int Radius {get; set; }
     public string CaseName {get; set; }
     public bool IsSolo {get; set; }
+    public Boat Boat1 { get; private set; }
+    public Boat Boat2 { get; private set; }
 
 
     public World(bool isSolo)
@@ -129,6 +131,7 @@ public class World
             if (Mat[boatX, boatY] == 0)
             {
                 Mat[boatX, boatY] = 14; // bateau
+                Boat1 = new Boat();
             }
 
             int characterX;
@@ -239,6 +242,7 @@ public class World
             if (Mat[boat1X, boat1Y] == 0)
             {
                 Mat[boat1X, boat1Y] = 14; // bateau
+                Boat1 = new Boat();
             }
 
             int boat2X = random.Next(0, 20);
@@ -246,6 +250,7 @@ public class World
             if (Mat[boat2X, boat2Y] == 0)
             {
                 Mat[boat2X, boat2Y] = 15; // bateau
+                Boat2 = new Boat();
             }
 
             int character1X;

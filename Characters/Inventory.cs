@@ -1,9 +1,9 @@
 public class Inventory 
 {
 
-    public List<Treasure> Treasures { get; private set; } = new List<Treasure>();
+    public List<Treasure> Treasures { get; set; } = new List<Treasure>();
     public int MaxWeight { get; private set; }
-    public int CurrentWeight { get; private set; }
+    public int CurrentWeight { get; set; }
 
     public Inventory(){}
 
