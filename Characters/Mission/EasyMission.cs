@@ -3,7 +3,7 @@ public class EasyMission : Mission
     public EasyMission()
     {
         Name = "Mission facile";
-        Description = "Fait plus de 50 lancers de dé";
+        Description = "Faites plus de 50 pas";
         IsCompleted = false;
     }
 
@@ -12,14 +12,9 @@ public class EasyMission : Mission
         Console.WriteLine($"{Name}: {Description}");
     }
 
-    public override bool CheckCompletion(Character character)
+    public override bool CheckCompletion(Character character, Boat boat)
     {
-        
-        
-      //  PlayGame.PlayTurn(rollCount)  comment récupérer la valeur de Roll Count
-// unlock un autre personnage
-  
-        if (rollCount >= 50)
+        if (character.RollCount >= 50) // pas sure que ca marche 
         {
             IsCompleted = true;
             return true;

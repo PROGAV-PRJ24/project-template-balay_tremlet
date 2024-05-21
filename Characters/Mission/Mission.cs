@@ -6,5 +6,5 @@ public abstract class Mission
 
     public abstract void DisplayMission();
 
-    public abstract bool CheckCompletion(Character character);
+    public abstract bool CheckCompletion(Character character,Boat boat);
 }

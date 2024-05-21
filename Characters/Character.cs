@@ -4,6 +4,7 @@ public abstract class Character
     public bool Unlock { get; set; }
     public int QuantityEnergy { get; set; }
     public int ManageEnergy { get; set; }
+    public int MaxQuantityEnergy{ get;set;}
     public int InventoryWeight { get; set; }
     public int BoatWeight { get; set; }
     public string StrongPoint { get; set; }
@@ -13,6 +14,7 @@ public abstract class Character
     public int IdCharacter { get; private set; }
     public int IdWeakness1;
     public int IdWeakness2;
+    public int RollCount { get; set; }
 /*     public Boat Boat { get; set; } // Référence vers le bateau associé au personnage */
 
    
@@ -28,10 +30,12 @@ public abstract class Character
         BoatWeight = boatWeight;
         StrongPoint = strongPoint;
         WeakPoint = weakPoint;
+        MaxQuantityEnergy = quantityEnergy;
         LifePoint = lifePoint;
         Movement = movement;
         IdCharacter = characterIdCounter++;
         Inventory Inventory = new Inventory();
+        RollCount = 0;
     }
 
   
@@ -77,7 +81,7 @@ public abstract class Character
 
     public virtual void DisplayEnergy()
     {
-        int maxEnergy = QuantityEnergy; 
+        int maxEnergy = MaxQuantityEnergy ; 
         int barSize = 20; 
         int energyPerBar = 5; 
 

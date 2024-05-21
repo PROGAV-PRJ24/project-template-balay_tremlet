@@ -213,10 +213,11 @@ public class PlayGame
     {
         if (isJoueur1 && world.IsSolo){
             world.DisplayWorld();
+            DisplayRules();
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
-            int rollCount = roll++;
+      character.RollCount += roll;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
 
 
@@ -267,10 +268,11 @@ public class PlayGame
 
         } else if (isJoueur1){
             world.DisplayWorld();
+            DisplayRules();
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
-            int rollCount = roll++
+            character.RollCount += roll;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
 
             if (character != null && world != null)
@@ -317,6 +319,7 @@ public class PlayGame
             Console.ReadKey();
         } else if (!isJoueur1 && !isComputer){
             world.DisplayWorld();
+            DisplayRules();
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
@@ -365,6 +368,7 @@ public class PlayGame
             Console.ReadKey();
         } else {
             world.DisplayWorld();
+            DisplayRules();
             int roll = RollDice();
 
             if (character != null && world != null)
