@@ -3,19 +3,30 @@ public class EpicMission : Mission
     public EpicMission()
     {
         Name = "Mission très difficile";
-        Description = "Trouver le one piece ";
+        Description = "Trouver le One Piece";
         IsCompleted = false;
     }
 
     public override void DisplayMission()
     {
-        Console.WriteLine($"{Name}: {Description}");
+        Console.WriteLine("=== 3ème Mission  ===");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Description: {Description}");
+        Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplete")}");
+        Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character,Boat boat)
+    public override bool CheckCompletion(Character character, Boat boat)
     {
-     // Le one piece Devra être rajouter et unlock tout les personnages. 
-     //On peut rajouter des indices pour trouver le one piece qui sera toujours au même endroit. Il sera présent que si les missions d'avant sont complétées.
+        foreach (Treasure treasure in boat.Treasures)
+        {
+            if (treasure.Name == "One Piece")
+            {
+                IsCompleted = true;
+                Console.WriteLine("Félicitations ! Vous avez complété la mission très difficile en trouvant le One Piece.");
+                return true;
+            }
+        }
         return false;
     }
 }

@@ -9,7 +9,11 @@ public class EasyMission : Mission
 
     public override void DisplayMission()
     {
-        Console.WriteLine($"{Name}: {Description}");
+        Console.WriteLine("=== 1ère Mission  ===");
+        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Description: {Description}");
+              Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplete")}");
+        Console.WriteLine("=======================");
     }
 
     public override bool CheckCompletion(Character character, Boat boat)
@@ -18,6 +22,7 @@ public class EasyMission : Mission
         {
             IsCompleted = true;
             return true;
+             Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 
         }
 
         return false;
