@@ -217,7 +217,8 @@ public class PlayGame
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
-      character.RollCount += roll;
+            
+            character.RollCount += roll;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
 
 
