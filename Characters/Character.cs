@@ -48,21 +48,21 @@ public abstract class Character
 
     public void Weakness (Character character) {
 
-        switch (character.WeakPoint.ToLower())
+        switch (character.WeakPoint)
         {
-            case "montagne":
+            case "Montagne":
                 IdWeakness1 = 2;
                 IdWeakness2 = 500;
                 break;
-            case "eau":
+            case "Eau":
                 IdWeakness1 = 0;
                 IdWeakness2 = 500;
                 break;
-            case "montagne/eau":
+            case "Montagne/Eau":
                 IdWeakness1 = 2;
                 IdWeakness2 = 0;
                 break;
-            case "foret":
+            case "Foret":
                 IdWeakness1 = 1;
                 IdWeakness2 = 500;
                 break;

@@ -821,7 +821,6 @@ public class PlayGame
     public void AddPlayer(Player player)
     {
         Players.Add(player);
-        Console.WriteLine($"Nombre de joueurs : {Players.Count}");
         SavePlayers();
     }
 
