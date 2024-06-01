@@ -9,14 +9,14 @@ public class HardMission : Mission
 
     public override void DisplayMission()
     {
-  Console.WriteLine("=== 2eme Mission  ===");
+        Console.WriteLine("=== 2eme Mission  ===");
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Description: {Description}");
         Console.WriteLine($"Status: {(IsCompleted ? "Completé" : "Pas complété")}");
         Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character, Boat boat)
+    public override bool CheckCompletion(Character character, Boat boat, World world)
     {
 
         foreach (Treasure treasure in boat.Treasures)
@@ -26,14 +26,15 @@ public class HardMission : Mission
                 IsCompleted = true;
               
                 Console.WriteLine("Félicitations ! Vous avez complété la mission difficile en trouvant et rapportant la hache au bateau. "); 
-                AddOnePieceTreasure();
-                  return true;
+                AddOnePieceTreasure(world);
+                return true;
             }
         }
         return false;
     
     }
-    public void AddOnePieceTreasure()
+
+    public void AddOnePieceTreasure(World world)
     {
         Random random = new Random();
         int x, y;

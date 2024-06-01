@@ -253,24 +253,23 @@ public class World
 
  
 
-   public void CheckTreasure()
-{
-    // Vérifie si le personnage principal est sur une case contenant un trésor
-    if (Mat[CharacterX, CharacterY] >= 4 && Mat[CharacterX, CharacterY] <= 11)
+    public void CheckTreasure(Character character, Treasure treasure)
     {
-       
-        Treasure.ApplyEffect(Character);
-        Mat[CharacterX, CharacterY] = 1; // Remplace le trésor par de la terre
-    }
+        // Vérifie si le personnage principal est sur une case contenant un trésor
+        if (Mat[CharacterX, CharacterY] >= 4 && Mat[CharacterX, CharacterY] <= 11)
+        {
+        
+            treasure.ApplyEffect(character);
+            Mat[CharacterX, CharacterY] = 1; // Remplace le trésor par de la terre
+        }
 
-    // Vérifie si le deuxième personnage est sur une case contenant un trésor (si multijoueur)
-    if (!IsSolo && Mat[Character2X, Character2Y] >= 4 && Mat[Character2X, Character2Y] <= 11)
-    {
-       
-        Treasure.ApplyEffect(Character);
-        Mat[Character2X, Character2Y] = 1; // Remplace le trésor par de la terre
+        if (!IsSolo && Mat[Character2X, Character2Y] >= 4 && Mat[Character2X, Character2Y] <= 11)
+        {
+        
+            treasure.ApplyEffect(character);
+            Mat[Character2X, Character2Y] = 1; // Remplace le trésor par de la terre
+        }
     }
-}
 
 
     public int GetCharacterX()
@@ -380,6 +379,80 @@ public class World
             }
         }
     }
+
+    public bool IsInCircle(int X, int Y)
+    {
+        int distanceX = X - CenterX;
+        int distanceY = Y - CenterY;
+        int distanceSquared = distanceX * distanceX + distanceY * distanceY;
+        return distanceSquared <= Radius * Radius;
+    }
+
+    public void CheckFood(int characterX, int characterY, Character character)
+    {
+        int foodId = Mat[characterX, characterY];
+        GetFoodById(foodId);
+        string foodName = CaseName;
+
+        if (foodName == "LifeFood"){
+
+            LifeFood food = new LifeFood ();
+            Console.WriteLine ($"Vous avez trouvé de la nourriture vie !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;   
+
+        }  else if (foodName == "Viande"){
+
+            Meat food = new Meat();
+            Console.WriteLine ($"Vous avez trouvé de la viande !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;     
+
+        } else if (foodName == "Pate"){
+
+            Pate food = new Pate();
+            Console.WriteLine ($"Vous avez trouvé des pates !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;
+
+        } else if (foodName == "Herbe"){
+
+            Herbe food = new Herbe ();
+            Console.WriteLine ($"Vous avez trouvé de l'herbe !");
+            food.EffectFood(character);
+            Mat[characterX, characterY] = 17;
+
+        } 
+    }
+
+    private void GetFoodById(int foodId)
+    {
+         Console.WriteLine(foodId);
+        if (foodId >= 10 && foodId <= 13){
+            switch (foodId)
+            {
+                case 10:
+                    CaseName = "LifeFood";
+                    break;
+                case 11:
+                    CaseName = "Viande";
+                    break;
+                case 12:
+                    CaseName = "Pate";
+                    break;
+                case 13:
+                    CaseName = "Herbe";
+                    break;
+                default:
+                    Console.WriteLine("Erreur de la nourriture");
+                    break;
+            }
+        } else {
+            Console.WriteLine("Pas de nourriture");
+        }
+
+    }
+
 }
 
     

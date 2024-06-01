@@ -16,7 +16,7 @@ public class EasyMission : Mission
         Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character, Boat boat)
+    public override bool CheckCompletion(Character character, Boat boat, World world)
     {
         if (character.RollCount >= 50) // pas sure que ca marche 
         {

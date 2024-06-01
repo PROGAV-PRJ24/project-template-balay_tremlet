@@ -85,7 +85,7 @@ class Human : Character
             return false;
         }else {
             world.CheckFood(newX, newY, character);
-            world.Mat[newX, newY] = 17;
+            world.Mat[newX, newY] = 18;
             world.Mat[oldX, oldY] = oldPoint;
             QuantityEnergy -= ManageEnergy;
             Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
@@ -162,9 +162,9 @@ class Human : Character
                 Console.WriteLine("Vous avez atteint le bateau !");
                 character.FileTreasure(world.Boat1);
                 return false;
-            }else {
+            } else {
                 world.CheckFood(newX, newY, character);
-                world.Mat[newX, newY] = 17;
+                world.Mat[newX, newY] = 19;
                 world.Mat[oldX, oldY] = oldPoint;
                 QuantityEnergy -= ManageEnergy;
                 Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");
@@ -230,9 +230,9 @@ class Human : Character
                 Console.WriteLine("Vous avez atteint le bateau !");
                 character.FileTreasure(world.Boat2);
                 return false;
-            }else {
+            } else {
                 world.CheckFood(newX, newY, character);
-                world.Mat[newX, newY] = 16;
+                world.Mat[newX, newY] = 19;
                 world.Mat[oldX, oldY] = oldPoint;
                 QuantityEnergy -= ManageEnergy;
                 Console.WriteLine($"Votre human (ID : {IdCharacter}) bouge vers le/la {direction}.");

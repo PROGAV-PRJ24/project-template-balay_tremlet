@@ -12,7 +12,7 @@ PlayGame.AddPlayer(player);
 
 PlayGame.Introduction();
 
-PlayGame.ChooseCharactere(world, player);
+// PlayGame.ChooseCharactere(world, player);
 
 // Emma Emma = new Emma ();
 // Tom Tom = new Tom();

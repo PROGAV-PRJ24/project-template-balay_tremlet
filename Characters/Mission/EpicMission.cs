@@ -16,7 +16,7 @@ public class EpicMission : Mission
         Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character, Boat boat)
+    public override bool CheckCompletion(Character character, Boat boat, World world)
     {
         foreach (Treasure treasure in boat.Treasures)
         {

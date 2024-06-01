@@ -220,33 +220,33 @@ public class PlayGame
             
             character.RollCount += roll;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
+            Mission easyMission = new EasyMission();
+            if (easyMission.CheckCompletion(character, world.Boat1, world))
+                {
+            
+                    Console.Clear();
+                    Console.WriteLine("Nouvelle mission disponible !");
+                    Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
+                    Console.ReadKey();
+                    Console.Clear();
 
- if (easyMission.CheckCompletion(character, world.Boat1))
-    {
- 
-        Console.Clear();
-        Console.WriteLine("Nouvelle mission disponible !");
-        Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
-        Console.ReadKey();
-        Console.Clear();
-
-        Mission hardMission = new HardMission();
-        hardMission.DisplayMission();
+                    Mission hardMission = new HardMission();
+                    hardMission.DisplayMission();
 
 
-        if (hardMission.CheckCompletion(character, world.Boat1))
-        {
-         
-            Console.Clear();
-            Console.WriteLine("Nouvelle mission disponible !");
-            Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
-            Console.ReadKey();
-            Console.Clear();
+                    if (hardMission.CheckCompletion(character, world.Boat1, world))
+                    {
+                    
+                        Console.Clear();
+                        Console.WriteLine("Nouvelle mission disponible !");
+                        Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
+                        Console.ReadKey();
+                        Console.Clear();
 
-            Mission epicMission = new EpicMission();
-            epicMission.DisplayMission();
-        }
-    }
+                        Mission epicMission = new EpicMission();
+                        epicMission.DisplayMission();
+                    }
+                }
     
             if (character != null && world != null)
             {
@@ -833,7 +833,7 @@ public class PlayGame
 
     private void DisplayTopPlayers()
     {
-        List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(3).ToList();
+        List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(5).ToList();
         Console.WriteLine("Voici le classement des parties/joueurs : ");
 
         for (int i = 0; i < topPlayers.Count; i++)
