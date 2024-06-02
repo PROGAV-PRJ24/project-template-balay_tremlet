@@ -1,4 +1,3 @@
-
 World world = new World(true);
 // World world = new World(false);
 
@@ -8,7 +7,7 @@ World world = new World(true);
 PlayGame PlayGame = new PlayGame();
 // PlayGame.AddPlayer(player);
 
-PlayGame.Introduction();
+// PlayGame.Introduction();
 
 // PlayGame.ChooseCharactere(world, player);
 
@@ -42,6 +41,12 @@ Emma Emma = new Emma ();
 
 
 // OnePieceTreasure treasure = new OnePieceTreasure();
+
+PositiveTreasure2 treasure = new PositiveTreasure2 ();
+
+treasure.ApplyEffect(Emma);
+
+Emma.DisplayCharacter(Emma);
 
 // Inventory Inventory = Emma.Inventory;
 

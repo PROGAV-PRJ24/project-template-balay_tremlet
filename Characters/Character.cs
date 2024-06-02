@@ -15,7 +15,7 @@ public abstract class Character
     public int IdWeakness1;
     public int IdWeakness2;
     public int RollCount { get; set; }
-/*     public Boat Boat { get; set; } // Référence vers le bateau associé au personnage */
+    // public Boat Boat { get; set; } // Référence vers le bateau associé au personnage
 
    
     private static int characterIdCounter = 1;
