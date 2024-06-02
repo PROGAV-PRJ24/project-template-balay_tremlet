@@ -1,6 +1,6 @@
 class Kangourou : Animal
 {
-    public Kangourou() : base(false, 120, 6, 7)
+    public Kangourou() : base(4, false, 120, 6, 7)
     {
     }
 }

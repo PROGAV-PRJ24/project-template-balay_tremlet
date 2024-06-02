@@ -1,6 +1,6 @@
 class Object : Character
 {
-    public Object(bool unlock, int inventoryWeight, int boatWeight) : base(unlock, 500, 5, inventoryWeight, boatWeight, "Montagne/Eau", "Non", 5, "Diagonale")
+    public Object(int id, bool unlock, int inventoryWeight, int boatWeight) : base(id, unlock, 500, 5, inventoryWeight, boatWeight, "Montagne/Eau", "Non", 5, "Diagonale")
     {}
 
     public override void DisplayCharacter(Character character)
@@ -247,5 +247,10 @@ class Object : Character
 
 
         }
+    }
+
+    public override void Save()
+    {
+        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
     }
 }

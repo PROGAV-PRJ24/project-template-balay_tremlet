@@ -8,8 +8,8 @@ public class HardMission : Mission
 
     public override void DisplayMission()
     {
-        Console.WriteLine("=== 2eme Mission  ===");
-        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine("=== 3ème Mission  ===");
+        Console.WriteLine($"Nom: {Name}");
         Console.WriteLine($"Description: {Description}");
         Console.WriteLine($"Status: {(IsCompleted ? "Completé" : "Incomplète")}");
         Console.WriteLine("=======================");

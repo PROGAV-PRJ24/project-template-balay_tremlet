@@ -1,18 +1,3 @@
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.csproj.AssemblyReference.cache
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.GeneratedMSBuildEditorConfig.editorconfig
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.AssemblyInfoInputs.cache
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.AssemblyInfo.cs
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.csproj.CoreCompileInputs.cache
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.deps.json
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.runtimeconfig.json
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.dll
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.pdb
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.dll
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/refint/project-template-balay_tremlet.dll
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.pdb
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.genruntimeconfig.cache
-/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/ref/project-template-balay_tremlet.dll
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.csproj.AssemblyReference.cache
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.GeneratedMSBuildEditorConfig.editorconfig
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.AssemblyInfoInputs.cache
@@ -28,3 +13,18 @@
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.pdb
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.genruntimeconfig.cache
 /Users/tom/Desktop/ENSC/Informatique/Projet-2024-onepiece/project-template-balay_tremlet/obj/Debug/net6.0/ref/project-template-balay_tremlet.dll
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.deps.json
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.runtimeconfig.json
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.dll
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/bin/Debug/net6.0/project-template-balay_tremlet.pdb
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.csproj.AssemblyReference.cache
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.AssemblyInfoInputs.cache
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.AssemblyInfo.cs
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.csproj.CoreCompileInputs.cache
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.dll
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/refint/project-template-balay_tremlet.dll
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.pdb
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/project-template-balay_tremlet.genruntimeconfig.cache
+/Users/emma1/Library/Mobile Documents/com~apple~CloudDocs/S6/Programmation avancée/Projet/project-template-balay_tremlet/obj/Debug/net6.0/ref/project-template-balay_tremlet.dll

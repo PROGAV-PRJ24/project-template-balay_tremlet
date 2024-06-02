@@ -14,6 +14,7 @@ class Pate : Food
     public override void EffectFood(Character character){
         if ($"{character}" == "Emma") {
             character.QuantityEnergy += EnergyGift;
+            character.EnergyCount += EnergyGift;
             Console.WriteLine($"Cette nourriture vous redonne {EnergyGift} d'énergie ! :)");
             Console.WriteLine ($"Il vous reste {character.QuantityEnergy} d'énergie");
 

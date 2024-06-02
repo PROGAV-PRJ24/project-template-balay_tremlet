@@ -1,7 +1,8 @@
 class Animal : Character
 {
-    public Animal(bool unlock, int quantityEnergy, int inventoryWeight, int boatWeight) : base(unlock, quantityEnergy, 15, inventoryWeight, boatWeight, "Montagne", "Eau", 15,"Saute de 2 cases")
+    public Animal(int id, bool unlock, int quantityEnergy, int inventoryWeight, int boatWeight) : base(id, unlock, quantityEnergy, 15, inventoryWeight, boatWeight, "Montagne", "Eau", 15,"Saute de 2 cases")
     {
+
     }
 
     public override void DisplayCharacter(Character character)
@@ -234,6 +235,12 @@ class Animal : Character
                 return true;
             }
         }
+    }
+
+    public override void Save()
+    {
+        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
+
     }
 
 }

@@ -54,9 +54,3 @@ Emma Emma = new Emma ();
 
 // Inventory.AddTreasure(treasure);
 // Inventory.DisplayInventory();
-
-
-
-
-
-

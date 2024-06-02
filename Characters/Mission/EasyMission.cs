@@ -7,7 +7,7 @@ public class EasyMission : Mission
     public override void DisplayMission()
     {
         Console.WriteLine("=== 1ère Mission  ===");
-        Console.WriteLine($"Name: {Name}");
+        Console.WriteLine($"Nom: {Name}");
         Console.WriteLine($"Description: {Description}");
               Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplète")}");
         Console.WriteLine("=======================");
@@ -19,7 +19,10 @@ public class EasyMission : Mission
         {
             IsCompleted = true;
             player.Score+=5;
-            Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 
+            Chamois Chamois = new Chamois();
+            Chamois.Unlock = true;
+            Chamois.Save();
+            Console.WriteLine("Félicitations ! Vous avez complété la mission facile et débloqué le personnage Chamois !"); 
             return true;
         }
 

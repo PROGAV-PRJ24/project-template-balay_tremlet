@@ -1,6 +1,6 @@
 class Tom : Human
 {
-    public Tom() : base(true, 100, 4, 7)
+    public Tom() : base(2, true, 100, 4, 7)
     {
     }
 }

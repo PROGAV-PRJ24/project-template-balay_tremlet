@@ -36,8 +36,8 @@ public abstract class Treasure
     protected bool RésoudreEnigme()
     {
         string[,] enigmes = {
-            {"Qu'est-ce qui est toujours devant vous mais vous ne pouvez jamais atteindre ?", "L'avenir"},
-            {"Qu'est-ce qui fait le tour de la maison sans bouger ?","le mur"},
+            {"Qu'est-ce qui est toujours devant vous mais que vous ne pouvez jamais atteindre ?", "L'avenir"},
+            {"Qu'est-ce qui fait le tour de la maison sans bouger ?","Le mur"},
             {"Un smartphone et sa coque coûtent 110 euros en tout. Le smartphone coûte 100 euros de plus que la coque. Combien coûte le smartphone ?","105"},
             {"((4 - 4) * 3) ^ 2 * 342452 = ?", "0"},
           

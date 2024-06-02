@@ -15,13 +15,11 @@ public abstract class Character
     public int IdWeakness1;
     public int IdWeakness2;
     public int RollCount { get; set; }
+    public int EnergyCount {get; set;}
     // public Boat Boat { get; set; } // Référence vers le bateau associé au personnage
 
-   
-    private static int characterIdCounter = 1;
 
-
-    public Character(bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, int lifePoint, string movement)
+    public Character(int id, bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, int lifePoint, string movement)
     {
         Unlock = unlock;
         QuantityEnergy = quantityEnergy;
@@ -33,13 +31,17 @@ public abstract class Character
         MaxQuantityEnergy = quantityEnergy;
         LifePoint = lifePoint;
         Movement = movement;
-        IdCharacter = characterIdCounter++;
+        IdCharacter = id;
         Inventory = new Inventory(InventoryWeight);
         RollCount = 0;
+        EnergyCount = 0;
+
     }
 
   
     public abstract void DisplayCharacter(Character character);
+
+    public abstract void Save();
 
     public abstract bool Move(string direction, int roll, World world, Character character, Player player);
 

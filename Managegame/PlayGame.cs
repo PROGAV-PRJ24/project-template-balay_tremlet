@@ -128,12 +128,14 @@ public class PlayGame
   
         World world = new World(true);
         EasyMission easyMission = new EasyMission();
+        AverageMission averageMission = new AverageMission();
         HardMission hardMission = new HardMission();
         EpicMission epicMission = new EpicMission ();
         easyMission.DisplayMission();
+        averageMission.DisplayMission();
         hardMission.DisplayMission();
         epicMission.DisplayMission();
-        ChooseCharactere(world, Player, easyMission, hardMission, epicMission);
+        ChooseCharactere(world, Player, easyMission, averageMission, hardMission, epicMission);
 
     }
 
@@ -152,9 +154,11 @@ public class PlayGame
             Player player1 = new Player();
             Player player2 = new Player();
             EasyMission easyMission = new EasyMission();
+            AverageMission averageMission = new AverageMission();
             HardMission hardMission = new HardMission();
             EpicMission epicMission = new EpicMission ();
             easyMission.DisplayMission();
+            averageMission.DisplayMission();
             hardMission.DisplayMission();
             epicMission.DisplayMission();
 
@@ -176,7 +180,7 @@ public class PlayGame
                         Console.WriteLine($"\n{player1.Name}, vous serez le cochon.");
                         Console.WriteLine("\nL'ordinateur sera le lion.");
                         
-                        StartGame1v1(player1, player2, world, true, easyMission, hardMission, epicMission);
+                        StartGame1v1(player1, player2, world, true, easyMission, averageMission, hardMission, epicMission);
                         break;
                     case 2:
                         ChooseName(player1, player2, false);
@@ -189,7 +193,7 @@ public class PlayGame
 
                         Console.WriteLine($"\n{player1.Name}, vous serez le cochon.");
                         Console.WriteLine($"{player2.Name}, vous serez le lion.\n");
-                        StartGame1v1(player1, player2, world, false, easyMission, hardMission, epicMission);
+                        StartGame1v1(player1, player2, world, false, easyMission, averageMission, hardMission, epicMission);
                         break;
                     default:
                         Console.WriteLine("\nErreur : ce choix ne correspond à aucune option.");
@@ -425,8 +429,9 @@ public class PlayGame
         }
     }
 
-    private void CheckMission(Character character, World world, EasyMission easyMission, HardMission hardMission, EpicMission epicMission, Player player){
+    private void CheckMission(Character character, World world, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission, Player player){
         easyMission.CheckCompletion(character, world.Boat1, world, player);
+        averageMission.CheckCompletion(character, world.Boat1, world, player);
         hardMission.CheckCompletion(character, world.Boat1, world, player);
         epicMission.CheckCompletion(character, world.Boat1, world, player);
     }
@@ -455,7 +460,7 @@ public class PlayGame
     }
 
     
-    public void ChooseCharactere (World world, Player player, EasyMission easyMission, HardMission hardMission, EpicMission epicMission) {
+    public void ChooseCharactere (World world, Player player, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission) {
 
         Console.WriteLine("Choisissez votre personnage :");
         Console.WriteLine("1. Emma");
@@ -464,7 +469,6 @@ public class PlayGame
         Console.WriteLine("4. Kangourou");
         Console.WriteLine("5. Pez");
         Console.WriteLine("6. Rhum");
-
 
         Console.Write("Entrez votre choix (1-6) : ");
         string characterChoose = Console.ReadLine();
@@ -477,106 +481,156 @@ public class PlayGame
                 {
                     case 1:
                         Emma Emma = new Emma();
+                        if (File.Exists($"{Emma.IdCharacter}.txt"))
+                        {
+                            Emma.Unlock = bool.Parse(File.ReadAllText($"{Emma.IdCharacter}.txt"));
+                        }
                         if(IsUnlock(Emma)){
                             player.Character = Emma;  
                             while (IsGameOver(Emma))
                             {
-                                CheckMission(Emma, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Emma, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Emma, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
+                            
                             Console.ReadKey();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     case 2:
                         Tom Tom = new Tom();
+                        if (File.Exists($"{Tom.IdCharacter}.txt"))
+                        {
+                            Tom.Unlock = bool.Parse(File.ReadAllText($"{Tom.IdCharacter}.txt"));
+                        }
                         if(IsUnlock(Tom)){
                             player.Character = Tom;  
                             while (IsGameOver(Tom))
                             {
-                                CheckMission(Tom, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Tom, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Tom, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                             Console.ReadKey();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     case 3:
                         Chamois Chamois = new Chamois();
+                        if (File.Exists($"{Chamois.IdCharacter}.txt"))
+                        {
+                            Chamois.Unlock = bool.Parse(File.ReadAllText($"{Chamois.IdCharacter}.txt"));
+                        }
                         if(IsUnlock(Chamois)){
                             player.Character = Chamois; 
                             while (IsGameOver(Chamois))
                             {
-                                CheckMission(Chamois, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Chamois, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Chamois, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                             Console.ReadKey();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     case 4:
                         Kangourou Kangourou = new Kangourou();
+                        if (File.Exists($"{Kangourou.IdCharacter}.txt"))
+                        {
+                            Kangourou.Unlock = bool.Parse(File.ReadAllText($"{Kangourou.IdCharacter}.txt"));
+                        }
+                        Kangourou.Unlock = bool.Parse(File.ReadAllText($"{Kangourou.IdCharacter}.txt"));
                         if(IsUnlock(Kangourou)){
                             player.Character = Kangourou;  
                             while (IsGameOver(Kangourou))
                             {
-                                CheckMission(Kangourou, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Kangourou, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Kangourou, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                             Console.ReadKey();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     case 5:
                         Pez Pez = new Pez();
+                        if (File.Exists($"{Pez.IdCharacter}.txt"))
+                        {
+                            Pez.Unlock = bool.Parse(File.ReadAllText($"{Pez.IdCharacter}.txt"));
+                        }
                         if(IsUnlock(Pez)){
                             player.Character = Pez;  
                             while (IsGameOver(Pez))
                             {
-                                CheckMission(Pez, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Pez, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Pez, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                             Console.ReadKey();
                             SavePlayers();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     case 6:
                         Rhum Rhum = new Rhum();
+                        if (File.Exists($"{Rhum.IdCharacter}.txt"))
+                        {
+                            Rhum.Unlock = bool.Parse(File.ReadAllText($"{Rhum.IdCharacter}.txt"));
+                        }
                         if(IsUnlock(Rhum)){
                             player.Character = Rhum;  
                             while (IsGameOver(Rhum))
                             {
-                                CheckMission(Rhum, world, easyMission, hardMission, epicMission, player);
+                                CheckMission(Rhum, world, easyMission, averageMission, hardMission, epicMission, player);
                                 PlayTurn(Rhum, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
+                            easyMission.DisplayMission();
+                            averageMission.DisplayMission();
+                            hardMission.DisplayMission();
+                            epicMission.DisplayMission();
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
                             Console.ReadKey();
                             SavePlayers();
                             Introduction();
                         } else {
-                            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
                         }
                         break;
                     default:
@@ -587,11 +641,11 @@ public class PlayGame
             else
             {
                 Console.WriteLine("\nErreur : veuillez entrer un nombre valide entre 1 et 6.");
-                ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+                ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
             }
         } else {
             Console.WriteLine("\nErreur : Vous devez faire un choix.");
-            ChooseCharactere(world, player, easyMission, hardMission, epicMission);
+            ChooseCharactere(world, player, easyMission, averageMission, hardMission, epicMission);
         }
     }
 
@@ -742,13 +796,13 @@ public class PlayGame
             }
     }
 
-    private void StartGame1v1(Player player1, Player player2, World world, bool isComputer, EasyMission easyMission, HardMission hardMission, EpicMission epicMission)
+    private void StartGame1v1(Player player1, Player player2, World world, bool isComputer, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission)
     {
         if(!isComputer){
             while (true)
             {
                 Console.WriteLine($"Tour de {player1.Name} :");
-                CheckMission(player1.Character, world, easyMission, hardMission, epicMission, player1);
+                CheckMission(player1.Character, world, easyMission, averageMission, hardMission, epicMission, player1);
                 PlayTurn(player1.Character, world, true, false, player1);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
@@ -757,7 +811,7 @@ public class PlayGame
                 }
 
                 Console.WriteLine($"Tour de {player2.Name} :");
-                CheckMission(player2.Character, world, easyMission, hardMission, epicMission, player2);
+                CheckMission(player2.Character, world, easyMission, averageMission, hardMission, epicMission, player2);
                 PlayTurn(player2.Character, world, false, false, player2);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
@@ -767,6 +821,10 @@ public class PlayGame
             }
             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
             DisplayResult1v1(player1.Character, player2.Character, player1, player2);
+            easyMission.DisplayMission();
+            averageMission.DisplayMission();
+            hardMission.DisplayMission();
+            epicMission.DisplayMission();
             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
             Console.ReadKey();
             Introduction();
@@ -774,7 +832,7 @@ public class PlayGame
             while (true)
             {
                 Console.WriteLine($"Tour de {player1.Name} :");
-                CheckMission(player1.Character, world, easyMission, hardMission, epicMission, player1);
+                CheckMission(player1.Character, world, easyMission, averageMission, hardMission, epicMission, player1);
                 PlayTurn(player1.Character, world, true, false, player1);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
@@ -792,6 +850,10 @@ public class PlayGame
             }
             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
             DisplayResult1v1(player1.Character, player2.Character, player1, player2);
+            easyMission.DisplayMission();
+            averageMission.DisplayMission();
+            hardMission.DisplayMission();
+            epicMission.DisplayMission();
             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
             Console.ReadKey();
             Introduction();

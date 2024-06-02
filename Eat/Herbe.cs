@@ -14,6 +14,7 @@ class Herbe : Food
     public override void EffectFood(Character character){
         if ($"{character}" == "Chamois" || $"{character}" == "Kangourou") {
             character.QuantityEnergy += EnergyGift;
+            character.EnergyCount += EnergyGift;
             Console.WriteLine($"Cette nourriture vous redonne {EnergyGift} d'énergie ! :)");
             Console.WriteLine ($"Il vous reste {character.QuantityEnergy} d'énergie");
         }

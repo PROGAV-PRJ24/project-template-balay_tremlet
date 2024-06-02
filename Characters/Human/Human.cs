@@ -2,8 +2,8 @@ using System;
 
 public class Human : Character
 {
-    public Human(bool unlock, int quantityEnergy, int inventoryWeight, int boatWeight) 
-        : base(unlock, quantityEnergy, 10, inventoryWeight, boatWeight, "Montagne", "Eau", 20, "Lignes droites")
+    public Human(int id, bool unlock, int quantityEnergy, int inventoryWeight, int boatWeight) 
+        : base(id, unlock, quantityEnergy, 10, inventoryWeight, boatWeight, "Montagne", "Eau", 20, "Lignes droites")
     {
     }
 
@@ -159,5 +159,10 @@ public class Human : Character
         QuantityEnergy -= ManageEnergy;
         Console.WriteLine($"Votre humain (ID : {IdCharacter}) bouge vers le/la {direction}.");
         return true;
+    }
+
+    public override void Save()
+    {
+        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
     }
 }

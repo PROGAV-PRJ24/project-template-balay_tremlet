@@ -1,6 +1,6 @@
 class Pez : Object
 {
-    public Pez() : base(false, 2, 6)
+    public Pez() : base(6, false, 2, 6)
     {
     }
 }

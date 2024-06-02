@@ -4,7 +4,7 @@ public class OnePieceTreasure : Treasure
     public OnePieceTreasure()
     {
         Name = "One Piece";
-        WeightTreasure = 10;
+        WeightTreasure = 8;
     }
 
     public override void ApplyEffect(Character character, Player player)

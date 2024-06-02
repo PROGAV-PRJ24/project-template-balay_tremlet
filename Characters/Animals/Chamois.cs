@@ -1,6 +1,6 @@
 class Chamois : Animal
 {
-    public Chamois() : base(false, 90, 4, 6)
+    public Chamois() : base(3, false, 90, 4, 6)
     {
     }
 }
