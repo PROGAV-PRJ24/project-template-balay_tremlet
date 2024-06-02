@@ -29,6 +29,7 @@ TOMM|0
 |0
 |0
 |0
+<<<<<<< HEAD
 Emma|0
 |0
 Ema|0
@@ -43,3 +44,5 @@ Emama|0
 Emma|0
 Emma|0
 Emma|0
+=======
+>>>>>>> 6d37de0 (feat: Ajout de la fonctionnalité de trésor OnePiece)

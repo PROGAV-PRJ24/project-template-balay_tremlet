@@ -39,7 +39,6 @@ public class World
             GetCharacter2X();
             GetCharacter2Y();
         }
-
     }
 
     public void InitialiseWorld()
@@ -99,7 +98,19 @@ public class World
                 if (Mat[i, j] == 2 && random.NextDouble() < 0.35) // 35% de chance d'avoir un trésor positif
                 {
                     int positiveTreasure = random.Next(4, 8); // valeurs de 4 à 7 pour différents trésors positifs
-                    Mat[i, j] = positiveTreasure; 
+                    Mat[i, j] = positiveTreasure;
+                }
+            }
+        }
+
+        // Ajoute le trésor OnePiece sur la terre
+        for (int i = 0; i < Mat.GetLength(0); i++)
+        {
+            for (int j = 0; j < Mat.GetLength(1); j++)
+            {
+                if (Mat[i, j] == 1 && random.NextDouble() < 0.01) // 1% de chance d'avoir le trésor OnePiece
+                {
+                    Mat[i, j] = 11;
                 }
             }
         }
@@ -112,7 +123,7 @@ public class World
                 if (Mat[i, j] == 2 && random.NextDouble() < 0.2) // 20% de chance d'avoir un trésor négatif
                 {
                     int negativeTreasure = random.Next(8, 11); // valeurs de 8 à 10 pour différents trésors négatifs
-                    Mat[i, j] = negativeTreasure; 
+                    Mat[i, j] = negativeTreasure;
                 }
             }
         }
