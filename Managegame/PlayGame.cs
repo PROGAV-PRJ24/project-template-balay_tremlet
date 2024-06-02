@@ -81,37 +81,37 @@ public class PlayGame
     public void DisplayRules() {
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write("1. ' ~ ':");
-        Console.WriteLine("Ce symbole designe la mer");
+        Console.WriteLine(" Ce symbole designe la mer");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.Write("2. ' — ':");
-        Console.WriteLine("Ce symbole designe la terre");
+        Console.WriteLine(" Ce symbole designe la terre");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Gray;
         Console.Write("3. ' M ':");
-        Console.WriteLine("Ce symbole designe les montagnes");
+        Console.WriteLine(" Ce symbole designe les montagnes");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write("4. ' ‡ ':");
-        Console.WriteLine("Ce symbole designe les arbres");
+        Console.WriteLine(" Ce symbole designe les arbres ");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.Write("5. '  ':");
-        Console.WriteLine("Ce symbole designe la nourriture (la couleur permet de différencier la nourriture) ");
+        Console.WriteLine(" Ce symbole designe la nourriture ");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write("6. ' B ':");
-        Console.WriteLine("Ce symbole designe le/les bateau(x) ");
+        Console.WriteLine(" Ce symbole designe le/les bateau(x) ");
         Console.ResetColor();
 
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write("7. ' P ':");
-        Console.WriteLine("Ce symbole designe le/les personnage(s) ");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("7. '🐷' et/ou '🦁':");
+        Console.WriteLine(" Ces symboles designent les personnages ");
         Console.ResetColor();
     }
 

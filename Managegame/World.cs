@@ -95,7 +95,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.35) // 35% de chance d'avoir un trésor positif
+                if (Mat[i, j] == 2 && random.NextDouble() < 0.30) // 30% de chance d'avoir un trésor positif
                 {
                     int positiveTreasure = random.Next(4, 8); // valeurs de 4 à 7 pour différents trésors positifs
                     Mat[i, j] = positiveTreasure;
@@ -145,7 +145,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.2) // 20% de chance d'avoir de la nourriture
+                if (Mat[i, j] == 1 && random.NextDouble() < 0.15) // 15% de chance d'avoir de la nourriture
                 {
                     int food = random.Next(12, 16); // Génère un nombre aléatoire entre 12 et 15 pour différents types de nourriture
                     Mat[i, j] = food; // nourriture
@@ -190,7 +190,7 @@ public class World
                         Console.Write("~ ");
                         break;
                     case 1: // Terre
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("— ");
                         break;
                     case 2: // Montagne
@@ -202,42 +202,21 @@ public class World
                         Console.Write("‡ ");
                         break;
                     case 4: // Trésor positif 1
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("P1 ");
-                        break;
                     case 5: // Trésor positif 2
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("P2 ");
-                        break;
                     case 6: // Trésor positif 3
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("P3 ");
-                        break;
                     case 7: // Trésor positif 4
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("P4 ");
-                        break;
                     case 8: // Trésor négatif 1
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("N1 ");
-                        break;
                     case 9: // Trésor négatif 2
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("N2 ");
-                        break;
                     case 10: // Trésor négatif 3
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write("N3 ");
-                        break;
                     case 11: // Trésor OnePiece
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.Write("OP ");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("— ");
                         break;
                     case 12: // Nourriture type 1
                     case 13: // Nourriture type 2
                     case 14: // Nourriture type 3
                     case 15: // Nourriture type 4
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(" ");
                         break;
                     case 16: // Bateau 1
@@ -245,14 +224,14 @@ public class World
                         Console.Write("B ");
                         break;
                     case 17: // Bateau 2
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("B ");
                         break;
                     case 18: // Personnage 1
-                        Console.Write("🐷 ");
+                        Console.Write("🐷");
                         break;
                     case 19: // Personnage 2
-                        Console.Write("🦁 ");
+                        Console.Write("🦁");
                         break;
                     default:
                         Console.Write("  ");
@@ -334,21 +313,60 @@ public class World
     private bool TryPlaceBoat(out int boatX, out int boatY)
     {
         Random random = new Random();
-        for (int i = 0; i < 100; i++)
+
+        do
         {
-            int x = random.Next(0, Mat.GetLength(0));
-            int y = random.Next(0, Mat.GetLength(1));
-            if (Mat[x, y] == 0) // s'assure que le bateau est placé sur l'eau
-            {
-                boatX = x;
-                boatY = y;
-                return true;
-            }
+            boatX = random.Next(0, Mat.GetLength(0));
+            boatY = random.Next(0, Mat.GetLength(1));
+        } while (Mat[boatX, boatY] != 0 || !IsNearLand(boatX, boatY));
+
+        if (IsValidBoatPosition(boatX, boatY))
+        {
+            return true;
         }
-        boatX = 0;
-        boatY = 0;
-        return false;
+        else
+        {
+            return false;
+        }
     }
+
+    private bool IsValidBoatPosition(int boatX, int boatY)
+    {
+        if (boatX < 0 || boatX >= Mat.GetLength(0) || boatY < 0 || boatY >= Mat.GetLength(1))
+        {
+            return false;
+        }
+
+        if (Mat[boatX, boatY] != 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsNearLand(int x, int y)
+    {
+        if (x < Mat.GetLength(0)-1 && x >= 1 &&  y < Mat.GetLength(1)-1 && y >= 1) 
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if (Mat[x + i, y + j] == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return false;
+
+    }
+
 
     private void PlaceCharacter(int characterId)
     {

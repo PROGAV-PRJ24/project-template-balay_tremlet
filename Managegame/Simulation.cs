@@ -1,10 +1,12 @@
-World world = new World(true);
-// World world = new World(false);
+// World world = new World(true);
+World world = new World(false);
 
 // world.DisplayWorld();
+
 // Player player = new Player ();
 
 PlayGame PlayGame = new PlayGame();
+// PlayGame.DisplayRules();
 // PlayGame.AddPlayer(player);
 
 PlayGame.Introduction();
