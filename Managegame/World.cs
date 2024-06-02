@@ -22,7 +22,9 @@ public class World
         CenterX = Mat.GetLength(0) / 2;
         CenterY = Mat.GetLength(1) / 2;
         Radius = 12;
-
+        CaseName="";
+        Boat1 = new Boat();
+        Boat2 = new Boat();
         InitialiseWorld();
 
         if (IsSolo)
@@ -70,7 +72,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.1) // 10% de chance d'avoir une montagne
+                if (Mat[i, j] == 1 && random.NextDouble() < 0.05) // 5% de chance d'avoir une montagne
                 {
                     Mat[i, j] = 2; // montagne
                 }
@@ -107,7 +109,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.05) // 5% de chance d'avoir un trésor négatif
+                if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
                 {
                     int negativeTreasure = random.Next(8, 11); // valeurs de 8 à 10 pour différents trésors négatifs
                     Mat[i, j] = negativeTreasure; 
@@ -120,7 +122,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.01) // 1% de chance d'avoir le trésor OnePiece
+                if (Mat[i, j] == 1 && random.NextDouble() < 0.001) // 0.1% de chance d'avoir le trésor OnePiece
                 {
                     Mat[i, j] = 11; // valeur pour le trésor OnePiece
                 }
@@ -225,7 +227,7 @@ public class World
                     case 14: // Nourriture type 3
                     case 15: // Nourriture type 4
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.Write("F ");
+                        Console.Write(" ");
                         break;
                     case 16: // Bateau 1
                         Console.ForegroundColor = ConsoleColor.White;
@@ -251,25 +253,7 @@ public class World
         }
     }
 
- 
 
-    public void CheckTreasure(Character character, Treasure treasure)
-    {
-        // Vérifie si le personnage principal est sur une case contenant un trésor
-        if (Mat[CharacterX, CharacterY] >= 4 && Mat[CharacterX, CharacterY] <= 11)
-        {
-        
-            treasure.ApplyEffect(character);
-            Mat[CharacterX, CharacterY] = 1; // Remplace le trésor par de la terre
-        }
-
-        if (!IsSolo && Mat[Character2X, Character2Y] >= 4 && Mat[Character2X, Character2Y] <= 11)
-        {
-        
-            treasure.ApplyEffect(character);
-            Mat[Character2X, Character2Y] = 1; // Remplace le trésor par de la terre
-        }
-    }
 
 
     public int GetCharacterX()
@@ -393,41 +377,36 @@ public class World
         int foodId = Mat[characterX, characterY];
         GetFoodById(foodId);
         string foodName = CaseName;
-
         if (foodName == "LifeFood"){
 
             LifeFood food = new LifeFood ();
             Console.WriteLine ($"Vous avez trouvé de la nourriture vie !");
             food.EffectFood(character);
-            Mat[characterX, characterY] = 17;   
 
         }  else if (foodName == "Viande"){
 
             Meat food = new Meat();
             Console.WriteLine ($"Vous avez trouvé de la viande !");
             food.EffectFood(character);
-            Mat[characterX, characterY] = 17;     
 
         } else if (foodName == "Pate"){
 
             Pate food = new Pate();
             Console.WriteLine ($"Vous avez trouvé des pates !");
             food.EffectFood(character);
-            Mat[characterX, characterY] = 17;
 
         } else if (foodName == "Herbe"){
 
             Herbe food = new Herbe ();
             Console.WriteLine ($"Vous avez trouvé de l'herbe !");
             food.EffectFood(character);
-            Mat[characterX, characterY] = 17;
 
         } 
+
     }
 
     private void GetFoodById(int foodId)
     {
-         Console.WriteLine(foodId);
         if (foodId >= 10 && foodId <= 13){
             switch (foodId)
             {
@@ -448,10 +427,59 @@ public class World
                     break;
             }
         } else {
-            Console.WriteLine("Pas de nourriture");
+            Console.WriteLine("");
         }
 
     }
+
+    public void CheckTreasure(int characterX, int characterY, Character character)
+    {
+        int treasureId = Mat[characterX, characterY];
+        if (treasureId >= 4 && treasureId <= 11){
+            switch (treasureId)
+            {
+                case 4:
+                    PositiveTreasure1 treasure1 = new PositiveTreasure1();
+                    treasure1.ApplyEffect(character);
+                    break;
+                case 5:
+                    PositiveTreasure2 treasure2 = new PositiveTreasure2();
+                    treasure2.ApplyEffect(character);
+                    break;
+                case 6:
+                    PositiveTreasure3 treasure3 = new PositiveTreasure3();
+                    treasure3.ApplyEffect(character);
+                    break;
+                case 7:
+                    PositiveTreasure4 treasure4 = new PositiveTreasure4();
+                    treasure4.ApplyEffect(character);
+                    break;
+                case 8:
+                    NegativeTreasure1 treasureBad1 = new NegativeTreasure1();
+                    treasureBad1.ApplyEffect(character);
+                    break;
+                case 9:
+                    NegativeTreasure2 treasureBad2 = new NegativeTreasure2();
+                    treasureBad2.ApplyEffect(character);
+                    break;
+                case 10:
+                    NegativeTreasure3 treasureBad3 = new NegativeTreasure3();
+                    treasureBad3.ApplyEffect(character);
+                    break;
+                case 11:
+                    OnePieceTreasure OnePiece = new OnePieceTreasure();
+                    OnePiece.ApplyEffect(character);
+                    break;
+                default:
+                    Console.WriteLine("Erreur de trésor");
+                    break;
+            }
+        } else {
+            Console.WriteLine("\n");
+        }
+
+    }
+
 
 }
 

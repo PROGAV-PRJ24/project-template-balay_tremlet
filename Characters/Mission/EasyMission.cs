@@ -1,10 +1,7 @@
 public class EasyMission : Mission
 {
-    public EasyMission()
+    public EasyMission() : base ("Mission facile", "Faites plus de 50 pas", false)
     {
-        Name = "Mission facile";
-        Description = "Faites plus de 50 pas";
-        IsCompleted = false;
     }
 
     public override void DisplayMission()
@@ -21,8 +18,8 @@ public class EasyMission : Mission
         if (character.RollCount >= 50) // pas sure que ca marche 
         {
             IsCompleted = true;
+            Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 
             return true;
-             Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 
         }
 
         return false;

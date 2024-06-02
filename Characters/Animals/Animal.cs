@@ -71,16 +71,17 @@ class Animal : Character
 
 
         }           
-        if (world.Mat[newX, newY] == 14)
+        if (world.Mat[newX, newY] == 16)
         {
             Console.WriteLine("Vous avez atteint le bateau !");
             character.FileTreasure(world.Boat1);
             return false;
         } else {
-            world.Mat[newX, newY] = 17;
+            world.CheckFood(newX, newY, character);
+            world.CheckTreasure(newX, newY, character);
+            world.Mat[newX, newY] = 18;
             world.Mat[oldX, oldY] = oldPoint;
             QuantityEnergy -= ManageEnergy;
-            world.CheckFood(newX, newY, character);
             Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
             return true;
         }
@@ -147,16 +148,17 @@ class Animal : Character
 
 
             } 
-            if (world.Mat[newX, newY] == 14)
+            if (world.Mat[newX, newY] == 16)
             {
                 Console.WriteLine("Vous avez atteint le bateau !");
                 character.FileTreasure(world.Boat1);
                 return false;
-            }else {
-                world.Mat[newX, newY] = 17;
+            } else {
+                world.CheckFood(newX, newY, character);
+                world.CheckTreasure(newX, newY, character);
+                world.Mat[newX, newY] = 18;
                 world.Mat[oldX, oldY] = oldPoint;
                 QuantityEnergy -= ManageEnergy;
-                world.CheckFood(newX, newY, character);
                 Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
                 return true;
             }
@@ -214,16 +216,17 @@ class Animal : Character
 
 
             } 
-            if (world.Mat[newX, newY] == 15)
+            if (world.Mat[newX, newY] == 17)
             {
                 Console.WriteLine("Vous avez atteint le bateau !");
                 character.FileTreasure(world.Boat2);
                 return false;
             }else {
-                world.Mat[newX, newY] = 16;
+                world.CheckFood(newX, newY, character);
+                world.CheckTreasure(newX, newY, character);
+                world.Mat[newX, newY] = 19;
                 world.Mat[oldX, oldY] = oldPoint;
                 QuantityEnergy -= ManageEnergy;
-                world.CheckFood(newX, newY, character);
                 Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
                 return true;
             }

@@ -1,11 +1,10 @@
 public class HardMission : Mission
 {
-    public HardMission()
+    
+    public HardMission() : base ("Mission difficile", "Trouver et rapporter la hache au bateau qui est un trésor rare", false)
     {
-        Name = "Mission difficile";
-        Description = "trouver et rapporter la hache au bateau qui est un trésor rare";
-        IsCompleted = false;
     }
+    
 
     public override void DisplayMission()
     {

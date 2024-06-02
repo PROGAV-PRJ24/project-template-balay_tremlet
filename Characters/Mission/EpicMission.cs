@@ -1,10 +1,7 @@
 public class EpicMission : Mission
 {
-    public EpicMission()
+    public EpicMission() : base ("Mission très difficile", "Trouver le One Piece", false)
     {
-        Name = "Mission très difficile";
-        Description = "Trouver le One Piece";
-        IsCompleted = false;
     }
 
     public override void DisplayMission()

@@ -1,19 +1,18 @@
 
-// World world = new World(true);
+World world = new World(true);
 // World world = new World(false);
 
 // world.DisplayWorld();
-// // world.DisplayWorldEmojis();
 // Player player = new Player ();
 
-// PlayGame PlayGame = new PlayGame();
+PlayGame PlayGame = new PlayGame();
 // PlayGame.AddPlayer(player);
 
-// PlayGame.Introduction();
+PlayGame.Introduction();
 
 // PlayGame.ChooseCharactere(world, player);
 
-// Emma Emma = new Emma ();
+Emma Emma = new Emma ();
 // Tom Tom = new Tom();
 // Chamois Chamois = new Chamois ();
 // Kangourou Kangourou = new Kangourou ();
@@ -40,6 +39,15 @@
 // Meat.EffectFood(Tom);
 // Meat.EffectFood(Emma);
 // LifeFood.EffectFood(Tom);
+
+
+// OnePieceTreasure treasure = new OnePieceTreasure();
+
+// Inventory Inventory = Emma.Inventory;
+
+// Inventory.AddTreasure(treasure);
+// Inventory.DisplayInventory();
+
 
 
 

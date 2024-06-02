@@ -34,7 +34,7 @@ public abstract class Character
         LifePoint = lifePoint;
         Movement = movement;
         IdCharacter = characterIdCounter++;
-        Inventory Inventory = new Inventory();
+        Inventory = new Inventory(InventoryWeight);
         RollCount = 0;
     }
 

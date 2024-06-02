@@ -4,10 +4,12 @@ public abstract class Treasure
     public string Name {get; set;}
 
     public Treasure (){
+        Name = "";
     }
 
     public Treasure(int weightTreasure){
         WeightTreasure = weightTreasure;
+        Name="";
     }
 
     public abstract void ApplyEffect(Character character);

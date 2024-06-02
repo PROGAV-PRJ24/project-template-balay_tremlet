@@ -7,9 +7,9 @@ public class Inventory
 
     public Inventory(){}
 
-    public Inventory(Character character)
+    public Inventory(int maxWeight)
     {
-        MaxWeight = character.InventoryWeight;
+        MaxWeight = maxWeight;
         CurrentWeight = 0;
     }
 
