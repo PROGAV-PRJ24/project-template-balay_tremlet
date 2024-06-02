@@ -11,7 +11,7 @@ public class HardMission : Mission
         Console.WriteLine("=== 2eme Mission  ===");
         Console.WriteLine($"Name: {Name}");
         Console.WriteLine($"Description: {Description}");
-        Console.WriteLine($"Status: {(IsCompleted ? "Completé" : "Pas complété")}");
+        Console.WriteLine($"Status: {(IsCompleted ? "Completé" : "Incomplète")}");
         Console.WriteLine("=======================");
     }
 
