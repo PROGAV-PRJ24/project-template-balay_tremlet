@@ -15,7 +15,7 @@ public class EasyMission : Mission
 
     public override bool CheckCompletion(Character character, Boat boat, World world)
     {
-        if (character.RollCount >= 50) // pas sure que ca marche 
+        if (character.RollCount >= 10) // pas sure que ca marche 
         {
             IsCompleted = true;
             Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 

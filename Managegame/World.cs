@@ -96,7 +96,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.05) // 5% de chance d'avoir un trésor positif
+                if (Mat[i, j] == 2 && random.NextDouble() < 0.35) // 35% de chance d'avoir un trésor positif
                 {
                     int positiveTreasure = random.Next(4, 8); // valeurs de 4 à 7 pour différents trésors positifs
                     Mat[i, j] = positiveTreasure; 
@@ -109,7 +109,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 2 && random.NextDouble() < 0.1) // 10% de chance d'avoir un trésor négatif
+                if (Mat[i, j] == 2 && random.NextDouble() < 0.2) // 20% de chance d'avoir un trésor négatif
                 {
                     int negativeTreasure = random.Next(8, 11); // valeurs de 8 à 10 pour différents trésors négatifs
                     Mat[i, j] = negativeTreasure; 
@@ -122,7 +122,7 @@ public class World
         {
             for (int j = 0; j < Mat.GetLength(1); j++)
             {
-                if (Mat[i, j] == 1 && random.NextDouble() < 0.001) // 0.1% de chance d'avoir le trésor OnePiece
+                if (Mat[i, j] == 1 && random.NextDouble() < 0.01) // 1% de chance d'avoir le trésor OnePiece
                 {
                     Mat[i, j] = 11; // valeur pour le trésor OnePiece
                 }

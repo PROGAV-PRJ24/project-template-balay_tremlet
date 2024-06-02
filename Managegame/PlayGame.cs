@@ -223,9 +223,36 @@ public class PlayGame
             Console.WriteLine("\nAppuyez sur une touche pour lancer le dé...");
             Console.ReadKey();
             int roll = RollDice();
-            
             character.RollCount += roll;
             Console.WriteLine("\nVous avez obtenu un " + roll + " !");
+            Mission easyMission = new EasyMission();
+            easyMission.DisplayMission(); 
+            if (easyMission.CheckCompletion(character, world.Boat1, world))
+                {
+            
+                    Console.Clear();
+                    Console.WriteLine("Nouvelle mission !");
+                    Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                    Mission hardMission = new HardMission();
+                    hardMission.DisplayMission();
+
+
+                    if (hardMission.CheckCompletion(character, world.Boat1, world))
+                    {
+                    
+                        Console.Clear();
+                        Console.WriteLine("Nouvelle mission disponible !");
+                        Console.WriteLine("Appuyez sur une touche pour afficher la mission...");
+                        Console.ReadKey();
+                        Console.Clear();
+
+                        Mission epicMission = new EpicMission();
+                        epicMission.DisplayMission();
+                    }
+                }
     
             if (character != null && world != null)
             {

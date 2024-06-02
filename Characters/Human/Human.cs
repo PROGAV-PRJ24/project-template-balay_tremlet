@@ -78,11 +78,16 @@ class Human : Character
 
 
         } 
-        if (world.Mat[newX, newY] == 16)
+        if (world.Mat[newX, newY] == 14)
         {
             Console.WriteLine("Vous avez atteint le bateau !");
             character.FileTreasure(world.Boat1);
-            return false;
+        }
+        else
+        {
+            Console.WriteLine("Erreur: Le personnage n'est pas initialisé.");
+        }
+        return false;
         }else {
             world.CheckFood(newX, newY, character);                
             world.CheckTreasure(newX, newY, character);
@@ -158,11 +163,18 @@ class Human : Character
 
 
             } 
-            if (world.Mat[newX, newY] == 16)
-            {
-                Console.WriteLine("Vous avez atteint le bateau !");
-                character.FileTreasure(world.Boat1);
-                return false;
+            if (world.Mat[newX, newY] == 14)
+    {
+        Console.WriteLine("Vous avez atteint le bateau !");
+        if (character != null) // Check if character is not null
+        {
+            character.FileTreasure(world.Boat1);
+        }
+        else
+        {
+            Console.WriteLine("Erreur: Le personnage n'est pas initialisé.");
+        }
+        return false;
             } else {
                 world.CheckFood(newX, newY, character);
                 world.CheckTreasure(newX, newY, character);
@@ -227,11 +239,18 @@ class Human : Character
 
 
             } 
-            if (world.Mat[newX, newY] == 17)
-            {
-                Console.WriteLine("Vous avez atteint le bateau !");
-                character.FileTreasure(world.Boat2);
-                return false;
+           if (world.Mat[newX, newY] == 15)
+    {
+        Console.WriteLine("Vous avez atteint le bateau !");
+        if (character != null) 
+        {
+            character.FileTreasure(world.Boat2);
+        }
+        else
+        {
+            Console.WriteLine("Erreur: Le personnage n'est pas initialisé.");
+        }
+        return false;
             } else {
                 world.CheckFood(newX, newY, character);
                 world.CheckTreasure(newX, newY, character);
