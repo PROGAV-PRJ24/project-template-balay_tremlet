@@ -227,7 +227,7 @@ public class PlayGame
     }
 
 
-    private void PlayTurn(Character character, World world, bool isJoueur1, bool isComputer)
+    private void PlayTurn(Character character, World world, bool isJoueur1, bool isComputer, Player player)
     {
         if (isJoueur1 && world.IsSolo){
             world.DisplayWorld();
@@ -252,22 +252,22 @@ public class PlayGame
                         case ConsoleKey.UpArrow:
                             Console.WriteLine("Touche fléchée haut appuyée");
                             direction = "haut";
-                            validDirection = character.Move(direction, roll, world, character);
+                            validDirection = character.Move(direction, roll, world, character, player);
                             break;
                         case ConsoleKey.DownArrow:
                             Console.WriteLine("Touche fléchée bas appuyée");
                             direction = "bas";
-                            validDirection = character.Move(direction, roll, world, character);
+                            validDirection = character.Move(direction, roll, world, character, player);
                             break;
                         case ConsoleKey.LeftArrow:
                             Console.WriteLine("Touche fléchée gauche appuyée");
                             direction = "gauche";
-                            validDirection = character.Move(direction, roll, world, character);
+                            validDirection = character.Move(direction, roll, world, character, player);
                             break;
                         case ConsoleKey.RightArrow:
                             Console.WriteLine("Touche fléchée droite appuyée");
                             direction = "droite";
-                            validDirection = character.Move(direction, roll, world, character);
+                            validDirection = character.Move(direction, roll, world, character, player);
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -306,22 +306,22 @@ public class PlayGame
                             case ConsoleKey.UpArrow:
                                 Console.WriteLine("Touche fléchée haut appuyée");
                                 direction = "haut";
-                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                validDirection = character.Move1v1(direction, roll, world, character, true, player);
                                 break;
                             case ConsoleKey.DownArrow:
                                 Console.WriteLine("Touche fléchée bas appuyée");
                                 direction = "bas";
-                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                validDirection = character.Move1v1(direction, roll, world, character, true, player);
                                 break;
                             case ConsoleKey.LeftArrow:
                                 Console.WriteLine("Touche fléchée gauche appuyée");
                                 direction = "gauche";
-                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                validDirection = character.Move1v1(direction, roll, world, character, true, player);
                                 break;
                             case ConsoleKey.RightArrow:
                                 Console.WriteLine("Touche fléchée droite appuyée");
                                 direction = "droite";
-                                validDirection = character.Move1v1(direction, roll, world, character, true);
+                                validDirection = character.Move1v1(direction, roll, world, character, true, player);
                                 break;
                             default:
                                 Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -356,22 +356,22 @@ public class PlayGame
                             case ConsoleKey.UpArrow:
                                 Console.WriteLine("Touche fléchée haut appuyée");
                                 direction = "haut";
-                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                validDirection = character.Move1v1(direction, roll, world, character, false, player);
                                 break;
                             case ConsoleKey.DownArrow:
                                 Console.WriteLine("Touche fléchée bas appuyée");
                                 direction = "bas";
-                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                validDirection = character.Move1v1(direction, roll, world, character, false, player);
                                 break;
                             case ConsoleKey.LeftArrow:
                                 Console.WriteLine("Touche fléchée gauche appuyée");
                                 direction = "gauche";
-                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                validDirection = character.Move1v1(direction, roll, world, character, false, player);
                                 break;
                             case ConsoleKey.RightArrow:
                                 Console.WriteLine("Touche fléchée droite appuyée");
                                 direction = "droite";
-                                validDirection = character.Move1v1(direction, roll, world, character, false);
+                                validDirection = character.Move1v1(direction, roll, world, character, false, player);
                                 break;
                             default:
                                 Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -399,19 +399,19 @@ public class PlayGame
                     {
                         case 1:
                             directionOrdi = "bas";
-                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false, player);
                             break;
                         case 2:
                             directionOrdi = "haut";
-                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false, player);
                             break;
                         case 3:
                             directionOrdi = "droite";
-                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false, player);
                             break;
                         case 4:
                             directionOrdi = "gauche";
-                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false);
+                            validDirection = character.Move1v1(directionOrdi, roll, world, character, false, player);
                             break;
                         default:
                             Console.WriteLine("\nErreur : ce choix ne correspond à aucune option du menu.");
@@ -425,10 +425,10 @@ public class PlayGame
         }
     }
 
-    private void CheckMission(Character character, World world, EasyMission easyMission, HardMission hardMission, EpicMission epicMission){
-        easyMission.CheckCompletion(character, world.Boat1, world);
-        hardMission.CheckCompletion(character, world.Boat1, world);
-        epicMission.CheckCompletion(character, world.Boat1, world);
+    private void CheckMission(Character character, World world, EasyMission easyMission, HardMission hardMission, EpicMission epicMission, Player player){
+        easyMission.CheckCompletion(character, world.Boat1, world, player);
+        hardMission.CheckCompletion(character, world.Boat1, world, player);
+        epicMission.CheckCompletion(character, world.Boat1, world, player);
     }
 
 
@@ -481,8 +481,8 @@ public class PlayGame
                             player.Character = Emma;  
                             while (IsGameOver(Emma))
                             {
-                                CheckMission(Emma, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Emma, world, true, false);
+                                CheckMission(Emma, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Emma, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -498,8 +498,8 @@ public class PlayGame
                             player.Character = Tom;  
                             while (IsGameOver(Tom))
                             {
-                                CheckMission(Tom, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Tom, world, true, false);
+                                CheckMission(Tom, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Tom, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -515,8 +515,8 @@ public class PlayGame
                             player.Character = Chamois; 
                             while (IsGameOver(Chamois))
                             {
-                                CheckMission(Chamois, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Chamois, world, true, false);
+                                CheckMission(Chamois, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Chamois, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -532,8 +532,8 @@ public class PlayGame
                             player.Character = Kangourou;  
                             while (IsGameOver(Kangourou))
                             {
-                                CheckMission(Kangourou, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Kangourou, world, true, false);
+                                CheckMission(Kangourou, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Kangourou, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -549,8 +549,8 @@ public class PlayGame
                             player.Character = Pez;  
                             while (IsGameOver(Pez))
                             {
-                                CheckMission(Pez, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Pez, world, true, false);
+                                CheckMission(Pez, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Pez, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -567,8 +567,8 @@ public class PlayGame
                             player.Character = Rhum;  
                             while (IsGameOver(Rhum))
                             {
-                                CheckMission(Rhum, world, easyMission, hardMission, epicMission);
-                                PlayTurn(Rhum, world, true, false);
+                                CheckMission(Rhum, world, easyMission, hardMission, epicMission, player);
+                                PlayTurn(Rhum, world, true, false, player);
                             }
                             Console.WriteLine("\nVous n'avez plus d'énergie ! La partie est terminée.");
                             Console.WriteLine("Appuyez sur une touche pour revenir au menu principal...");
@@ -748,8 +748,8 @@ public class PlayGame
             while (true)
             {
                 Console.WriteLine($"Tour de {player1.Name} :");
-                CheckMission(player1.Character, world, easyMission, hardMission, epicMission);
-                PlayTurn(player1.Character, world, true, false);
+                CheckMission(player1.Character, world, easyMission, hardMission, epicMission, player1);
+                PlayTurn(player1.Character, world, true, false, player1);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
@@ -757,8 +757,8 @@ public class PlayGame
                 }
 
                 Console.WriteLine($"Tour de {player2.Name} :");
-                CheckMission(player2.Character, world, easyMission, hardMission, epicMission);
-                PlayTurn(player2.Character, world, false, false);
+                CheckMission(player2.Character, world, easyMission, hardMission, epicMission, player2);
+                PlayTurn(player2.Character, world, false, false, player2);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
@@ -774,8 +774,8 @@ public class PlayGame
             while (true)
             {
                 Console.WriteLine($"Tour de {player1.Name} :");
-                CheckMission(player1.Character, world, easyMission, hardMission, epicMission);
-                PlayTurn(player1.Character, world, true, false);
+                CheckMission(player1.Character, world, easyMission, hardMission, epicMission, player1);
+                PlayTurn(player1.Character, world, true, false, player1);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {
@@ -783,7 +783,7 @@ public class PlayGame
                 }
 
                 Console.WriteLine("Tour de l'ordinateur : ");
-                PlayTurn(player2.Character, world, false, true);
+                PlayTurn(player2.Character, world, false, true, player2);
 
                 if (IsGameOver1v1(player1.Character, player2.Character))
                 {

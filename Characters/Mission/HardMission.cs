@@ -15,7 +15,7 @@ public class HardMission : Mission
         Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character, Boat boat, World world)
+    public override bool CheckCompletion(Character character, Boat boat, World world, Player player)
     {
 
         foreach (Treasure treasure in boat.Treasures)
@@ -23,7 +23,7 @@ public class HardMission : Mission
             if (treasure.Name == "Hache")
             {
                 IsCompleted = true;
-              
+                player.Score+=10;
                 Console.WriteLine("Félicitations ! Vous avez complété la mission difficile en trouvant et rapportant la hache au bateau. "); 
               
 

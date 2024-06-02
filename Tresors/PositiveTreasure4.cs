@@ -6,9 +6,14 @@ public class PositiveTreasure4 : Treasure
         WeightTreasure = 10; 
     }
 
-    public override void ApplyEffect(Character character)
+    public override void ApplyEffect(Character character, Player player)
     {
-        Console.WriteLine("Vous avez trouvé un trésor positif : vous avez gagné une hache que vous devez rapporter au bateau pour compléter la mission.");
-        character.Inventory.AddTreasure(this);
+        Console.WriteLine("Vous avez trouvé un trésor positif : vous avez trouvez une hache.");
+        if (character.Inventory.AddTreasure(this))
+        {
+            Console.WriteLine("Félicitations ! Vous devez rapporter au bateau pour compléter la mission.");
+            player.Score+=5;
+        }
+        
     }
 }

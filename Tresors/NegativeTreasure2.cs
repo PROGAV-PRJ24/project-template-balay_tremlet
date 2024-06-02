@@ -1,6 +1,6 @@
 public class NegativeTreasure2 : Treasure
 {
-    public override void ApplyEffect(Character character)
+    public override void ApplyEffect(Character character, Player player)
     {
        bool résoudreÉnigme = DemanderEnigme(0);
 
@@ -13,5 +13,7 @@ public class NegativeTreasure2 : Treasure
             
             Console.WriteLine("Vous subissez l'effet négatif du trésor: le poids de votre bateau est réduit de 1.");
             character.BoatWeight-= 1;
+            player.Score-=5;
+
     }
 }}

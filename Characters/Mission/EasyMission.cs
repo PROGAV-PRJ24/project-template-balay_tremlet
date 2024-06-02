@@ -13,11 +13,12 @@ public class EasyMission : Mission
         Console.WriteLine("=======================");
     }
 
-    public override bool CheckCompletion(Character character, Boat boat, World world)
+    public override bool CheckCompletion(Character character, Boat boat, World world, Player player)
     {
-        if (character.RollCount >= 10) // pas sure que ca marche 
+        if (character.RollCount >= 10)
         {
             IsCompleted = true;
+            player.Score+=5;
             Console.WriteLine("Félicitations ! Vous avez complété la mission facile"); 
             return true;
         }

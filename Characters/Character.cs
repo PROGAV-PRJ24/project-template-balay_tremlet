@@ -41,10 +41,10 @@ public abstract class Character
   
     public abstract void DisplayCharacter(Character character);
 
-    public abstract bool Move(string direction, int roll, World world, Character character);
+    public abstract bool Move(string direction, int roll, World world, Character character, Player player);
 
 
-    public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1);
+    public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player);
 
     public void Weakness (Character character) {
 

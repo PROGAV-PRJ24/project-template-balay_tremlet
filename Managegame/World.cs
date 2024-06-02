@@ -443,7 +443,7 @@ public class World
 
     }
 
-    public void CheckTreasure(int characterX, int characterY, Character character)
+    public void CheckTreasure(int characterX, int characterY, Character character, Player player)
     {
         int treasureId = Mat[characterX, characterY];
         if (treasureId >= 4 && treasureId <= 11){
@@ -451,35 +451,35 @@ public class World
             {
                 case 4:
                     PositiveTreasure1 treasure1 = new PositiveTreasure1();
-                    treasure1.ApplyEffect(character);
+                    treasure1.ApplyEffect(character, player);
                     break;
                 case 5:
                     PositiveTreasure2 treasure2 = new PositiveTreasure2();
-                    treasure2.ApplyEffect(character);
+                    treasure2.ApplyEffect(character, player);
                     break;
                 case 6:
                     PositiveTreasure3 treasure3 = new PositiveTreasure3();
-                    treasure3.ApplyEffect(character);
+                    treasure3.ApplyEffect(character, player);
                     break;
                 case 7:
                     PositiveTreasure4 treasure4 = new PositiveTreasure4();
-                    treasure4.ApplyEffect(character);
+                    treasure4.ApplyEffect(character, player);
                     break;
                 case 8:
                     NegativeTreasure1 treasureBad1 = new NegativeTreasure1();
-                    treasureBad1.ApplyEffect(character);
+                    treasureBad1.ApplyEffect(character, player);
                     break;
                 case 9:
                     NegativeTreasure2 treasureBad2 = new NegativeTreasure2();
-                    treasureBad2.ApplyEffect(character);
+                    treasureBad2.ApplyEffect(character, player);
                     break;
                 case 10:
                     NegativeTreasure3 treasureBad3 = new NegativeTreasure3();
-                    treasureBad3.ApplyEffect(character);
+                    treasureBad3.ApplyEffect(character, player);
                     break;
                 case 11:
                     OnePieceTreasure OnePiece = new OnePieceTreasure();
-                    OnePiece.ApplyEffect(character);
+                    OnePiece.ApplyEffect(character, player);
                     break;
                 default:
                     Console.WriteLine("Erreur de trésor");

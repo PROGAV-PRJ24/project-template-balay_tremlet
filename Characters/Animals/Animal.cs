@@ -18,7 +18,7 @@ class Animal : Character
         Weakness(character);
     }
 
-    public override bool Move(string direction, int roll, World world, Character character)
+    public override bool Move(string direction, int roll, World world, Character character, Player player)
     {
 
 
@@ -78,9 +78,10 @@ class Animal : Character
             return false;
         } else {
             world.CheckFood(newX, newY, character);
-            world.CheckTreasure(newX, newY, character);
+            world.CheckTreasure(newX, newY, character, player);
             world.Mat[newX, newY] = 18;
             world.Mat[oldX, oldY] = oldPoint;
+            player.Score+=roll;
             QuantityEnergy -= ManageEnergy;
             Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
             return true;
@@ -92,7 +93,7 @@ class Animal : Character
 
 
 
-    public override bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1)
+    public override bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player)
     {
         if(isJoueur1){
 
@@ -155,9 +156,10 @@ class Animal : Character
                 return false;
             } else {
                 world.CheckFood(newX, newY, character);
-                world.CheckTreasure(newX, newY, character);
+                world.CheckTreasure(newX, newY, character, player);
                 world.Mat[newX, newY] = 18;
                 world.Mat[oldX, oldY] = oldPoint;
+                player.Score+=roll;
                 QuantityEnergy -= ManageEnergy;
                 Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
                 return true;
@@ -223,9 +225,10 @@ class Animal : Character
                 return false;
             }else {
                 world.CheckFood(newX, newY, character);
-                world.CheckTreasure(newX, newY, character);
+                world.CheckTreasure(newX, newY, character, player);
                 world.Mat[newX, newY] = 19;
                 world.Mat[oldX, oldY] = oldPoint;
+                player.Score+=roll;
                 QuantityEnergy -= ManageEnergy;
                 Console.WriteLine($"Votre animal (ID : {IdCharacter}) bouge vers le/la {direction}.");
                 return true;

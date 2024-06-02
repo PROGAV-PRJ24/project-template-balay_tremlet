@@ -12,7 +12,7 @@ public abstract class Treasure
         Name="";
     }
 
-    public abstract void ApplyEffect(Character character);
+    public abstract void ApplyEffect(Character character, Player player);
 
 
     protected bool DemanderEnigme(int typeEnigme)
