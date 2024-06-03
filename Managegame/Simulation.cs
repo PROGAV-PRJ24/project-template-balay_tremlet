@@ -14,7 +14,7 @@ PlayGame.Introduction();
 // PlayGame.ChooseCharactere(world, player);
 
 Emma Emma = new Emma ();
-// Tom Tom = new Tom();
+Tom Tom = new Tom();
 // Chamois Chamois = new Chamois ();
 // Kangourou Kangourou = new Kangourou ();
 // Pez Pez = new Pez ();
@@ -54,3 +54,5 @@ Emma Emma = new Emma ();
 
 // Inventory.AddTreasure(treasure);
 // Inventory.DisplayInventory();
+
+// PlayGame.IsGameOver1v1(Emma, Tom);
