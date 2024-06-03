@@ -41,6 +41,7 @@ public class World
         }
     }
 
+    //function which initializes the matrix with elements id
     public void InitialiseWorld()
     {
         Random random = new Random();
@@ -177,6 +178,7 @@ public class World
         }
     }
 
+    //function which displays the world
     public void DisplayWorld()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -244,7 +246,7 @@ public class World
 
 
 
-
+    //function which permits to have the position x of the first character
     public int GetCharacterX()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -261,6 +263,7 @@ public class World
         return -1;
     }
 
+    //function which permits to have the position y of the first character
     public int GetCharacterY()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -277,6 +280,7 @@ public class World
         return -1;
     }
 
+    //function which permits to have the position x of the second character
     public int GetCharacter2X()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -293,6 +297,7 @@ public class World
         return -1;
     }
 
+    //function which permits to have the position y of the second character
     public int GetCharacter2Y()
     {
         for (int i = 0; i < Mat.GetLength(0); i++)
@@ -309,6 +314,7 @@ public class World
         return -1;
     }
 
+    //function which permits to place boat 
     private bool TryPlaceBoat(out int boatX, out int boatY)
     {
         Random random = new Random();
@@ -329,6 +335,7 @@ public class World
         }
     }
 
+    //function which checks if boat is in the water and in the map
     private bool IsValidBoatPosition(int boatX, int boatY)
     {
         if (boatX < 0 || boatX >= Mat.GetLength(0) || boatY < 0 || boatY >= Mat.GetLength(1))
@@ -344,6 +351,7 @@ public class World
         return true;
     }
 
+    //function which checks if boat is near land
     private bool IsNearLand(int x, int y)
     {
         if (x < Mat.GetLength(0)-1 && x >= 1 &&  y < Mat.GetLength(1)-1 && y >= 1) 
@@ -366,7 +374,7 @@ public class World
 
     }
 
-
+    //function which places character
     private void PlaceCharacter(int characterId)
     {
         Random random = new Random();
@@ -392,6 +400,7 @@ public class World
         }
     }
 
+    //function which checks if the position is in the circle of isle
     public bool IsInCircle(int X, int Y)
     {
         int distanceX = X - CenterX;
@@ -400,6 +409,7 @@ public class World
         return distanceSquared <= Radius * Radius;
     }
 
+    //function which checks if there is food in the case and if there is, applys effects
     public void CheckFood(int characterX, int characterY, Character character)
     {
         int foodId = Mat[characterX, characterY];
@@ -427,6 +437,7 @@ public class World
 
     }
 
+    //function which determines what food is it
     private void GetFoodById(int foodId)
     {
         if (foodId >= 10 && foodId <= 13){
@@ -451,6 +462,7 @@ public class World
 
     }
 
+    //function which checks if there is treasure in the case and if there is, applys effects
     public void CheckTreasure(int characterX, int characterY, Character character, Player player)
     {
         int treasureId = Mat[characterX, characterY];

@@ -12,6 +12,7 @@ public class PlayGame
         SavePlayers();
     }
 
+    //function which exlpains rules of the game
     public void Introduction()
     {
   
@@ -27,6 +28,7 @@ public class PlayGame
         DisplayMenu();
     }
 
+    //function which displays the menu
     public void DisplayMenu()
     {
         menuActif = true;
@@ -78,6 +80,7 @@ public class PlayGame
         }
     }
 
+    // function which explains the map
     public void DisplayRules() {
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write("1. ' ~ ':");
@@ -115,7 +118,7 @@ public class PlayGame
         Console.ResetColor();
     }
 
-
+    //Function which starts the solo game
     private void StartSoloGame()
     {
         Console.WriteLine("\nLancement de la partie solo...");
@@ -140,7 +143,7 @@ public class PlayGame
     }
 
        
-    
+    //function which starts the 1v1 game
     private void Start1v1Game()
     {
         Console.WriteLine("\nContre qui voulez-vous jouer ?");
@@ -209,6 +212,7 @@ public class PlayGame
         }
     }
 
+    //function which permits to choose a player's name
     private void ChooseName(Player player1, Player player2, bool isComputer){
         if (!isComputer){
             Console.WriteLine("Joueur 1, choississez votre nom :");
@@ -230,7 +234,7 @@ public class PlayGame
         }
     }
 
-
+    //function which permits to do each round
     private void PlayTurn(Character character, World world, bool isJoueur1, bool isComputer, Player player)
     {
         if (isJoueur1 && world.IsSolo){
@@ -429,6 +433,7 @@ public class PlayGame
         }
     }
 
+    //function which checks if each mission is completed
     private void CheckMission(Character character, World world, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission, Player player){
         easyMission.CheckCompletion(character, world.Boat1, world, player);
         averageMission.CheckCompletion(character, world.Boat1, world, player);
@@ -436,7 +441,7 @@ public class PlayGame
         epicMission.CheckCompletion(character, world.Boat1, world, player);
     }
 
-
+    //function which rolls the die
     private int RollDice()
     {
         Random rand = new Random();
@@ -444,7 +449,7 @@ public class PlayGame
         
     }
 
-
+    //function which checks if the character is unlocked
     public bool IsUnlock(Character character){
         if (character.Unlock) {
             Console.Clear();
@@ -459,7 +464,7 @@ public class PlayGame
         }
     }
 
-    
+    //function which permits to choose a character for the solo game
     public void ChooseCharactere (World world, Player player, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission) {
 
         Console.WriteLine("Choisissez votre personnage :");
@@ -660,6 +665,7 @@ public class PlayGame
         }
     }
 
+    //function which permits to choose a character for the 1v1 game
     private void ChooseCharacter1v1 (Player player, World world, bool isComputer) {
 
         if(!isComputer){
@@ -746,6 +752,7 @@ public class PlayGame
         }
     }
 
+    //function which permits to choose a random character for the computer
     private void ComputerChooseCharacter(World world, Player player){
             Random rand = new Random();
             int choix = rand.Next(1, 7);
@@ -807,6 +814,8 @@ public class PlayGame
             }
     }
 
+
+    //function which permits to start the 1v1 game
     private void StartGame1v1(Player player1, Player player2, World world, bool isComputer, EasyMission easyMission, AverageMission averageMission, HardMission hardMission, EpicMission epicMission)
     {
         if(!isComputer){
@@ -872,18 +881,19 @@ public class PlayGame
 
     }
 
-
+    //function which checks if the 1v1 game is over or not
     private bool IsGameOver1v1(Character character1, Character character2)
     {
         return character1.QuantityEnergy <= 0 || character2.QuantityEnergy <= 0;
     }
 
-
+    //function which checks if the solo game is over or not
     private bool IsGameOver(Character character)
     {
         return character.QuantityEnergy > 0;
     }
 
+    //function which display results of the 1v1 game
     private void DisplayResult1v1(Character character1, Character character2, Player player1, Player player2)
     {
         if (character1.QuantityEnergy > character2.QuantityEnergy)
@@ -902,18 +912,20 @@ public class PlayGame
         }
     }
 
+    //function which adds player in the players list and in the text file with the SavePLayers function
     public void AddPlayer(Player player)
     {
         Players.Add(player);
         SavePlayers();
     }
 
+    //function which updates the player's score
     public void UpdatePlayerScore(Player player, int score)
     {
         player.Score += score;
     }
 
-
+    //function which displays players ranking
     private void DisplayTopPlayers()
     {
         List<Player> topPlayers = Players.OrderByDescending(p => p.Score).Take(5).ToList();
@@ -925,6 +937,7 @@ public class PlayGame
         }
     }
 
+    //function which saves the player in the text file
     private void SavePlayers()
     {
         string filePath = "players.txt";
@@ -938,7 +951,7 @@ public class PlayGame
         }
     }
 
-
+    //function which adds players ranking in list
     private void LoadPlayers()
     {
         string filePath = "players.txt";
