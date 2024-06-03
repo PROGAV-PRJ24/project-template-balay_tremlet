@@ -882,7 +882,7 @@ public class PlayGame
     }
 
     //function which checks if the 1v1 game is over or not
-    private bool IsGameOver1v1(Character character1, Character character2)
+    public bool IsGameOver1v1(Character character1, Character character2)
     {
         return character1.QuantityEnergy <= 0 || character2.QuantityEnergy <= 0;
     }

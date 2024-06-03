@@ -4,8 +4,9 @@ public class Player
     public Character Character { get; set; }
     public int Score { get; set; }
 
-    public Player (){
-        Name= "";
+    public Player ()
+    {
+        Name = "";
         Score = 0;
     }
 
