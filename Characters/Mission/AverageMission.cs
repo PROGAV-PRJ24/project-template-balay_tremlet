@@ -1,6 +1,6 @@
 public class AverageMission : Mission
 {
-    public AverageMission() : base ("Mission moyenne", "Récupérer 40 d'énergies", false)
+    public AverageMission() : base ("Mission moyenne", "Récupérer 30 d'énergies", false)
     {
     }
 
@@ -9,13 +9,13 @@ public class AverageMission : Mission
         Console.WriteLine("=== 2ème Mission  ===");
         Console.WriteLine($"Nom: {Name}");
         Console.WriteLine($"Description: {Description}");
-        Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplète")}");
+        Console.WriteLine($"Status: {(IsCompleted ? "Complété" : "Incomplète")}");
         Console.WriteLine("=======================");
     }
 
     public override bool CheckCompletion(Character character, Boat boat, World world, Player player)
     {
-        if (character.EnergyCount >= 40)
+        if (character.EnergyCount >= 30)
         {
             IsCompleted = true;
             player.Score += 5;

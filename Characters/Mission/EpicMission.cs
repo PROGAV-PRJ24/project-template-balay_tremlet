@@ -9,7 +9,7 @@ public class EpicMission : Mission
         Console.WriteLine("=== 4ème Mission  ===");
         Console.WriteLine($"Nom: {Name}");
         Console.WriteLine($"Description: {Description}");
-        Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplète")}");
+        Console.WriteLine($"Status: {(IsCompleted ? "Complété" : "Incomplète")}");
         Console.WriteLine("=======================");
     }
 

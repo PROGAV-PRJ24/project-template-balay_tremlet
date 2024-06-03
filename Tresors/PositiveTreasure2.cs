@@ -5,7 +5,7 @@ public class PositiveTreasure2 : Treasure
     {
         Console.WriteLine("Vous avez trouvé un trésor positif: le poids de votre inventaire est augmenté de 1.");
         character.InventoryWeight += 1;
-        character.Save();
+        character.SaveInventory();
         player.Score+=5;
     }
 }

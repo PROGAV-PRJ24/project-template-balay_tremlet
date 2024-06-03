@@ -251,6 +251,11 @@ class Object : Character
 
     public override void Save()
     {
-        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString() + $"\n {InventoryWeight} kg");
+        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
+    }
+
+    public override void SaveInventory ()
+    {
+        File.WriteAllText($"{IdCharacter}-Inventory.txt", $"{InventoryWeight}");
     }
 }

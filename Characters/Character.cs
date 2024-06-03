@@ -41,6 +41,8 @@ public abstract class Character
   
     public abstract void DisplayCharacter(Character character);
 
+    public abstract void SaveInventory();
+
     public abstract void Save();
 
     public abstract bool Move(string direction, int roll, World world, Character character, Player player);

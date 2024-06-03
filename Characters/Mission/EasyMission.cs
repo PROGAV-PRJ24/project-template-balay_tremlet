@@ -9,7 +9,7 @@ public class EasyMission : Mission
         Console.WriteLine("=== 1ère Mission  ===");
         Console.WriteLine($"Nom: {Name}");
         Console.WriteLine($"Description: {Description}");
-              Console.WriteLine($"Status: {(IsCompleted ? "Completed" : "Incomplète")}");
+              Console.WriteLine($"Status: {(IsCompleted ? "Complété" : "Incomplète")}");
         Console.WriteLine("=======================");
     }
 

@@ -484,6 +484,8 @@ public class PlayGame
                         if (File.Exists($"{Emma.IdCharacter}.txt"))
                         {
                             Emma.Unlock = bool.Parse(File.ReadAllText($"{Emma.IdCharacter}.txt"));
+                        } if (File.Exists($"{Emma.IdCharacter}-Inventory.txt")){
+                            Emma.InventoryWeight = int.Parse(File.ReadAllText($"{Emma.IdCharacter}-Inventory.txt"));
                         }
                         if(IsUnlock(Emma)){
                             player.Character = Emma;  
@@ -510,6 +512,8 @@ public class PlayGame
                         if (File.Exists($"{Tom.IdCharacter}.txt"))
                         {
                             Tom.Unlock = bool.Parse(File.ReadAllText($"{Tom.IdCharacter}.txt"));
+                        }if (File.Exists($"{Tom.IdCharacter}-Inventory.txt")){
+                            Tom.InventoryWeight = int.Parse(File.ReadAllText($"{Tom.IdCharacter}-Inventory.txt"));
                         }
                         if(IsUnlock(Tom)){
                             player.Character = Tom;  
@@ -535,6 +539,8 @@ public class PlayGame
                         if (File.Exists($"{Chamois.IdCharacter}.txt"))
                         {
                             Chamois.Unlock = bool.Parse(File.ReadAllText($"{Chamois.IdCharacter}.txt"));
+                        }if (File.Exists($"{Chamois.IdCharacter}-Inventory.txt")){
+                            Chamois.InventoryWeight = int.Parse(File.ReadAllText($"{Chamois.IdCharacter}-Inventory.txt"));
                         }
                         if(IsUnlock(Chamois)){
                             player.Character = Chamois; 
@@ -560,8 +566,9 @@ public class PlayGame
                         if (File.Exists($"{Kangourou.IdCharacter}.txt"))
                         {
                             Kangourou.Unlock = bool.Parse(File.ReadAllText($"{Kangourou.IdCharacter}.txt"));
+                        }if (File.Exists($"{Kangourou.IdCharacter}-Inventory.txt")){
+                            Kangourou.InventoryWeight = int.Parse(File.ReadAllText($"{Kangourou.IdCharacter}-Inventory.txt"));
                         }
-                        Kangourou.Unlock = bool.Parse(File.ReadAllText($"{Kangourou.IdCharacter}.txt"));
                         if(IsUnlock(Kangourou)){
                             player.Character = Kangourou;  
                             while (IsGameOver(Kangourou))
@@ -586,6 +593,8 @@ public class PlayGame
                         if (File.Exists($"{Pez.IdCharacter}.txt"))
                         {
                             Pez.Unlock = bool.Parse(File.ReadAllText($"{Pez.IdCharacter}.txt"));
+                        }if (File.Exists($"{Pez.IdCharacter}-Inventory.txt")){
+                            Pez.InventoryWeight = int.Parse(File.ReadAllText($"{Pez.IdCharacter}-Inventory.txt"));
                         }
                         if(IsUnlock(Pez)){
                             player.Character = Pez;  
@@ -612,6 +621,8 @@ public class PlayGame
                         if (File.Exists($"{Rhum.IdCharacter}.txt"))
                         {
                             Rhum.Unlock = bool.Parse(File.ReadAllText($"{Rhum.IdCharacter}.txt"));
+                        }if (File.Exists($"{Rhum.IdCharacter}-Inventory.txt")){
+                            Rhum.InventoryWeight = int.Parse(File.ReadAllText($"{Rhum.IdCharacter}-Inventory.txt"));
                         }
                         if(IsUnlock(Rhum)){
                             player.Character = Rhum;  
