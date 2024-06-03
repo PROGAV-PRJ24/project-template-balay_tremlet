@@ -1,4 +1,4 @@
-
+using OnePieceGame;
 public class PlayGame
 {
     private string nomDuJeu = "One Piece";
@@ -882,10 +882,14 @@ public class PlayGame
     }
 
     //function which checks if the 1v1 game is over or not
-    public bool IsGameOver1v1(Character character1, Character character2)
+   public bool IsGameOver1v1(Character character1, Character character2)
+{
+    if(character1 == null || character2 == null)
     {
-        return character1.QuantityEnergy <= 0 || character2.QuantityEnergy <= 0;
+        throw new ArgumentNullException("character1 or character2 is null");
     }
+    return character1.QuantityEnergy >= 0 || character2.QuantityEnergy >= 0;
+}
 
     //function which checks if the solo game is over or not
     private bool IsGameOver(Character character)

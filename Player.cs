@@ -1,14 +1,17 @@
-public class Player
+namespace OnePieceGame
 {
-    public string Name { get; set; }
-    public Character Character { get; set; }
-    public int Score { get; set; }
-
-    public Player ()
+    public class Player
     {
-        Name = "";
-        Score = 0;
-    }
+        public string Name { get; set; }
+        public Character Character { get; set; }
+        public int Score { get; set; }
 
+        public Player()
+        {
+            Name = "";
+            Score = 0;
+        }
+    }
 }
+
 
