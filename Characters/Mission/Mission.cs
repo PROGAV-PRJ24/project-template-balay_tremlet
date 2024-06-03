@@ -10,7 +10,9 @@ public abstract class Mission
         IsCompleted = isCompleted;
     }
 
+    //function which displays missions caracteristics
     public abstract void DisplayMission();
 
+    //function which checks if the mission is completed
     public abstract bool CheckCompletion(Character character, Boat boat, World world, Player player);
 } 

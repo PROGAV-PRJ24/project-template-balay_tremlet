@@ -11,9 +11,10 @@ public abstract class Food
         IdFood = idFood;
     }
 
-  
+    //function which displays food's caracteristics
     public abstract void DisplayFood();
 
+    //function which applys the food's effect
     public abstract void EffectFood(Character character);
 
 }

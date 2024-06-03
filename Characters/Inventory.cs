@@ -13,6 +13,7 @@ public class Inventory
         CurrentWeight = 0;
     }
 
+    //function which adds treasure in the inventory
     public bool AddTreasure(Treasure treasure)
     {
         if (CurrentWeight + treasure.WeightTreasure <= MaxWeight)
@@ -28,6 +29,7 @@ public class Inventory
         }
     }
 
+    //function which removes treasure in the inventory
     public bool RemoveTreasure(Treasure treasure)
     {
         if (Treasures.Contains(treasure))
@@ -43,6 +45,7 @@ public class Inventory
         }
     }
 
+    //function which displays treasure in the inventory
     public void DisplayInventory()
     {
         Console.WriteLine("Contenu de l'inventaire :");

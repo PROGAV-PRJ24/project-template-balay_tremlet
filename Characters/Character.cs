@@ -36,18 +36,22 @@ public abstract class Character
 
     }
 
-  
+    //function which display characters caracteristics
     public abstract void DisplayCharacter(Character character);
 
+    // function which save the setting size inventory of the character
     public abstract void SaveInventory();
 
+    // function which save the setting unlock of the character
     public abstract void Save();
 
+    //function which move the character in function of the direction
     public abstract bool Move(string direction, int roll, World world, Character character, Player player);
 
-
+    //function which move the character in function of the direction for the 1v1 game
     public abstract bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player);
 
+    //function which determines the chatacter's weakness 
     public void Weakness (Character character) {
 
         switch (character.WeakPoint)
@@ -74,13 +78,14 @@ public abstract class Character
         }
     }
 
+    //function which removes the character's weakness
     public void RemoveWeakness()
     {
       
         IdWeakness2 = -1;
     }
 
-
+    //function which displays the character's energy
     public virtual void DisplayEnergy()
     {
         int maxEnergy = MaxQuantityEnergy ; 
@@ -110,14 +115,7 @@ public abstract class Character
         Console.Write($" ({QuantityEnergy}/{maxEnergy})");
     }
 
-
-    // public virtual void DisplayBagpack()
-    // {
-    //     Console.WriteLine($"Votre sac à dos peut contenir {InventorySize} objets et vous avez maintenant {InventoryWeight} objets.");
-
-    // }
-
-
+    //function which drops treasures in the boat
     public void FileTreasure(Boat boat)
     {
         if (Inventory.CurrentWeight > 0)
@@ -139,20 +137,3 @@ public abstract class Character
     }
 
 }
-
-
-
-    
-   /*  public void MoveBoat(string direction)
-    {
-        if (Boat != null)
-        {
-            Boat.Move(direction);
-        }
-        else
-        {
-            Console.WriteLine($"Le personnage (ID : {IdCharacter}) n'a pas de bateau associé.");
-        }
-    }
-}
- */

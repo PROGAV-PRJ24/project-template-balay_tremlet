@@ -12,9 +12,10 @@ public abstract class Treasure
         Name="";
     }
 
+    //function which applys the treasure's effect
     public abstract void ApplyEffect(Character character, Player player);
 
-
+    //function which shows the enigma
     protected bool DemanderEnigme(int typeEnigme)
     {
         string[] questionsEnigme = {
@@ -33,6 +34,7 @@ public abstract class Treasure
         return réponse == "oui";
     }
 
+    //function which determines if the enigma is solved
     protected bool RésoudreEnigme()
     {
         string[,] enigmes = {

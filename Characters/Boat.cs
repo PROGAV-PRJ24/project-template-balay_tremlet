@@ -9,6 +9,7 @@ public class Boat
         CurrentWeightBoat = 0;
     }
 
+    //function which adds treasure in the boat
     public bool AddTreasure(Treasure treasure)
     {
         if (CurrentWeightBoat + treasure.WeightTreasure <= WeightBoat)
@@ -24,6 +25,7 @@ public class Boat
         }
     }
 
+    //function which removes treasure in the boat
     public bool RemoveTreasure(Treasure treasure)
     {
         if (Treasures.Contains(treasure))
@@ -39,6 +41,7 @@ public class Boat
         }
     }
 
+    //function which displays treasures in the boat
     public void DisplayBoat()
     {
         Console.WriteLine("Contenu du bateau :");

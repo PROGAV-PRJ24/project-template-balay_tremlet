@@ -4,6 +4,7 @@ class Pate : Food
     {
     }
 
+    //function which displays food's caracteristics
     public override void DisplayFood()
     {
         Console.WriteLine($"ID : {IdFood}");
@@ -11,6 +12,7 @@ class Pate : Food
         Console.WriteLine("Cette nourriture vous redonne de l'énergie à Emma !");
     }
 
+    //function which applys the food's effect
     public override void EffectFood(Character character){
         if ($"{character}" == "Emma") {
             character.QuantityEnergy += EnergyGift;

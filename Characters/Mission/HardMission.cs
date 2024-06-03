@@ -5,7 +5,7 @@ public class HardMission : Mission
     {
     }
     
-
+    //function which displays missions caracteristics
     public override void DisplayMission()
     {
         Console.WriteLine("=== 3ème Mission  ===");
@@ -15,6 +15,7 @@ public class HardMission : Mission
         Console.WriteLine("=======================");
     }
 
+    //function which checks if the mission is completed
     public override bool CheckCompletion(Character character, Boat boat, World world, Player player)
     {
 

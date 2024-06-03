@@ -4,6 +4,7 @@ public class EpicMission : Mission
     {
     }
 
+    //function which displays missions caracteristics
     public override void DisplayMission()
     {
         Console.WriteLine("=== 4ème Mission  ===");
@@ -13,6 +14,7 @@ public class EpicMission : Mission
         Console.WriteLine("=======================");
     }
 
+    //function which checks if the mission is completed
     public override bool CheckCompletion(Character character, Boat boat, World world, Player player)
     {
         foreach (Treasure treasure in boat.Treasures)

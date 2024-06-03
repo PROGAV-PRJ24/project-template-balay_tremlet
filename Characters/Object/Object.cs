@@ -3,6 +3,7 @@ class Object : Character
     public Object(int id, bool unlock, int inventoryWeight, int boatWeight) : base(id, unlock, 500, 5, inventoryWeight, boatWeight, "Montagne/Eau", "Non", "Diagonale")
     {}
 
+    //function which display characters caracteristics
     public override void DisplayCharacter(Character character)
     {
         Console.WriteLine($"ID : {IdCharacter}");
@@ -16,6 +17,7 @@ class Object : Character
         Weakness(character);
     }
 
+    //function which move the character in function of the direction
     public override bool Move(string direction, int roll, World world, Character character, Player player)
     {
         int oldX = world.GetCharacterX();
@@ -91,6 +93,7 @@ class Object : Character
     }
 
 
+    //function which move the character in function of the direction for the 1v1 game
     public override bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player)
     {
         if(isJoueur1){
@@ -248,11 +251,13 @@ class Object : Character
         }
     }
 
+    // function which save the setting unlock of the character
     public override void Save()
     {
         File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
     }
 
+    // function which save the setting size inventory of the character
     public override void SaveInventory ()
     {
         File.WriteAllText($"{IdCharacter}-Inventory.txt", $"{InventoryWeight}");

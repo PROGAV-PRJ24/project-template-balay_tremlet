@@ -7,6 +7,7 @@ public class OnePieceTreasure : Treasure
         WeightTreasure = 8;
     }
 
+    //function which applys the treasure's effect
     public override void ApplyEffect(Character character, Player player)
     {
         Console.WriteLine("Vous avez trouvé le One Piece !");

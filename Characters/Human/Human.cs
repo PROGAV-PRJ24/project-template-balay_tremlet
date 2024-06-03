@@ -7,6 +7,7 @@ public class Human : Character
     {
     }
 
+    //function which display characters caracteristics
     public override void DisplayCharacter(Character character)
     {
         Console.WriteLine($"ID : {IdCharacter}");
@@ -20,6 +21,7 @@ public class Human : Character
         Weakness(character);
     }
 
+    //function which move the character in function of the direction
     public override bool Move(string direction, int roll, World world, Character character, Player player)
     {
         int oldX = world.GetCharacterX();
@@ -83,6 +85,7 @@ public class Human : Character
         return true;
     }
 
+    //function which move the character in function of the direction for the 1v1 game
     public override bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player)
     {
         int oldX, oldY, newX, newY, oldPoint;
@@ -160,11 +163,13 @@ public class Human : Character
         return true;
     }
 
+    // function which save the setting unlock of the character
     public override void Save()
     {
         File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
     }
 
+    // function which save the setting size inventory of the character
     public override void SaveInventory ()
     {
         File.WriteAllText($"{IdCharacter}-Inventory.txt", $"{InventoryWeight}");
