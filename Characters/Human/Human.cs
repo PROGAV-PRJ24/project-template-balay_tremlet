@@ -163,6 +163,6 @@ public class Human : Character
 
     public override void Save()
     {
-        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString());
+        File.WriteAllText($"{IdCharacter}.txt", Unlock.ToString() + $"\n {InventoryWeight} kg");
     }
 }
