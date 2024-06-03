@@ -1,5 +1,4 @@
-namespace OnePieceGame
-{
+
     public class Player
     {
         public string Name { get; set; }
@@ -12,6 +11,5 @@ namespace OnePieceGame
             Score = 0;
         }
     }
-}
 
 

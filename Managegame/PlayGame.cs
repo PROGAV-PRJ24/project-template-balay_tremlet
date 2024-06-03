@@ -1,4 +1,4 @@
-using OnePieceGame;
+
 public class PlayGame
 {
     private string nomDuJeu = "One Piece";
