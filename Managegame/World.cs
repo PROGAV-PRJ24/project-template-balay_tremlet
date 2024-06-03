@@ -147,7 +147,7 @@ public class World
             {
                 if (Mat[i, j] == 1 && random.NextDouble() < 0.15) // 15% de chance d'avoir de la nourriture
                 {
-                    int food = random.Next(12, 16); // Génère un nombre aléatoire entre 12 et 15 pour différents types de nourriture
+                    int food = random.Next(13, 16); // Génère un nombre aléatoire entre 12 et 15 pour différents types de nourriture
                     Mat[i, j] = food; // nourriture
                 }
             }
@@ -212,7 +212,6 @@ public class World
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("— ");
                         break;
-                    case 12: // Nourriture type 1
                     case 13: // Nourriture type 2
                     case 14: // Nourriture type 3
                     case 15: // Nourriture type 4
@@ -406,13 +405,7 @@ public class World
         int foodId = Mat[characterX, characterY];
         GetFoodById(foodId);
         string foodName = CaseName;
-        if (foodName == "LifeFood"){
-
-            LifeFood food = new LifeFood ();
-            Console.WriteLine ($"Vous avez trouvé de la nourriture vie !");
-            food.EffectFood(character);
-
-        }  else if (foodName == "Viande"){
+        if (foodName == "Viande"){
 
             Meat food = new Meat();
             Console.WriteLine ($"Vous avez trouvé de la viande !");
@@ -439,9 +432,6 @@ public class World
         if (foodId >= 10 && foodId <= 13){
             switch (foodId)
             {
-                case 10:
-                    CaseName = "LifeFood";
-                    break;
                 case 11:
                     CaseName = "Viande";
                     break;

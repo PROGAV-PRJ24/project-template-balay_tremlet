@@ -3,7 +3,7 @@ using System;
 public class Human : Character
 {
     public Human(int id, bool unlock, int quantityEnergy, int inventoryWeight, int boatWeight) 
-        : base(id, unlock, quantityEnergy, 10, inventoryWeight, boatWeight, "Montagne", "Eau", 20, "Lignes droites")
+        : base(id, unlock, quantityEnergy, 10, inventoryWeight, boatWeight, "Montagne", "Eau", "Lignes droites")
     {
     }
 
@@ -16,7 +16,6 @@ public class Human : Character
         Console.WriteLine($"Poids du bateau : {BoatWeight} kg");
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
-        Console.WriteLine($"Point de vie : {LifePoint}");
         Console.WriteLine($"Déplacement : {Movement}");
         Weakness(character);
     }

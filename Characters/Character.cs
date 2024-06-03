@@ -9,7 +9,6 @@ public abstract class Character
     public int BoatWeight { get; set; }
     public string StrongPoint { get; set; }
     public string WeakPoint { get; set; }
-    public int LifePoint { get; set; }
     public string Movement { get; protected set; }
     public int IdCharacter { get; private set; }
     public int IdWeakness1;
@@ -19,7 +18,7 @@ public abstract class Character
     // public Boat Boat { get; set; } // Référence vers le bateau associé au personnage
 
 
-    public Character(int id, bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, int lifePoint, string movement)
+    public Character(int id, bool unlock, int quantityEnergy, int manageEnergy, int inventoryWeight, int boatWeight, string weakPoint, string strongPoint, string movement)
     {
         Unlock = unlock;
         QuantityEnergy = quantityEnergy;
@@ -29,7 +28,6 @@ public abstract class Character
         StrongPoint = strongPoint;
         WeakPoint = weakPoint;
         MaxQuantityEnergy = quantityEnergy;
-        LifePoint = lifePoint;
         Movement = movement;
         IdCharacter = id;
         Inventory = new Inventory(InventoryWeight);

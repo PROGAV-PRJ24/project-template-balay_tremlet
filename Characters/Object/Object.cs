@@ -1,6 +1,6 @@
 class Object : Character
 {
-    public Object(int id, bool unlock, int inventoryWeight, int boatWeight) : base(id, unlock, 500, 5, inventoryWeight, boatWeight, "Montagne/Eau", "Non", 5, "Diagonale")
+    public Object(int id, bool unlock, int inventoryWeight, int boatWeight) : base(id, unlock, 500, 5, inventoryWeight, boatWeight, "Montagne/Eau", "Non", "Diagonale")
     {}
 
     public override void DisplayCharacter(Character character)
@@ -12,7 +12,6 @@ class Object : Character
         Console.WriteLine($"Poids du bateau : {BoatWeight} kg");
         Console.WriteLine($"Point fort : {StrongPoint}");
         Console.WriteLine($"Point faible : {WeakPoint}");
-        Console.WriteLine($"Point de vie : {LifePoint}");
         Console.WriteLine($"Déplacement : {Movement}");
         Weakness(character);
     }
