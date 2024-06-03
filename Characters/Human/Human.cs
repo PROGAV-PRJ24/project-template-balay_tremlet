@@ -85,83 +85,147 @@ public class Human : Character
         return true;
     }
 
-    //function which move the character in function of the direction for the 1v1 game
+
     public override bool Move1v1(string direction, int roll, World world, Character character, bool isJoueur1, Player player)
     {
-        int oldX, oldY, newX, newY, oldPoint;
+        if(isJoueur1){
 
-        if (isJoueur1)
-        {
-            oldX = world.GetCharacterX();
-            oldY = world.GetCharacterY();
-        }
-        else
-        {
-            oldX = world.GetCharacter2X();
-            oldY = world.GetCharacter2Y();
-        }
 
-        oldPoint = world.IsInCircle(oldX, oldY) ? 1 : 0;
-        newX = -1;
-        newY = -1;
+            int oldX = world.GetCharacterX();
+            int oldY = world.GetCharacterY();
 
-        switch (direction.ToLower())
-        {
-            case "gauche":
-                newX = oldX;
-                newY = oldY - roll;
-                break;
-            case "droite":
-                newX = oldX;
-                newY = oldY + roll;
-                break;
-            case "haut":
-                newX = oldX - roll;
-                newY = oldY;
-                break;
-            case "bas":
-                newX = oldX + roll;
-                newY = oldY;
-                break;
-            default:
-                Console.WriteLine("Direction invalide");
+
+            int oldPoint = world.IsInCircle(oldX, oldY) ? 1 : 0;
+
+
+            int newX = -1;
+            int newY = -1;
+
+
+            switch (direction.ToLower())
+            {
+                case "gauche":
+                    newX = world.GetCharacterX() ;
+                    newY = world.GetCharacterY() - roll * 2;
+                    break;
+                case "droite":
+                    newX = world.GetCharacterX() ;
+                    newY = world.GetCharacterY() + roll * 2;
+                    break;
+                case "haut":
+                    newX = world.GetCharacterX()  - roll * 2;
+                    newY = world.GetCharacterY();
+                    break;
+                case "bas":
+                    newX = world.GetCharacterX() + roll * 2;
+                    newY = world.GetCharacterY() ;
+                    break;
+                default:
+                    Console.WriteLine("Direction invalide");
+                    return false;
+            }
+
+            if (newX < 0 || newX >= world.Mat.GetLength(0) || newY < 0 || newY >= world.Mat.GetLength(1))
+            {
+                Console.WriteLine("Impossible de se déplacer dans cette direction");
                 return false;
-        }
 
-        if (newX < 0 || newX >= world.Mat.GetLength(0) || newY < 0 || newY >= world.Mat.GetLength(1))
-        {
-            Console.WriteLine("Impossible de se déplacer dans cette direction");
-            return false;
-        }
-        if (world.Mat[newX, newY] == 3)
-        {
-            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne peut pas traverser les arbres.");
-            return false;
-        }
-        if (world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
-        {
-            Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne peut pas aller dans {WeakPoint}.");
-            return false;
-        }
 
-        int boatID = isJoueur1 ? 16 : 17;
-        Boat boat = isJoueur1 ? world.Boat1 : world.Boat2;
-        if (world.Mat[newX, newY] == boatID)
-        {
-            Console.WriteLine("Vous avez atteint le bateau !");
-            character?.FileTreasure(boat);
-            return false;
-        }
+            }
+            if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
+            {
+                Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
+                return false;
 
-        world.CheckFood(newX, newY, character);
-        world.CheckTreasure(newX, newY, character, player);
-        world.Mat[newX, newY] = isJoueur1 ? 18 : 19;
-        player.Score+=roll;
-        world.Mat[oldX, oldY] = oldPoint;
-        QuantityEnergy -= ManageEnergy;
-        Console.WriteLine($"Votre humain (ID : {IdCharacter}) bouge vers le/la {direction}.");
-        return true;
+
+            } 
+            if (world.Mat[newX, newY] == 16)
+            {
+                Console.WriteLine("Vous avez atteint le bateau !");
+                character.FileTreasure(world.Boat1);
+                return false;
+            } else {
+                world.CheckFood(newX, newY, character);
+                world.CheckTreasure(newX, newY, character, player);
+                world.Mat[newX, newY] = 18;
+                world.Mat[oldX, oldY] = oldPoint;
+                player.Score+=roll;
+                QuantityEnergy -= ManageEnergy;
+                Console.WriteLine($"Votre humain (ID : {IdCharacter}) bouge vers le/la {direction}.");
+                return true;
+            }
+
+
+        } else {
+            int oldX = world.GetCharacter2X();
+            int oldY = world.GetCharacter2Y();
+
+
+            int oldPoint = world.IsInCircle(oldX, oldY) ? 1 : 0;
+
+
+            int newX = -1;
+            int newY = -1;
+
+
+            switch (direction.ToLower())
+            {
+                case "gauche":
+                    newX = oldX ;
+                    newY = oldY - roll;
+                    break;
+                case "droite":
+                    newX = oldX ;
+                    newY = oldY + roll;
+                    break;
+                case "haut":
+                    newX = oldX  - roll;
+                    newY = oldY;
+                    break;
+                case "bas":
+                    newX = oldX + roll;
+                    newY = oldY ;
+                    break;
+                default:
+                    Console.WriteLine("Direction invalide");
+                    return false;
+            }
+
+
+
+
+            if (newX < 0 || newX >= world.Mat.GetLength(0) || newY < 0 || newY >= world.Mat.GetLength(1))
+            {
+                Console.WriteLine("Impossible de se déplacer dans cette direction");
+                return false;
+
+
+            }
+            if ( world.Mat[newX, newY] == IdWeakness1 || world.Mat[newX, newY] == IdWeakness2)
+            {
+                Console.WriteLine($"Votre humain (ID : {IdCharacter}) ne pas aller dans {WeakPoint}.");
+                return false;
+
+
+            } 
+            if (world.Mat[newX, newY] == 17)
+            {
+                Console.WriteLine("Vous avez atteint le bateau !");
+                character.FileTreasure(world.Boat2);
+                return false;
+            }else {
+                world.CheckFood(newX, newY, character);
+                world.CheckTreasure(newX, newY, character, player);
+                world.Mat[newX, newY] = 19;
+                world.Mat[oldX, oldY] = oldPoint;
+                player.Score+=roll;
+                QuantityEnergy -= ManageEnergy;
+                Console.WriteLine($"Votre humain (ID : {IdCharacter}) bouge vers le/la {direction}.");
+                return true;
+            }
+        }
     }
+
 
     // function which save the setting unlock of the character
     public override void Save()
